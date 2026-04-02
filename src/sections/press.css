@@ -18,50 +18,43 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* Center the entire bundle */
-  gap: clamp(3rem, 6vw, 8rem);
-  /* Restored gap for a spacious editorial look */
+  gap: clamp(2rem, 4vw, 8rem);
 }
 
 .press .section-header__title {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: clamp(1.125rem, 1.15vw, 1.375rem);
+  font-size: clamp(1rem, 1.15vw, 2.25rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #000;
 
-  /* Positions the header correctly inside the Section component structure */
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: clamp(16px, 2vw, 60px);
+  left: clamp(16px, 2vw, 60px);
 }
 
 .press-left {
   flex: 0 0 auto;
-  /* Let the grid determine its size */
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
 .press-right-stack {
-  flex: 0 1 600px;
-  /* Editorial width cap */
+  flex: 1;
+  max-width: clamp(300px, 35vw, 1400px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  /* Strictly match the LavaGrid height (matching its 520px max or fluid width) */
-  height: clamp(300px, 40vw, 520px);
-
-  /* Distribution: image top, text bottom anchors */
+  /* Match the LavaGrid height fluidly */
+  height: clamp(280px, 35vw, 900px);
 }
 
 .press-featured-image-wrapper {
   width: 100%;
-  height: 50%;
-  /* Adjusted from 55% to create internal gap in the stack */
-  border-radius: 28px;
+  height: 48%;
+  border-radius: clamp(14px, 2.5vw, 60px);
   overflow: hidden;
   display: block;
 }
@@ -101,10 +94,10 @@
 
 .press-text-container h2 {
   font-family: monospace;
-  font-size: clamp(0.9rem, 0.95vw, 1.125rem);
+  font-size: clamp(0.75rem, 0.95vw, 1.5rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.2rem;
+  margin-bottom: clamp(0.1rem, 0.2vw, 0.3rem);
   color: #000000;
   opacity: 1;
 }
@@ -113,10 +106,10 @@
 
 .press-text-container h3 {
   font-family: "NessynSentry", sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 4.5rem);
   line-height: 0.85;
   letter-spacing: -0.05em;
-  margin-bottom: clamp(0.5rem, 0.8vw, 1rem);
+  margin-bottom: clamp(0.4rem, 0.8vw, 2rem);
   color: #000000;
   max-width: 100%;
   word-wrap: break-word;
@@ -127,32 +120,25 @@
 
 .press-text-container p {
   font-family: "NeueHaasDisplayRoman", sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 1.25rem);
+  font-size: clamp(0.8rem, 1.1vw, 2.25rem);
   line-height: 1.2;
   color: #000000;
   opacity: 1;
-  margin-bottom: clamp(0.5rem, 0.5vw, 0.625rem);
-  max-width: 45ch;
+  margin-bottom: clamp(0.4rem, 0.5vw, 2rem);
+  max-width: 80ch;
   margin-top: -0.2rem;
 }
 
-/* EXCERPT (desktop-only)
-   Use a class so the markup can opt-in to showing an excerpt block.
-   This is visible on desktop and intentionally hidden on mobile below. */
+/* EXCERPT (desktop-only) */
 .press-text-container .excerpt {
   font-family: "NeueHaasDisplayRoman", sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 1.25rem);
+  font-size: clamp(0.8rem, 1.1vw, 2.25rem);
   line-height: 1.2;
   opacity: 1;
-  margin-bottom: clamp(0.5rem, 0.5vw, 0.625rem);
-  max-width: 45ch;
+  margin-bottom: clamp(0.4rem, 0.5vw, 2rem);
+  max-width: 80ch;
   margin-top: -0.2rem;
   display: block;
-}
-
-/* Hide excerpt on mobile — mobile layout uses tighter composition without the excerpt */
-.press-text-container .excerpt {
-  display: block !important;
 }
 
 /* LINK */
@@ -160,15 +146,14 @@
 .press-link {
   font-family: "NeueHaasDisplayBold", sans-serif;
   font-weight: bold;
-  font-size: clamp(0.75rem, 0.7vw, 0.875rem);
+  font-size: clamp(0.65rem, 0.8vw, 1.75rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #9a2222;
-  /* Burgundy */
   text-decoration: none;
   border-bottom: none;
   width: fit-content;
-  padding-bottom: clamp(0.25rem, 0.3vw, 0.375rem);
+  padding-bottom: clamp(0.2rem, 0.3vw, 0.5rem);
   transition: opacity 0.3s;
 }
 
@@ -198,10 +183,10 @@
 
   position: absolute;
 
-  bottom: clamp(1.25rem, 1.5vw, 1.875rem);
-  right: clamp(1rem, 1vw, 1.25rem);
+  bottom: clamp(1rem, 1.5vw, 3rem);
+  right: clamp(0.75rem, 1vw, 2rem);
 
-  width: clamp(0.625rem, 14vw, 5rem);
+  width: clamp(0.625rem, 5vw, 8rem);
 
   opacity: 0.9;
 
@@ -209,39 +194,29 @@
 
 }
 
-/* Logos inside lava cards: keep intrinsic aspect ratio and remain visually stable
-   even when the parent card animates via transforms. Scoped under .press so
-   it reliably overrides other lava styles. */
+/* Logos inside lava cards */
 .press .lava-card .lava-card__logo {
   display: block;
   width: auto;
-  /* do not force a 100% width */
   height: auto;
-  /* do not force a 100% height */
   max-width: 70%;
-  /* scale proportionally inside the card */
   max-height: 70%;
   object-fit: contain;
-  /* preserve intrinsic aspect ratio */
   margin: 0 auto;
-  /* center in flex container */
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
 
-  /* Promote to its own layer for crisp rendering and to avoid flicker */
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform, opacity;
 
-  /* Keep slight transition for fade or state changes but avoid layout jumps */
   transition: opacity 180ms ease;
 
-  /* Invert logos as requested */
   filter: invert(1);
 }
 
-/* Ensure SVG logos (if used) also respect intrinsic sizing */
+/* Ensure SVG logos also respect intrinsic sizing */
 .press .lava-card .lava-card__logo svg {
   width: auto;
   height: auto;
@@ -252,7 +227,6 @@
 /* Overlay container (decoupled logos) */
 .press .lava-grid {
   position: relative;
-  /* ensure overlay coords are relative to grid */
 }
 
 .press .lava-grid__logos {
@@ -292,19 +266,14 @@
     position: relative;
     overflow: hidden;
     border-radius: 28px;
-    /* ADD THIS */
 
   }
 
   .press .section-body {
     flex-direction: column;
-    align-items: stretch; /* Prevents text blocks from shrinking and centering */
+    align-items: stretch;
     padding-right: 15px;
-    /* Reduced from 30px */
   }
-
-
-
 
   .press .section-header__title {
 
@@ -325,13 +294,9 @@
 
     display: flex;
     align-items: flex-start;
-    /* start from top */
     justify-content: center;
 
-    /* slightly raise the grid on mobile so there is more breathing room at the bottom */
-    /* move the grid higher while preserving header headroom; tune for better balance */
     padding-top: 72px;
-    /* increased to ensure space from the section title */
   }
 
   .press-grid {
@@ -344,12 +309,15 @@
     display: none !important;
   }
 
+  .press-right-stack {
+    height: auto;
+    max-width: none;
+  }
+
   .press-text-container {
-    /* Vertical positioning is handled by the justified stack wrapper */
     margin-top: 0;
     padding-bottom: 0;
 
-    /* Text: Force Black on White */
     color: #000000 !important;
     text-shadow: none !important;
     padding-left: 0 !important;
@@ -376,31 +344,18 @@
     display: none !important;
   }
 
-  .press-text-container .excerpt {
-    display: none !important;
-    font-family: "NeueHaasDisplayRoman", sans-serif;
-    font-size: clamp(12px, 3.8vw, 15px);
-    letter-spacing: 0.02em;
-    line-height: 1.55;
-    text-align: left;
-  }
-
-
   .press .lava-grid {
     gap: 6px;
   }
 
-  /* raise the grid container a touch to balance vertical composition */
   .press .lava-grid {
     transform: translateY(-8px);
-    /* lower the grid a bit so it leaves headroom from title */
   }
 
   .press .lava-card {
     border-radius: 24px;
   }
 
-  /* Slightly reduce press title size on mobile for better fit (subtle) */
   .press-text-container h3 {
     font-size: 28px;
     letter-spacing: -0.04em;
@@ -410,101 +365,9 @@
 
 }
 
-/* 🚨 THE 4K "DIRECTOR'S CUT" OVERRIDE */
+/* 4K - only keep the border accent, sizes are now fluid */
 @media (min-width: 2500px) {
-
-  /* 1. THE HEADER: Scaled & Repositioned */
-  .press .section-header {
-    left: 5vw;
-    top: 4vw;
-    right: 5vw;
-    height: auto;
-  }
-
-  .press .section-header__title {
-    font-size: clamp(1.5rem, 1.8vw, 2.25rem);
-    letter-spacing: 0.15em;
-  }
-
   .press .section-body {
-    justify-content: center;
-    gap: 4vw;
-    align-items: center;
     padding-top: 2vw;
-  }
-
-  .press-left {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Scale the grid roughly 2x (from 520px base) to fill the 50vw space */
-  .press .lava-grid {
-    max-width: 40vw;
-    gap: 1.5rem;
-  }
-
-  .press .lava-card {
-    border-radius: 4rem;
-  }
-
-  /* 2. THE STACK: Vertical distribution & 4K Scaling */
-  .press-right-stack {
-    flex: 1;
-    /* Expand into available space */
-    max-width: 1400px;
-    /* Generous width for premium 4K feel */
-    height: 40vw;
-    margin-right: clamp(80px, 4vw, 150px);
-    /* Sits closer to dots without touching */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .press-featured-image-wrapper {
-    height: 48%;
-    border-radius: 4rem;
-  }
-
-  .press-text-container {
-    padding-left: 0;
-    height: auto;
-    min-height: 0;
-    color: #000000;
-  }
-
-  /* THE TITLE: Capped for editorial balance */
-  .press-text-container h3 {
-    font-size: clamp(3.5rem, 5vw, 4.5rem);
-    line-height: 0.85;
-    letter-spacing: -0.05em;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-  }
-
-  /* PROSE: Premium scale without being overwhelming */
-  .press-text-container p,
-  .press-text-container .excerpt {
-    font-size: 2.25rem;
-    line-height: 1.3;
-    max-width: 80ch;
-    /* Significantly wider as requested */
-    margin-top: -0.5rem;
-    margin-bottom: 2rem;
-    text-align: left;
-  }
-
-  /* THE LINK: Sharp, readable footer */
-  .press-link {
-    font-size: 1.75rem;
-    margin-top: 3rem;
-    border-bottom: none;
-    text-decoration: none;
-    padding-bottom: 0.5rem;
-    color: #9a2222;
-    font-weight: bold;
   }
 }

@@ -1,21 +1,21 @@
 .lava-grid {
   width: 100%;
-  max-width: 520px;
+  max-width: clamp(280px, 35vw, 900px);
   aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  gap: 10px;
+  gap: clamp(4px, 0.7vw, 20px);
 }
 
 .lava-card {
   background: #000000;
   color: white;
-  border-radius: 35px;
+  border-radius: clamp(14px, 2.5vw, 60px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: clamp(14px, 1.5vw, 36px);
   cursor: pointer;
   position: relative;
 
@@ -38,8 +38,8 @@
 }
 
 /* Nested logo boundary constraints.
-  Framer Motion's 'layout' prop scales the container; 
-  these rules ensure the SVG/PNG respects the new bounds. 
+  Framer Motion's 'layout' prop scales the container;
+  these rules ensure the SVG/PNG respects the new bounds.
 */
 .lava-card__logo {
   max-width: 30%;
