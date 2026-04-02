@@ -22,11 +22,11 @@
 
 .studio-scroll {
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
 
@@ -39,8 +39,6 @@
   align-items: flex-end;
   /* Aligned to bottom edges */
   width: 100%;
-  max-width: 1400px;
-  /* Perfectly aligned with ArchivalStack */
   margin: -10px auto 30px;
   /* Tighter relationship with the stack, lifted from bottom */
   padding: 0;
@@ -150,7 +148,6 @@
   }
 
   .studio-scroll {
-    max-width: 2900px;
     padding-bottom: 2vh;
     padding-top: 2vh;
     margin-top: 0;
@@ -159,7 +156,6 @@
   .stack-legend {
     display: flex !important;
     visibility: visible !important;
-    max-width: 2900px;
     padding: 0;
     margin-bottom: 4vh;
     margin-top: 0;
