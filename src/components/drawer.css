@@ -32,7 +32,7 @@
     align-items: stretch;
     font-family: var(--font-text);
     background-color: var(--drawer-bg, var(--white)) !important;
-    width: 40px; /* Base width */
+    width: clamp(32px, 3vw, 100px); /* Base collapsed width */
     overflow: hidden;
     z-index: 10;
     pointer-events: none; /* Let hovers pass to zone */
@@ -42,8 +42,8 @@
 
 /* Collapsed Strip */
 .sh-collapsed-icon {
-    width: 40px;
-    min-width: 40px;
+    width: clamp(32px, 3vw, 100px);
+    min-width: clamp(32px, 3vw, 100px);
     align-self: stretch;
     display: flex;
     align-items: center;
@@ -52,8 +52,8 @@
 }
 
 .sh-logo-small {
-    width: 18px !important;
-    height: 18px !important;
+    width: clamp(14px, 1.5vw, 32px) !important;
+    height: clamp(14px, 1.5vw, 32px) !important;
 }
 
 /* Expanded Content Area */
@@ -62,7 +62,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 12px 20px 12px 16px;
+    padding: clamp(8px, 1vw, 48px) clamp(12px, 2vw, 48px) clamp(8px, 1vw, 48px) clamp(10px, 1.5vw, 40px);
     min-width: 0;
     overflow: hidden;
 
@@ -121,18 +121,18 @@
 
 /* Header Section */
 .sh-header {
-    padding-bottom: 6px;
+    padding-bottom: clamp(4px, 0.5vw, 12px);
 }
 
 .sh-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: clamp(8px, 1vw, 24px);
 }
 
 .sh-logo-img {
-    width: 22px;
-    height: 22px;
+    width: clamp(16px, 2vw, 56px);
+    height: clamp(16px, 2vw, 56px);
     background-color: var(--drawer-button-bg);
     mask-image: var(--logo-url);
     -webkit-mask-image: var(--logo-url);
@@ -147,7 +147,7 @@
 .sh-brand-text {
     font-family: var(--font-text);
     font-weight: 700;
-    font-size: 18px;
+    font-size: clamp(14px, 1.5vw, 42px);
     margin: 0;
     color: var(--drawer-text, var(--black));
 }
@@ -157,22 +157,22 @@
     border: 0;
     height: 1px;
     background-color: var(--drawer-accent, var(--light-gray));
-    margin: 0 0 8px 0;
-    width: calc(100% + 16px);
-    margin-left: -16px;
+    margin: 0 0 clamp(4px, 0.5vw, 16px) 0;
+    width: calc(100% + clamp(10px, 1.5vw, 40px));
+    margin-left: calc(-1 * clamp(10px, 1.5vw, 40px));
 }
 
 /* Content Section */
 .sh-content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: clamp(4px, 0.6vw, 16px);
 }
 
 .sh-playlist-title {
     font-family: var(--font-text);
     font-weight: 700;
-    font-size: 22px;
+    font-size: clamp(16px, 2vw, 64px);
     margin: 0;
     color: var(--drawer-text, var(--black));
     overflow: hidden;
@@ -183,7 +183,7 @@
 .sh-button-group {
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: clamp(4px, 0.6vw, 32px);
     justify-content: flex-start;
     flex-wrap: wrap;
 }
@@ -195,13 +195,13 @@
     color: var(--drawer-bg, var(--white));
     font-family: var(--font-text);
     font-weight: 600;
-    font-size: 12px;
-    padding: 7px 14px;
+    font-size: clamp(10px, 1vw, 28px);
+    padding: clamp(5px, 0.6vw, 24px) clamp(10px, 1.2vw, 48px);
     border-radius: 9999px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: clamp(4px, 0.5vw, 16px);
     transition: background-color 0.2s, transform 0.1s;
     pointer-events: auto;
 }
@@ -213,8 +213,8 @@
 
 /* Dynamic Icons via Mask */
 .sh-icon {
-    width: 14px;
-    height: 14px;
+    width: clamp(10px, 1.2vw, 28px);
+    height: clamp(10px, 1.2vw, 28px);
     background-color: currentColor;
     mask-size: contain;
     -webkit-mask-size: contain;
@@ -267,49 +267,9 @@
     }
 }
 
-/* 4K DIRECTOR'S CUT SCALING */
+/* 4K - only keep the border accent, sizes are now fluid */
 @media (min-width: 2500px) {
-    :root {
-        --collapsed-width: 100px;
-    }
     .soundharbor-drawer {
         border-right: 2px solid rgba(255, 255, 255, 0.1);
-    }
-    .sh-collapsed-icon {
-        width: 100px;
-        min-width: 100px;
-    }
-    .sh-logo-small {
-        width: 32px !important;
-        height: 32px !important;
-    }
-    .sh-expanded-content {
-        padding: 48px 48px 48px 40px;
-        gap: 32px;
-    }
-    .sh-brand {
-        gap: 24px;
-    }
-    .sh-logo-img {
-        width: 56px;
-        height: 56px;
-    }
-    .sh-brand-text {
-        font-size: 42px;
-    }
-    .sh-playlist-title {
-        font-size: 64px;
-    }
-    .sh-button-group {
-        gap: 32px;
-    }
-    .sh-btn {
-        font-size: 28px;
-        padding: 24px 48px;
-        gap: 16px;
-    }
-    .sh-icon {
-        width: 28px;
-        height: 28px;
     }
 }

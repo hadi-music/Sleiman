@@ -66,8 +66,8 @@ function Drawer({ platform, isActive, onHover, onLeave, index }) {
             <motion.div 
                 className={`soundharbor-drawer ${platform.class} ${isActive ? 'sh-active' : ''}`} 
                 style={drawerStyle}
-                initial={{ width: "var(--collapsed-width, 40px)" }}
-                animate={{ width: isActive ? "100%" : "var(--collapsed-width, 40px)" }}
+                initial={{ width: "clamp(32px, 3vw, 100px)" }}
+                animate={{ width: isActive ? "100%" : "clamp(32px, 3vw, 100px)" }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             >
                 {/* Collapsed Strip Icon */}
