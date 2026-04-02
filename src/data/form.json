@@ -1,0 +1,42 @@
+{
+    "heading": "GET IN TOUCH WITH US",
+    "theme": {
+        "orange_box_bg": "#646360",
+        "orange_box_text": "#FFFFFF",
+        "blue_box_bg": "#94928b",
+        "blue_box_text": "#FFFFFF",
+        "white_box_bg": "#bfbcb6",
+        "white_box_text": "#2F2F2F",
+        "button_bg": "#2F2F2F",
+        "button_text": "#FFFFFF",
+        "page_background": "#EBEBEB"
+    },
+    "contact": {
+        "email": "management@sleimandamien.com",
+        "website": "https://www.wedomore.com"
+    },
+    "location": {
+        "company": "More Communications",
+        "building": "Circular Building - G1",
+        "street": "D street, Me'aisem 1",
+        "area": "Dubai Production City",
+        "city": "Dubai"
+    },
+    "social_media": [
+        {
+            "platform": "Instagram",
+            "handle": "@sleimandamien",
+            "url": "https://www.instagram.com/sleimandamien/"
+        },
+        {
+            "platform": "Threads",
+            "handle": "@sleimandamien",
+            "url": "https://www.threads.com/@sleimandamien"
+        },
+        {
+            "platform": "Tiktok",
+            "handle": "@sleimandamien",
+            "url": "https://www.tiktok.com/@sleimandamien"
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Music",
+  "streams": {
+    "value": "1.2B",
+    "label": "Streams Across Platforms"
+  },
+  "platforms": [
+    {
+      "name": "Spotify",
+      "url": "https://open.spotify.com/playlist/5NvNj3xzBNYelqHh1Ys7XG?si=aa1i4TovQ8C22AzI86Xx6A&pi=e-yDgK-wFPSrKw&nd=1&dlsi=ec15db7ed7914095",
+      "playlistName": "Sleiman Damien Discography",
+      "icon": "/icons/spotify.webp",
+      "class": "spotify",
+      "cta": "Listen",
+      "colors": {
+        "bg": "#d8d5ce",
+        "text": "#000000",
+        "button": "#000000",
+        "accent": "#000000"
+      }
+    },
+    {
+      "name": "Anghami",
+      "url": "https://play.anghami.com/playlist/276536890?_branch_match_id=1566744485256419460&utm_source=iOS&utm_campaign=User%20Sharing&utm_medium=User%20Sharing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXzy9IzdNLzEvPSMzN1EvOz9U39AsLLfLwyqoMTLKvK0pNSy0qysxLj08qyi8vTi2ydc4oys9NBQAwQnawPgAAAA%3D%3D",
+      "playlistName": "Sleiman Damien Discography",
+      "icon": "/src/icons/anghami.svg",
+      "class": "anghami",
+      "cta": "Play",
+      "colors": {
+        "bg": "#bfbcb5",
+        "text": "#000000",
+        "button": "#000000",
+        "accent": "#000000"
+      }
+    },
+    {
+      "name": "iTunes",
+      "url": "https://music.apple.com/ae/playlist/sleiman-damien-discography/pl.u-NpXmzlkFalPr6p",
+      "playlistName": "Sleiman Damien Discography",
+      "icon": "/icons/apple.webp",
+      "class": "itunes",
+      "cta": "Listen",
+      "colors": {
+        "bg": "#94928b",
+        "text": "#000000",
+        "button": "#000000",
+        "accent": "#000000"
+      }
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/playlist?list=PLFABu_G6ga7uN3SDDesYnJw3gMfdspvRT",
+      "playlistName": "Sleiman Damien Discography",
+      "icon": "/src/icons/youtube.webp",
+      "class": "youtube",
+      "cta": "Watch",
+      "colors": {
+        "bg": "#656460",
+        "text": "#000000",
+        "button": "#000000",
+        "accent": "#000000"
+      }
+    }
+  ]
+}

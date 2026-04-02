@@ -1,0 +1,120 @@
+.mobile-view .mobile-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Increased gap between cards */
+    width: 100%;
+    padding: 10px;
+    /* Restore 10px top padding */
+    background: transparent;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Prevent horizontal overflow while allowing vertical scroll */
+    box-sizing: border-box;
+}
+
+/* MATCHING ORIGINAL CARD STYLES */
+.mobile-view .card {
+    border-radius: 25px;
+    /* Match the rounded corners from your image */
+    padding: 20px;
+    background-color: #f4f4f4;
+    /* Default grey background */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.mobile-view .message-card {
+    background-color: #cbcbcb;
+    /* Light grey from the 'Quick Message' card */
+}
+
+
+/* HEADERS */
+.mobile-view h2 {
+    font-family: inherit;
+    /* Matches your current font */
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* FORM STACKING */
+.mobile-view .mobile-input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-view .input-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 15px auto;
+    width: 94% !important;
+    box-sizing: border-box !important;
+}
+
+.mobile-view .input-group label {
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    color: #444;
+    text-align: left;
+}
+
+.mobile-view .input-group input,
+.mobile-view .input-group textarea {
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.mobile-view .send-btn {
+    background: #2b2b2b;
+    color: #fff;
+    width: 100%;
+    padding: 18px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+/* MINIMAL MOBILE FOOTER */
+.mobile-view .mobile-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    padding: 20px 0 40px 0;
+}
+
+.mobile-view .footer-email {
+    color: #444;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.mobile-view .footer-socials {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.mobile-view .social-icon-link img {
+    width: 20px;
+    height: 20px;
+    filter: grayscale(1) brightness(0.4);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.mobile-view .social-icon-link:hover img {
+    opacity: 1;
+}

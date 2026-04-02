@@ -1,0 +1,202 @@
+.studio .section-body {
+  padding-top: 140px;
+  padding-bottom: 80px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+
+.studio-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  flex: 1;
+}
+
+.studio-scroll {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* FOOTER / STACK LEGEND */
+
+.stack-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* Aligned to bottom edges */
+  width: 100%;
+  max-width: 1400px;
+  /* Perfectly aligned with ArchivalStack */
+  margin: -10px auto 30px;
+  /* Tighter relationship with the stack, lifted from bottom */
+  padding: 0;
+  /* Matches ArchivalStack zero padding */
+  text-transform: uppercase;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.legend-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 650px;
+}
+
+.plate-title {
+  font-family: "NeueHaasDisplayRoman", sans-serif;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin: 0;
+  color: #000000;
+}
+
+.plate-body {
+  font-family: "NeueHaasDisplayRoman", sans-serif;
+  font-size: clamp(0.6rem, 0.8vw, 0.75rem);
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  margin: 0;
+  opacity: 1;
+  /* Pure black, no opacity reduction for clarity */
+}
+
+.plate-notation {
+  font-family: "NeueHaasDisplayRoman", sans-serif;
+  font-size: clamp(0.65rem, 0.85vw, 0.8rem);
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  color: #000000;
+}
+
+
+
+@media (max-width: 768px) {
+
+  .studio {
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    margin: 12px;
+  }
+
+  /* Remove heavy top padding on moletsbile */
+  .studio-scroll {
+    padding-top: 0;
+    margin-top: 0;
+    padding-right: 20px;
+  }
+
+  .studio .section-body {
+    padding-top: 90px;
+  }
+
+  .stack-legend {
+    display: none;
+  }
+
+}
+
+/* 🚨 4K DIRECTORS CUT OVERRIDE */
+@media (min-width: 2500px) {
+
+  .studio .section-header {
+    left: 5vw;
+    top: 4vw;
+    right: 5vw;
+    height: auto;
+  }
+
+  .studio .section-header__title {
+    font-size: clamp(1.5rem, 1.8vw, 2.25rem);
+    letter-spacing: 0.15em;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .studio .section-body {
+    padding-top: 10vh;
+    /* Clear the header area */
+    padding-bottom: 3vh;
+    /* Comfortable bottom clearance */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Anchor stack to top, legend to bottom */
+    align-items: center;
+  }
+
+  .studio-layout {
+    gap: 2vh;
+    /* Reduced to prevent bottom clipping */
+    width: 100%;
+  }
+
+  .studio-scroll {
+    max-width: 2900px;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    margin-top: 0;
+  }
+
+  .stack-legend {
+    display: flex !important;
+    visibility: visible !important;
+    max-width: 2900px;
+    padding: 0;
+    margin-bottom: 4vh;
+    margin-top: 0;
+    color: #000000 !important;
+    position: relative;
+    z-index: 100;
+  }
+
+  .legend-left,
+  .legend-right,
+  .plate-title,
+  .plate-body,
+  .plate-notation {
+    color: #000000 !important;
+    /* Force forensic black */
+    opacity: 1 !important;
+  }
+
+  .plate-title {
+    font-size: clamp(1.4rem, 1.6vw, 2.2rem);
+    letter-spacing: 0.15em;
+  }
+
+  .plate-body {
+    font-size: clamp(1rem, 1.2vw, 1.6rem);
+    max-width: 1000px;
+    letter-spacing: 0.1em;
+  }
+
+  .plate-notation {
+    font-size: clamp(1.1rem, 1.3vw, 1.8rem);
+    letter-spacing: 0.2em;
+  }
+
+  .studio-lightbox-img {
+    max-width: 85vw;
+    max-height: 85vh;
+    border-radius: 12px;
+  }
+}

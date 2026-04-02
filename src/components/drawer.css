@@ -1,0 +1,312 @@
+/* drawer.css */
+
+:root {
+    --primary-red: #FE2C55;
+    --black: #000000;
+    --light-gray: #CCCCCC;
+    --white: #FFFFFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    --font-display: 'NeueHaasDisplayBlack', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-text: 'NeueHaasDisplayRoman', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Hover Zone - Absolute positioned wrapper per index */
+.drawer-hover-zone {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 25%;
+    z-index: 10;
+    pointer-events: auto; /* Catch hovers */
+    background: transparent;
+}
+
+/* Base Styles - Now acting as the motion drawer */
+.soundharbor-drawer {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    font-family: var(--font-text);
+    background-color: var(--drawer-bg, var(--white)) !important;
+    width: 40px; /* Base width */
+    overflow: hidden;
+    z-index: 10;
+    pointer-events: none; /* Let hovers pass to zone */
+    white-space: nowrap;
+    transition: background-color 0.4s ease;
+}
+
+/* Collapsed Strip */
+.sh-collapsed-icon {
+    width: 40px;
+    min-width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sh-logo-small {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* Expanded Content Area */
+.sh-expanded-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 24px 20px;
+    height: 100%;
+    
+    /* Decouple content width from container width */
+    width: calc(100vw / 2);
+    min-width: 600px;
+    flex-shrink: 0;
+    
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.1s ease; /* Disappear instantly on close */
+    pointer-events: none;
+}
+
+.sh-active .sh-expanded-content {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.4s ease 0.1s; /* Fade in once drawer starts opening */
+}
+
+/* Specific rule for fast closure */
+.soundharbor-drawer:not(.sh-active) .sh-expanded-content {
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+/* PLATFORM BRANDING OVERRIDES (Targeting the 40px/100px Strips) */
+
+/* Standard Strip Background (Now using data-driven bg) */
+.sh-collapsed-icon {
+    background-color: var(--drawer-bg, var(--white)) !important;
+}
+
+/* Platform Logo Customizations */
+.soundharbor-drawer.spotify .sh-collapsed-icon .sh-logo-img {
+    background-color: #FFFFFF !important;
+}
+
+.soundharbor-drawer.anghami .sh-collapsed-icon .sh-logo-img {
+    background-color: #FFFFFF !important;
+}
+
+.soundharbor-drawer.itunes .sh-collapsed-icon .sh-logo-img {
+    background-color: #FFFFFF !important;
+}
+
+.soundharbor-drawer.youtube .sh-collapsed-icon .sh-logo-img {
+    background-color: #FFFFFF !important;
+}
+
+/* Ensure branding applies to button icons in collapsed state too */
+.soundharbor-drawer .sh-icon {
+    background-color: currentColor;
+}
+
+/* Header Section */
+.sh-header {
+    padding-bottom: 12px;
+}
+
+.sh-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sh-logo-img {
+    width: 28px;
+    height: 28px;
+    background-color: var(--drawer-button-bg);
+    mask-image: var(--logo-url);
+    -webkit-mask-image: var(--logo-url);
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+}
+
+.sh-brand-text {
+    font-family: var(--font-text); /* Use Roman as requested */
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+    color: var(--drawer-text, var(--black));
+}
+
+/* Horizontal Divider */
+.sh-divider {
+    border: 0;
+    height: 1.5px;
+    background-color: var(--drawer-accent, var(--light-gray));
+    margin: 0 0 24px 0;
+    width: calc(100% + 24px);
+    margin-left: -24px;
+}
+
+/* Content Section */
+.sh-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sh-playlist-title {
+    font-family: var(--font-text);
+    font-weight: 700;
+    font-size: 34px;
+    margin: 0;
+    color: var(--drawer-text, var(--black));
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Button Group Layout */
+.sh-button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+/* Base Button Styles */
+.sh-btn {
+    border: none;
+    background-color: var(--drawer-button-bg, var(--primary-red));
+    color: var(--drawer-bg, var(--white)); 
+    font-family: var(--font-text);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s, transform 0.1s;
+    pointer-events: auto;
+}
+
+.sh-btn:hover {
+    opacity: 0.95;
+    transform: scale(1.02);
+}
+
+/* Dynamic Icons via Mask */
+.sh-icon {
+    width: 14px;
+    height: 14px;
+    background-color: currentColor;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+}
+
+.sh-icon-play {
+    mask-image: var(--play-icon-url);
+    -webkit-mask-image: var(--play-icon-url);
+}
+
+.sh-icon-share {
+    mask-image: var(--share-icon-url);
+    -webkit-mask-image: var(--share-icon-url);
+}
+
+.sh-icon-copy {
+    mask-image: var(--copy-icon-url);
+    -webkit-mask-image: var(--copy-icon-url);
+}
+
+.sh-icon-embed {
+    mask-image: var(--embed-icon-url);
+    -webkit-mask-image: var(--embed-icon-url);
+}
+
+/* Responsiveness overrides for accordion */
+@media (max-width: 768px) {
+    .drawer-hover-zone {
+        height: auto;
+        position: relative;
+        top: auto !important;
+        margin-bottom: 10px;
+    }
+    .soundharbor-drawer {
+        position: relative;
+        width: 100% !important;
+        height: auto;
+        min-height: 60px;
+    }
+    .sh-expanded-content {
+        opacity: 1 !important;
+        padding: 16px;
+    }
+    .sh-collapsed-icon {
+        display: none;
+    }
+}
+
+/* 4K DIRECTOR'S CUT SCALING */
+@media (min-width: 2500px) {
+    :root {
+        --collapsed-width: 100px;
+    }
+    .soundharbor-drawer {
+        border-right: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    .sh-collapsed-icon {
+        width: 100px;
+        min-width: 100px;
+    }
+    .sh-logo-small {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .sh-expanded-content {
+        padding: 48px 48px 48px 40px;
+        min-width: 800px;
+        gap: 32px;
+    }
+    .sh-brand {
+        gap: 24px;
+    }
+    .sh-logo-img {
+        width: 56px;
+        height: 56px;
+    }
+    .sh-brand-text {
+        font-size: 42px;
+    }
+    .sh-playlist-title {
+        font-size: 64px;
+    }
+    .sh-button-group {
+        gap: 32px;
+    }
+    .sh-btn {
+        font-size: 28px;
+        padding: 24px 48px;
+        gap: 16px;
+    }
+    .sh-icon {
+        width: 28px;
+        height: 28px;
+    }
+}

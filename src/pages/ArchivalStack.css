@@ -1,0 +1,166 @@
+/* Container holding the entire stack */
+.archival-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    /* Adjust based on your UI needs */
+    gap: 16px;
+    padding: 24px;
+    margin: 0 auto;
+}
+
+/* Individual Card - The core mechanic */
+.archival-card {
+    position: relative;
+    flex: 1;
+    /* Inactive width */
+    border-radius: 60px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #111;
+    /* Fallback color */
+
+    /* The magic cubic-bezier makes the snap feel deliberate, not floaty */
+    transition: flex 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active Card - Expands to take up remaining space */
+.archival-card.active {
+    flex: 5;
+    /* Ratio of active to inactive cards (5:1) */
+    cursor: default;
+}
+
+/* Background Image Handling */
+.archival-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle cinematic zoom when activated */
+.archival-card.active .archival-bg {
+    transform: scale(1.02);
+}
+
+/* Gradient Overlay */
+.archival-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 50%);
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+}
+
+.archival-card.active .archival-overlay {
+    opacity: 0.9;
+}
+
+/* Typography & Layout */
+.archival-content {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #e0e0e0;
+    opacity: 0;
+    pointer-events: none;
+    /* Faster fade out when card collapses */
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archival-card.active .archival-content {
+    opacity: 1;
+    pointer-events: auto;
+    /* Delayed fade in to wait for card expansion */
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+.archival-meta {
+    font-family: 'Courier New', Courier, monospace;
+    /* Technical note vibe */
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.archival-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+    /* Prevents text from breaking weirdly during animation */
+    letter-spacing: -0.02em;
+}
+
+/* Description reveal mechanics */
+.archival-desc-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archival-card.active .archival-desc-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.archival-desc {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #aaa;
+    margin: 0;
+    overflow: hidden;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+
+/* --- MOBILE: VERTICAL PROTOCOL --- */
+@media (max-width: 768px) {
+    .archival-container {
+        /* Flips the axis so cards stack vertically */
+        flex-direction: column;
+
+        /* Give the stack enough physical height on mobile screens */
+        height: 75vh;
+        min-height: 550px;
+
+        /* Tighter padding for mobile screens */
+        padding: 16px;
+        gap: 8px;
+        /* Tighter gap so inactive cards aren't too thin */
+    }
+
+
+
+    .archival-card.active {
+        /* 5 can sometimes be too aggressive vertically, 
+       leaving the inactive cards too thin to easily tap. 
+       4 provides a better mobile hit-target ratio. */
+        flex: 4;
+    }
+
+    .archival-content {
+        /* Pull the text in slightly for narrower screens */
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+    }
+
+    .archival-title {
+        font-size: 1.25rem;
+        /* Slightly scale down title */
+    }
+}

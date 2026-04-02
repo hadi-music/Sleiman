@@ -1,0 +1,452 @@
+.numbers-mobile {
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  margin: 12px;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  /* ADD THIS */
+}
+
+/* Local header for Numbers mobile (top-left white title) */
+.numbers-mobile-header {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+  /* sit under the interactive buttons (buttons have z-index:6) */
+  pointer-events: none;
+  /* purely decorative */
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.numbers-mobile-header .section-header__title {
+  font-family: "NeueHaasThin", sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  transition: filter .22s ease, opacity .18s ease;
+
+  /* NEW: Baseline blur to prevent the raster jolt */
+  filter: blur(0.01px) saturate(1);
+}
+
+/* When a row is open (a button pressed), blur the title to match other UI blurs */
+.numbers-mobile-inner.has-open-row .numbers-mobile-header .section-header__title {
+  filter: blur(3px) saturate(.9);
+  opacity: 0.9;
+}
+
+@media (min-width: 769px) {
+
+  /* hide on desktop (NumbersDesktop handles its own header) */
+  .numbers-mobile-header {
+    display: none !important;
+  }
+}
+
+.mobile-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: opacity, filter;
+}
+
+/* Force GPU to hold the bitmap texture permanently */
+.mobile-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 25% center;
+  transition: filter .5s cubic-bezier(.22, 1, .36, 1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.02);
+  transform: translateZ(0) scale(1.02);
+  will-change: filter;
+
+  /* NEW: Baseline blur to prevent the raster jolt */
+  filter: blur(0.01px);
+}
+
+/* Subtle darken overlay for better contrast */
+.mobile-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  transition: background-color .5s cubic-bezier(.22, 1, .36, 1), opacity .5s cubic-bezier(.22, 1, .36, 1);
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: background-color, opacity;
+}
+
+/* Focus state: darken/blur background when a row is open */
+.numbers-mobile-inner.has-open-row .mobile-bg::after {
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.numbers-mobile-inner.has-open-row .mobile-bg img {
+  filter: blur(6px);
+}
+
+.mobile-strip {
+  /* Drawer-era strip hidden in new design */
+  display: none !important;
+}
+
+.mobile-strip-block {
+  flex: 1;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-strip-block.spotify {
+  background: #2c2c2c;
+}
+
+.mobile-strip-block.anghami {
+  background: #7998af;
+}
+
+.mobile-strip-block.itunes {
+  background: #f5f2ef;
+}
+
+.mobile-strip-block.youtube {
+  background: #e14b3a;
+  ;
+}
+
+.mobile-strip-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-strip-block img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+
+  opacity: .85;
+
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.mobile-strip-block:active img {
+  transform: scale(.9);
+}
+
+.mobile-top {
+  display: none;
+}
+
+.mobile-streams-number {
+  color: white;
+  font-family: "NeueHaasThin", sans-serif;
+  font-size: clamp(4rem, 19vw, 18rem);
+  /* stronger focal point */
+  text-align: center;
+  z-index: 1;
+  /* subtle depth for readability over image */
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.28), 0 1px 3px rgba(0, 0, 0, 0.22);
+}
+
+.mobile-streams-label {
+  color: white;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+}
+
+.streams-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 clamp(12px, 4vw, 24px);
+  pointer-events: none;
+  z-index: 2;
+  transition: filter .5s cubic-bezier(.22, 1, .36, 1), opacity .5s cubic-bezier(.22, 1, .36, 1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: filter, opacity;
+
+  /* NEW: Baseline blur to prevent the raster jolt */
+  filter: blur(0.01px) brightness(1);
+}
+
+/* Platform title indicator */
+/* Platform title indicator */
+.platform-title {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + clamp(36px, 8vh, 42px));
+  /* Remove left: 50% and use full width */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: "Nessynry", "NessynSentry", system-ui, sans-serif;
+  font-size: clamp(22px, 6.8vw, 36px);
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 7;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  /* Remove translateX(-50%) to prevent pixel jitter */
+  -webkit-transform: translateY(-6px) translateZ(0);
+  transform: translateY(-6px) translateZ(0);
+  transition: opacity .22s ease, transform .22s cubic-bezier(.22, 1, .36, 1);
+}
+
+.platform-title.show {
+  opacity: 1;
+  -webkit-transform: translateY(0) translateZ(0);
+  transform: translateY(0) translateZ(0);
+}
+
+.numbers-mobile-inner.has-open-row .streams-center {
+  filter: blur(2.5px) brightness(0.92);
+  opacity: 0.96;
+}
+
+.mobile-bottom {
+  display: none;
+}
+
+/* Legacy drawers are removed in favor of circular buttons and bubbles */
+.mobile-drawers {
+  display: none !important;
+}
+
+/* New circular action buttons system */
+.numbers-mobile-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.numbers-buttons {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + clamp(12px, 3vh, 24px));
+  bottom: calc(env(safe-area-inset-bottom) + clamp(16px, 4vh, 28px));
+  left: calc(env(safe-area-inset-left) + clamp(12px, 4vw, 20px));
+  right: calc(env(safe-area-inset-right) + clamp(12px, 4vw, 20px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(14px, 5vh, 18px);
+  /* vertical row spacing */
+  z-index: 6;
+  /* above stats, below nav */
+  pointer-events: none;
+  /* children enable themselves */
+  --btn: clamp(44px, 13vw, 60px);
+  --gap: clamp(10px, 3vw, 14px);
+}
+
+.numbers-button-wrap {
+  display: none;
+}
+
+/* Two-column interaction rows */
+.numbers-row {
+  display: grid;
+  grid-template-columns: var(--btn) 1fr;
+  align-items: center;
+  column-gap: calc(var(--gap) + clamp(4px, 1.6vw, 8px));
+  pointer-events: none;
+  /* ensure no row background strip */
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.numbers-row::before,
+.numbers-row::after {
+  content: none !important;
+  display: none !important;
+}
+
+.numbers-row .platform-btn {
+  width: var(--btn);
+  height: var(--btn);
+  pointer-events: auto;
+  /* slightly larger visual presence without altering layout tracks */
+  transform: scale(1.15);
+  transform-origin: center left;
+  /* grow leftwards to preserve right gap */
+  will-change: transform;
+}
+
+.numbers-actions {
+  display: grid;
+  grid-template-columns: repeat(4, var(--btn));
+  justify-content: start;
+  column-gap: var(--gap);
+  pointer-events: none;
+  /* visibility controlled per active row without shifting layout */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease;
+  /* ensure no background panel */
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  will-change: opacity;
+}
+
+.numbers-actions::before,
+.numbers-actions::after {
+  content: none !important;
+  display: none !important;
+}
+
+.numbers-action {
+  width: var(--btn);
+  height: var(--btn);
+  pointer-events: auto;
+  background: var(--row-color, rgba(44, 44, 44, 0.95));
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Ensure action icons are black per user request */
+.numbers-action img {
+  filter: brightness(0);
+}
+
+/* Reinforce across all action buttons */
+.numbers-actions .numbers-action img {
+  filter: brightness(0);
+}
+
+/* 2s icon invert feedback (Copy/Embed only apply this class on img) */
+.numbers-action img.flash-invert {
+  filter: none !important;
+  transition: filter .2s ease;
+}
+
+/* Apple platform icon should be black */
+.numbers-row .platform-btn.apple img {
+  filter: brightness(0);
+}
+
+/* When a row is active, reveal its actions (keep grid space consistent) */
+.numbers-row.active .numbers-actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.numbers-button {
+  width: var(--btn);
+  height: var(--btn);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.numbers-button img,
+.numbers-button svg {
+  width: clamp(18px, 5.5vw, 24px);
+  height: clamp(18px, 5.5vw, 24px);
+  object-fit: contain;
+  filter: brightness(0); /* Black logo */
+}
+
+.numbers-button:active {
+  transform: scale(1.05);
+}
+
+/* Platform button colors and row color variables */
+.numbers-button.spotify {
+  background: #d8d5ce;
+}
+
+.numbers-button.anghami {
+  background: #bfbcb5;
+}
+
+.numbers-button.apple {
+  background: #94928b;
+}
+
+.numbers-button.youtube {
+  background: #656460;
+}
+
+.numbers-row.spotify {
+  --row-color: #d8d5ce;
+}
+
+.numbers-row.anghami {
+  --row-color: #bfbcb5;
+}
+
+.numbers-row.apple {
+  --row-color: #94928b;
+}
+
+.numbers-row.youtube {
+  --row-color: #656460;
+}
+
+/* Vertical left alignment handled by flex column on .numbers-buttons */
+
+/* (Bubble system removed) */
+
+/* Optional stat + label if used elsewhere */
+.numbers-stat {
+  font-family: "NeueHaasThin", system-ui, sans-serif;
+  font-size: clamp(24px, 8vw, 40px);
+  line-height: 1;
+}
+
+.numbers-label {
+  font-family: "NeueHaasXThin", system-ui, sans-serif;
+  font-size: clamp(10px, 2.6vw, 12px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Small devices: lift lower elements a touch more */
+@media (max-height: 640px) {
+  .numbers-buttons {
+    gap: clamp(10px, 3.6vh, 16px);
+  }
+}
+
+/* Remove any text labels inside icon circles; icons stay centered */
+.numbers-action span {
+  display: none !important;
+}

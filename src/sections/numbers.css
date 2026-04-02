@@ -1,0 +1,511 @@
+.numbers {
+  width: calc(100% - 2cm);
+  height: calc(100% - 2cm);
+  margin: 1cm;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.numbers .section-inner {
+  padding: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  /* ADD THIS */
+}
+
+.numbers-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(400px, 1fr) minmax(auto, 50%);
+  position: relative;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Platform colors defined at the bottom of the file */
+
+.numbers-left {
+
+  background: #f3f3f3;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.drawers-container {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  /* Allow events to reach hover zones */
+}
+
+.drawer-hover-zone {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 25%;
+  z-index: 10;
+  pointer-events: auto;
+  background: transparent;
+}
+
+.drawer {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  /* Base width */
+  height: 100%;
+  /* Fill the hover zone */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 10;
+  pointer-events: none;
+  /* Let hovers pass through to the zone */
+  white-space: nowrap;
+  /* Prevent content from wrapping during expand */
+}
+
+/* Static icon container that matches the 40px strip */
+.drawer-icon {
+  width: 40px;
+  min-width: 40px;
+  /* Don't shrink */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  opacity: 0.85;
+}
+
+.drawer-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  padding-left: 20px;
+  /* Space after icon */
+  padding-right: 40px;
+  opacity: 0;
+  /* Hide content by default */
+  transition: opacity 0.3s ease;
+}
+
+.drawer:hover .drawer-content,
+.drawer-hover-zone:hover .drawer .drawer-content {
+  opacity: 1;
+}
+
+.drawer-actions,
+.drawer-icon-box {
+  pointer-events: auto;
+  /* Buttons must be clickable */
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+  z-index: 5;
+}
+
+.drawer-hover-zone:nth-child(1) {
+  top: 0;
+}
+
+.drawer-hover-zone:nth-child(2) {
+  top: 25%;
+}
+
+.drawer-hover-zone:nth-child(3) {
+  top: 50%;
+}
+
+.drawer-hover-zone:nth-child(4) {
+  top: 75%;
+}
+
+.drawer.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Integrated into .drawer above */
+
+
+.drawer-logo {
+  width: 90px;
+  height: 90px;
+  gap: 64px;
+  object-fit: contain;
+
+  flex-shrink: 0;
+  opacity: .3;
+}
+
+.drawer-title {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 26px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 60px;
+
+  transform: translateY(-1px);
+
+  font-family: "NeueHaasXThin";
+  font-size: 28px;
+
+  letter-spacing: 0.05em;
+
+  line-height: 1.5;
+
+  white-space: nowrap;
+
+  opacity: 0.6;
+
+
+
+}
+
+.drawer.itunes .drawer-title {
+  border: 1px solid #2c2c2c;
+}
+
+
+.drawer-title-text {
+  transform: translateY(3px);
+  color: white
+}
+
+.drawer.itunes .drawer-title-text {
+  color: #2c2c2c;
+}
+
+.drawer.itunes .drawer-label {
+  color: #2c2c2c;
+}
+
+
+
+
+.drawer-actions {
+  display: flex;
+  gap: 18px;
+  margin-left: auto;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.drawer-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drawer-actions button,
+.drawer-actions a {
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  /* centers icon */
+  justify-content: center;
+
+
+
+  background: white;
+
+  border-radius: 50%;
+  border: none;
+
+  cursor: pointer;
+
+}
+
+.drawer-actions button:hover,
+.drawer-actions a:hover {
+
+  background: rgba(255, 255, 255, 0.08);
+
+  transform: translateY(-2px);
+
+}
+
+.drawer-icon-box {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+  border-radius: 50%;
+  border: none;
+
+  cursor: pointer;
+  z-index: 30;
+}
+
+
+.drawer-icon-box img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.drawer.itunes .drawer-icon-box img {
+  filter: invert(1);
+}
+
+.drawer.youtube .drawer-icon-box img {
+  filter: invert(1);
+}
+
+.drawer-label {
+
+  font-family: "NeueHaasThin";
+
+  font-size: 12px;
+
+  letter-spacing: 0.04em;
+
+  margin-top: 6px;
+
+  opacity: 0.85;
+  text-align: center;
+  /* center the text */
+  color: white
+}
+
+.drawer-icon-box:hover {
+
+  transform: translateY(-2px);
+
+}
+
+
+.numbers-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 60px;
+  position: relative;
+  z-index: 1;
+  /* Below the drawers */
+  pointer-events: none;
+}
+
+.numbers-title {
+
+  font-family: "NessynSentry";
+  font-size: 48px;
+
+}
+
+.numbers-top-label {
+  font-family: "NeueHaasThin", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  text-align: right;
+}
+
+.numbers-stat {
+
+  text-align: center;
+  min-height: 0;
+  pointer-events: none;
+
+}
+
+.streams-number {
+
+  font-family: "NeueHaasThin", sans-serif;
+
+  font-size: clamp(6rem, 10vw, 10rem);
+
+  font-weight: 300;
+
+}
+
+.streams-label {
+  font-family: "NeueHaasThin", sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.numbers-footer {
+  font-family: "NeueHaasThin", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  padding-left: 60px;
+  position: relative;
+  z-index: 1;
+  /* Below the drawers */
+  pointer-events: none;
+}
+
+.numbers-right {
+
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: 14 / 17;
+
+}
+
+.numbers-right img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  min-height: 0;
+}
+
+.numbers .section-title {
+  display: none;
+}
+
+/* Style the existing numbers page title (.numbers-title) to match centralized section typography */
+.numbers .numbers-title {
+  font-family: "NeueHaasThin", sans-serif;
+  font-weight: 100;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+}
+
+@media (max-width: 768px) {
+
+
+  .section {
+    transform: none !important;
+  }
+
+  .numbers-layout {
+    position: relative;
+    height: 100%;
+    display: block;
+  }
+
+  .numbers-right {
+    position: absolute;
+    inset: 0;
+  }
+
+  .numbers-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .numbers-left {
+    position: relative;
+    z-index: 5;
+
+    height: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .drawers-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 12px;
+    gap: 10px;
+  }
+
+}
+
+
+/* mobile */
+
+/* 🚨 THE 4K "DIRECTOR'S CUT" OVERRIDE */
+@media (min-width: 2500px) {
+
+  .numbers-header {
+    padding-left: 100px;
+    /* Match --collapsed-width */
+    z-index: 1;
+    /* Sit behind matching expanding drawers */
+    pointer-events: none;
+    /* Allow hovering through to the drawers */
+  }
+
+  .numbers-title {
+    font-size: 56px;
+    letter-spacing: 0.05em;
+  }
+
+  .numbers-top-label {
+    font-size: 32px;
+    letter-spacing: 0.15em;
+  }
+
+  .streams-label {
+    font-size: 48px;
+    letter-spacing: 0.05em;
+  }
+
+  .numbers-footer {
+    font-size: 32px;
+    letter-spacing: 0.15em;
+    padding-left: 100px;
+    /* Match --collapsed-width */
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Target the new component class */
+  .soundharbor-drawer {
+    z-index: 10;
+  }
+
+}

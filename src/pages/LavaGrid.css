@@ -1,0 +1,52 @@
+.lava-grid {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 10px;
+}
+
+.lava-card {
+  background: #000000;
+  color: white;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  position: relative;
+
+  /* Corner containment during transform cycles */
+  overflow: hidden;
+
+  /* Hardware acceleration rendering stabilizers */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.lava-card.active {
+  background-color: #0f4f78 !important;
+}
+
+.lava-card:hover {
+  background-color: #656460;
+}
+
+/* Nested logo boundary constraints.
+  Framer Motion's 'layout' prop scales the container; 
+  these rules ensure the SVG/PNG respects the new bounds. 
+*/
+.lava-card__logo {
+  max-width: 30%;
+  max-height: 30%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  filter: invert(1);
+}

@@ -1,0 +1,136 @@
+/* THE CONTAINER */
+.drawer {
+    position: relative;
+    width: 100%;
+    /* 1. Consistent Vertical Padding (The 'Grip') */
+    padding: 40px 0;
+    display: flex;
+    background-color: #121212;
+    overflow: hidden;
+    color: #ffffff;
+    align-items: stretch;
+    /* Ensures sidebar matches height */
+}
+
+/* THE BLACK SIDEBAR STRIP */
+.side-bar {
+    width: 60px;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mini-logo {
+    width: 24px;
+    height: 24px;
+}
+
+.drawer-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+    padding: 0 60px 0 40px;
+}
+
+/* THE LARGE WATERMARK LOGO */
+.drawer-watermark {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    opacity: 0.2;
+    margin-right: 40px;
+    flex-shrink: 0;
+}
+
+/* THE CENTER TITLE */
+/* THE CENTER TITLE - Now treated as a technical label */
+.drawer-title-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-top {
+    font-family: "NeueHaasBold", sans-serif;
+    /* Scaled down to be more of a record entry than a hero title */
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-bottom {
+    font-family: "NeueHaasThin", sans-serif;
+    /* Scaled down further to emphasize the 'Discography' as metadata */
+    font-size: clamp(14px, 1.8vw, 32px);
+    font-weight: 200;
+    line-height: 1.1;
+    /* Slightly more air between lines */
+    margin: 0;
+    letter-spacing: 3px;
+    /* Wider tracking for that clinical/archival look */
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.9;
+}
+
+/* THE RIGHT ACTIONS GRID */
+.drawer-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 1. Ultra-tight gap for the fused square look */
+    gap: 2px;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* 2. 50% SMALLER BUTTONS (from 65px to 32px) */
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    /* 3. Scaled Border Radius (8px is 50% of the previous 16px) */
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.icon-circle:hover {
+    opacity: 0.8;
+}
+
+/* 4. SCALED ICON */
+.icon-circle img {
+    width: 14px;
+    /* Reduced from 24px to keep proportion */
+    height: 14px;
+    filter: brightness(0);
+}
+
+/* Hiding labels to match your square-grid reference */
+.action-label {
+    display: none;
+}

@@ -1,0 +1,209 @@
+.embla {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 4px;
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 60%;
+  /* mobile: show part of next/prev */
+  min-width: 60%;
+  cursor: grab;
+  transition: transform 260ms cubic-bezier(.22, 1, .36, 1), opacity 220ms ease, filter 220ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.embla__slide:active {
+  cursor: grabbing;
+}
+
+.embla__slide img {
+  width: 100%;
+  height: clamp(150px, 34vw, 300px);
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.embla__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  pointer-events: none;
+  border-radius: 12px;
+  transform: translateZ(1px);
+}
+
+
+/* Desktop: show more slides and wider gutter */
+@media (min-width: 768px) {
+  .embla__container {
+    gap: 60px; /* Increased from 40px */
+    padding: 24px 12px;
+  }
+
+  .embla__slide {
+    flex: 0 0 65%; /* Increased from 50% for maximum center focus */
+    min-width: 65%;
+  }
+
+  .embla__slide img {
+    height: clamp(300px, 50vh, 600px); /* Switched to vh for strict vertical containment */
+    border-radius: 12px;
+  }
+
+  .embla__overlay {
+    border-radius: 12px;
+  }
+}
+
+
+/* Mobile: keep horizontal scroll but make cards portrait (taller than wide) */
+@media (max-width: 767px) {
+
+  /* tighter spacing and shorter cards on small screens */
+  .embla__container {
+    gap: 10px;
+    padding: 8px 6px;
+  }
+
+  /* narrower card width so height can be taller than width */
+  .embla__slide {
+    flex: 0 0 46%;
+    min-width: 70%;
+  }
+
+  .embla__slide img {
+    width: auto;
+    /* shorter height for mobile while keeping portrait feel */
+    height: clamp(260px, 38vh, 400px);
+    max-width: 86%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+
+  /* feather (fade) the left/right edges of the viewport on mobile */
+  .embla__viewport {
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    /* ensure mask respects the element bounds */
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+}
+
+/* Arrows (desktop) */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  z-index: 100;
+}
+
+.carousel-arrow.left {
+  left: 6px;
+}
+
+.carousel-arrow.right {
+  right: 6px;
+}
+
+@media (min-width: 768px) {
+  .carousel-arrow {
+    display: flex;
+  }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox-image {
+  max-width: 92%;
+  max-height: 86%;
+  object-fit: contain;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 42px;
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 18px
+}
+
+.lightbox-next {
+  right: 18px
+}
+
+/* 4K Override */
+@media (min-width: 2500px) {
+  .embla__container {
+    gap: 48px;
+    padding: 24px 12px;
+  }
+
+  .embla__slide {
+    flex: 0 0 42%;
+    min-width: 42%;
+  }
+
+  .embla__slide img {
+    height: 55vh; /* Larger height to fill the 4K page */
+    border-radius: 24px;
+  }
+
+  .embla__overlay {
+    border-radius: 24px;
+  }
+
+  .carousel-arrow {
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+  }
+}

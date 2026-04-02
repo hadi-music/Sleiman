@@ -1,0 +1,258 @@
+.desktop-view .form-inner-wrapper {
+    max-width: 1200px;
+    /* Technical max-width for focused data entry */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    background: transparent;
+}
+
+
+/* 2-Column Layout */
+.desktop-view .main-grid {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    /* Forces both columns to be equal height */
+}
+
+.desktop-view .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.desktop-view .column:first-child {
+    flex: 1;
+}
+
+/* Left column slightly narrower */
+.desktop-view .column:last-child {
+    flex: 1;
+}
+
+/* Right column slightly wider */
+
+/* Card Base */
+.desktop-view .card {
+    border-radius: 28px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop-view h2 {
+    font-family: 'NessynSentry', sans-serif;
+    margin: 0 0 15px 0;
+    font-size: 1.4rem;
+}
+
+/* Card Specifics */
+.desktop-view .orange-card {
+    background-color: var(--orange-bg);
+    color: var(--orange-text);
+    height: 160px;
+    justify-content: space-between;
+}
+
+.desktop-view .white-card {
+    background-color: var(--white-bg);
+    color: var(--white-text);
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop-view .message-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Force message group to grow */
+.desktop-view .message-form>.input-group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form stretches to fill space */
+.desktop-view .blue-card {
+    background-color: var(--blue-bg);
+    color: var(--blue-text);
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Compact padding */
+/* Compact padding removed used as padding: 24px in base .card */
+
+/* Form Elements */
+.desktop-view .input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    /* Tighter spacing */
+}
+
+.desktop-view .input-group {
+    flex: 1;
+    background-color: #f7f7f7;
+    /* Light grey for subtle separation */
+    border-radius: 12px;
+    padding: 12px 16px;
+    /* Optimized gutter */
+    margin-bottom: 8px;
+}
+
+.desktop-view .input-group label {
+    font-family: 'NeueHaasThin', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.desktop-view .input-group input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-family: 'NeueHaasDisplayRoman', sans-serif;
+    font-weight: 400;
+}
+
+.desktop-view .input-group textarea {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-family: 'NeueHaasDisplayRoman', sans-serif;
+    font-weight: 400;
+    resize: none;
+    flex: 1;
+    height: 100%;
+    padding: 5px 0;
+    /* Reset for natural alignment */
+    margin: 0;
+    text-indent: 0;
+    line-height: 1.4;
+}
+
+.desktop-view .send-btn {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-family: 'NeueHaasDisplayBlack', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+/* Information Layouts */
+.desktop-view .card-footer-icons {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.desktop-view .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.desktop-view .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.desktop-view .contact-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.desktop-view .contact-item .icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.desktop-view .contact-item p {
+    margin: 0;
+    font-family: 'NeueHaasDisplayRoman', sans-serif;
+    font-weight: 400;
+}
+
+.desktop-view .contact-item small {
+    font-family: 'NeueHaasThin', sans-serif;
+    opacity: 0.8;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+.desktop-view .social-links-grid {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.desktop-view .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.desktop-view .social-button:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-view .social-button img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    /* Make icons white for blue card */
+}
+
+@media (min-width: 2500px) {
+
+    .desktop-view .contact-form-ui,
+    .desktop-view .form-inner-wrapper {
+        /* 1. SCALE THE WHOLE THING */
+        transform: scale(2.8);
+
+        /* 2. KEEP IT CENTERED */
+        transform-origin: center center;
+
+        /* 3. ENSURE IT HAS ROOM TO GROW */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
