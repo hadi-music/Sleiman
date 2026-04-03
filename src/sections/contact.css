@@ -1,8 +1,11 @@
 /* Contact page styles — minimal, responsive, and tactile */
 
 .contact .section-body {
-  padding-top: 72px;
-  /* keep room for header */
+  padding-top: clamp(48px, 8vh, 80px);
+  /* clear the absolute-positioned section header */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .contact-layout {
@@ -160,8 +163,8 @@
 
 /* INFO */
 .contact-info {
-  width: 260px;
-  flex: 0 0 260px;
+  width: 1vh;
+  flex: 0 0 2vh;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -258,8 +261,7 @@
   }
 
   .contact .section-body {
-    padding-top: 48px !important;
-    /* Prevent touching the header while keeping it raised */
+    padding-top: clamp(36px, 6vh, 56px) !important;
   }
 
   .contact-layout {
