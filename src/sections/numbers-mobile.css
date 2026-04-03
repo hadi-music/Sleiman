@@ -25,7 +25,7 @@
 
 .numbers-mobile-header .section-header__title {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 22px;
+  font-size: clamp(1.1rem, 5vw, 1.6rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #fff;
@@ -166,7 +166,7 @@
 .mobile-streams-label {
   color: white;
   letter-spacing: 0.1em;
-  font-size: 12px;
+  font-size: clamp(0.625rem, 2.8vw, 0.875rem);
 }
 
 .streams-center {

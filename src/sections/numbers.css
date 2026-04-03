@@ -330,13 +330,13 @@
 .numbers-title {
 
   font-family: "NessynSentry";
-  font-size: 48px;
+  font-size: clamp(1.4rem, 2vw, 3.5rem);
 
 }
 
 .numbers-top-label {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 14px;
+  font-size: clamp(0.875rem, 1.2vw, 2rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -363,14 +363,14 @@
 
 .streams-label {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 20px;
+  font-size: clamp(1.1rem, 1.8vw, 3rem);
   letter-spacing: 0.05em;
   opacity: 0.9;
 }
 
 .numbers-footer {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 14px;
+  font-size: clamp(0.875rem, 1.2vw, 2rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -409,7 +409,7 @@
 .numbers .numbers-title {
   font-family: "NeueHaasThin", sans-serif;
   font-weight: 100;
-  font-size: 28px;
+  font-size: clamp(1.4rem, 2vw, 3.5rem);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   margin: 0 0 8px 0;
@@ -484,24 +484,7 @@
     /* Allow hovering through to the drawers */
   }
 
-  .numbers-title {
-    font-size: 56px;
-    letter-spacing: 0.05em;
-  }
-
-  .numbers-top-label {
-    font-size: 32px;
-    letter-spacing: 0.15em;
-  }
-
-  .streams-label {
-    font-size: 48px;
-    letter-spacing: 0.05em;
-  }
-
   .numbers-footer {
-    font-size: 32px;
-    letter-spacing: 0.15em;
     padding-left: 100px;
     /* Match --collapsed-width */
     z-index: 1;
