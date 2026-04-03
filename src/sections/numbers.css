@@ -33,7 +33,7 @@
 
   background: #f3f3f3;
 
-  padding: 30px;
+  padding: clamp(0.3rem, 0.8vw, 1rem) clamp(1rem, 2vw, 2.5rem) clamp(0.3rem, 0.8vw, 1rem)  clamp(0rem, 0vw, 2.5rem);
 
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@
 .drawer {
   position: absolute;
   left: 0;
-  width: 40px;
+  width: clamp(2rem, 2.8vw, 3.5rem);
   top: 0;
   bottom: 0;
   display: flex;
@@ -81,10 +81,10 @@
   white-space: nowrap;
 }
 
-/* Static icon container that matches the 40px strip */
+/* Static icon container that matches the drawer strip */
 .drawer-icon {
-  width: 40px;
-  min-width: 40px;
+  width: clamp(2rem, 2.8vw, 3.5rem);
+  min-width: clamp(2rem, 2.8vw, 3.5rem);
   /* Don't shrink */
   height: 100%;
   display: flex;
@@ -94,8 +94,8 @@
 }
 
 .drawer-icon img {
-  width: 18px;
-  height: 18px;
+  width: clamp(1rem, 1.2vw, 1.5rem);
+  height: clamp(1rem, 1.2vw, 1.5rem);
   object-fit: contain;
   opacity: 0.85;
 }
@@ -104,11 +104,11 @@
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(0.75rem, 1.5vw, 1.75rem);
   height: 100%;
-  padding-left: 20px;
+  padding-left: clamp(0.75rem, 1.5vw, 1.75rem);
   /* Space after icon */
-  padding-right: 40px;
+  padding-right: clamp(1.5rem, 2.8vw, 3.5rem);
   opacity: 0;
   /* Hide content by default */
   transition: opacity 0.3s ease;
@@ -129,7 +129,7 @@
   display: flex;
   align-items: center;
 
-  gap: 24px;
+  gap: clamp(1rem, 1.8vw, 2rem);
   z-index: 5;
 }
 
@@ -158,9 +158,9 @@
 
 
 .drawer-logo {
-  width: 90px;
-  height: 90px;
-  gap: 64px;
+  width: clamp(4rem, 6vw, 7rem);
+  height: clamp(4rem, 6vw, 7rem);
+  gap: clamp(2.5rem, 4.5vw, 5rem);
   object-fit: contain;
 
   flex-shrink: 0;
@@ -173,15 +173,15 @@
   align-items: center;
   justify-content: center;
 
-  padding: 10px 26px;
+  padding: clamp(0.4rem, 0.7vw, 0.875rem) clamp(1rem, 1.8vw, 1.75rem);
 
   border: 1px solid rgba(255, 255, 255, 0.75);
-  border-radius: 60px;
+  border-radius: 3em;
 
-  transform: translateY(-1px);
+  transform: translateY(-0.06em);
 
   font-family: "NeueHaasXThin";
-  font-size: 28px;
+  font-size: clamp(1rem, 1.8vw, 2rem);
 
   letter-spacing: 0.05em;
 
@@ -201,7 +201,7 @@
 
 
 .drawer-title-text {
-  transform: translateY(3px);
+  transform: translateY(0.2em);
   color: white
 }
 
@@ -218,7 +218,7 @@
 
 .drawer-actions {
   display: flex;
-  gap: 18px;
+  gap: clamp(0.75rem, 1.2vw, 1.5rem);
   margin-left: auto;
   z-index: 20;
   display: flex;
@@ -234,8 +234,8 @@
 .drawer-actions button,
 .drawer-actions a {
 
-  width: 36px;
-  height: 36px;
+  width: clamp(1.75rem, 2.4vw, 3rem);
+  height: clamp(1.75rem, 2.4vw, 3rem);
 
   display: flex;
 
@@ -259,13 +259,13 @@
 
   background: rgba(255, 255, 255, 0.08);
 
-  transform: translateY(-2px);
+  transform: translateY(-0.125em);
 
 }
 
 .drawer-icon-box {
-  width: 36px;
-  height: 36px;
+  width: clamp(1.75rem, 2.4vw, 3rem);
+  height: clamp(1.75rem, 2.4vw, 3rem);
 
   display: flex;
   align-items: center;
@@ -281,8 +281,8 @@
 
 
 .drawer-icon-box img {
-  width: 18px;
-  height: 18px;
+  width: clamp(1rem, 1.2vw, 1.5rem);
+  height: clamp(1rem, 1.2vw, 1.5rem);
   object-fit: contain;
 }
 
@@ -298,11 +298,11 @@
 
   font-family: "NeueHaasThin";
 
-  font-size: 12px;
+  font-size: clamp(0.6rem, 0.85vw, 1rem);
 
   letter-spacing: 0.04em;
 
-  margin-top: 6px;
+  margin-top: 0.4em;
 
   opacity: 0.85;
   text-align: center;
@@ -312,7 +312,7 @@
 
 .drawer-icon-box:hover {
 
-  transform: translateY(-2px);
+  transform: translateY(-0.125em);
 
 }
 
@@ -320,7 +320,7 @@
 .numbers-header {
   display: flex;
   justify-content: space-between;
-  padding-left: 60px;
+  padding-left: clamp(3rem, 4vw, 6rem);
   position: relative;
   z-index: 1;
   /* Below the drawers */
@@ -328,10 +328,12 @@
 }
 
 .numbers-title {
-
-  font-family: "NessynSentry";
-  font-size: clamp(1.4rem, 2vw, 3.5rem);
-
+  font-family: "NeueHaasThin", sans-serif;
+  font-weight: 100;
+  font-size: clamp(1.2rem, 1.2vw, 3.5rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .numbers-top-label {
@@ -374,7 +376,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   opacity: 0.7;
-  padding-left: 60px;
+  padding-left: clamp(3rem, 4vw, 6rem);
   position: relative;
   z-index: 1;
   /* Below the drawers */
@@ -405,15 +407,6 @@
   display: none;
 }
 
-/* Style the existing numbers page title (.numbers-title) to match centralized section typography */
-.numbers .numbers-title {
-  font-family: "NeueHaasThin", sans-serif;
-  font-weight: 100;
-  font-size: clamp(1.4rem, 2vw, 3.5rem);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  margin: 0 0 8px 0;
-}
 
 @media (max-width: 768px) {
 
@@ -463,37 +456,11 @@
     flex-direction: column;
     justify-content: flex-end;
 
-    padding: 12px;
-    gap: 10px;
+    padding: clamp(0.5rem, 2vw, 1rem);
+    gap: clamp(0.5rem, 1.5vh, 1rem);
   }
 
 }
 
 
 /* mobile */
-
-/* 🚨 THE 4K "DIRECTOR'S CUT" OVERRIDE */
-@media (min-width: 2500px) {
-
-  .numbers-header {
-    padding-left: 100px;
-    /* Match --collapsed-width */
-    z-index: 1;
-    /* Sit behind matching expanding drawers */
-    pointer-events: none;
-    /* Allow hovering through to the drawers */
-  }
-
-  .numbers-footer {
-    padding-left: 100px;
-    /* Match --collapsed-width */
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Target the new component class */
-  .soundharbor-drawer {
-    z-index: 10;
-  }
-
-}
