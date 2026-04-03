@@ -1,34 +1,33 @@
 .studio .section-body {
-  padding-top: 140px;
-  padding-bottom: 80px;
+  padding-top: clamp(4rem, 10vh, 9rem);
+  padding-bottom: clamp(1.5rem, 4vh, 4rem);
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-
-
-
 .studio-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: clamp(0.75rem, 2vh, 2rem);
   width: 100%;
   flex: 1;
+  min-height: 0;
 }
 
 .studio-scroll {
   width: 100%;
-  margin: 0 auto;
+  flex: 1;
+  min-height: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  min-width: 0;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
 }
-
 
 
 /* FOOTER / STACK LEGEND */
@@ -37,23 +36,22 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  /* Aligned to bottom edges */
   width: 100%;
-  margin: -10px auto 30px;
-  /* Tighter relationship with the stack, lifted from bottom */
-  padding: 0;
-  /* Matches ArchivalStack zero padding */
+  margin: 0 auto;
+  padding-left: clamp(1.5rem, 4vw, 4rem);
+  padding-right: clamp(4rem, 4vw, 9rem);
   text-transform: uppercase;
   color: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 .legend-left {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  max-width: 650px;
+  gap: 0.3em;
+  max-width: 45vw;
 }
 
 .plate-title {
@@ -73,7 +71,6 @@
   font-weight: 400;
   margin: 0;
   opacity: 1;
-  /* Pure black, no opacity reduction for clarity */
 }
 
 .plate-notation {
@@ -85,7 +82,6 @@
 }
 
 
-
 @media (max-width: 768px) {
 
   .studio {
@@ -94,15 +90,13 @@
     margin: 12px;
   }
 
-  /* Remove heavy top padding on moletsbile */
   .studio-scroll {
-    padding-top: 0;
+    padding: 0 clamp(0.75rem, 3vw, 1.5rem);
     margin-top: 0;
-    padding-right: 20px;
   }
 
   .studio .section-body {
-    padding-top: 90px;
+    padding-top: clamp(3rem, 8vh, 6rem);
   }
 
   .stack-legend {
@@ -111,7 +105,7 @@
 
 }
 
-/* 🚨 4K DIRECTORS CUT OVERRIDE */
+/* 4K */
 @media (min-width: 2500px) {
 
   .studio .section-header {
@@ -126,24 +120,23 @@
     letter-spacing: 0.15em;
     font-weight: 300;
     text-transform: uppercase;
+    position: absolute;
+    top:clamp(1rem, 2vw, 3.75rem);
+    left: clamp(1rem, 2vw, 3.75rem);
   }
 
   .studio .section-body {
     padding-top: 10vh;
-    /* Clear the header area */
     padding-bottom: 3vh;
-    /* Comfortable bottom clearance */
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Anchor stack to top, legend to bottom */
     align-items: center;
   }
 
   .studio-layout {
     gap: 2vh;
-    /* Reduced to prevent bottom clipping */
     width: 100%;
   }
 
@@ -156,7 +149,8 @@
   .stack-legend {
     display: flex !important;
     visibility: visible !important;
-    padding: 0;
+    padding-left: clamp(1.5rem, 4vw, 4rem);
+    padding-right: clamp(4rem, 9vw, 9rem);
     margin-bottom: 4vh;
     margin-top: 0;
     color: #000000 !important;
@@ -170,7 +164,6 @@
   .plate-body,
   .plate-notation {
     color: #000000 !important;
-    /* Force forensic black */
     opacity: 1 !important;
   }
 
@@ -181,7 +174,7 @@
 
   .plate-body {
     font-size: clamp(1rem, 1.2vw, 1.6rem);
-    max-width: 1000px;
+    max-width: 55vw;
     letter-spacing: 0.1em;
   }
 
@@ -193,6 +186,6 @@
   .studio-lightbox-img {
     max-width: 85vw;
     max-height: 85vh;
-    border-radius: 12px;
+    border-radius: clamp(0.5rem, 1vw, 1rem);
   }
 }

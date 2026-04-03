@@ -1,8 +1,8 @@
 .archival-container {
     display: flex;
     width: 100%;
-    height: clamp(550px, 70vh, 800px);
-    /* Adjust based on your UI needs */
+    height: 100%;
+    min-height: 0;
     gap: 16px;
     padding: 0;
     margin: 0 auto;
@@ -132,9 +132,9 @@
         /* Flips the axis so cards stack vertically */
         flex-direction: column;
 
-        /* Give the stack enough physical height on mobile screens */
-        height: 62vh;
-        min-height: 450px;
+        /* Fill the flex parent instead of imposing a fixed height */
+        height: 100%;
+        min-height: 0;
 
         /* Tighter padding for mobile screens */
         padding: 16px;
@@ -184,7 +184,8 @@
 /* --- 🚨 4K DIRECTORS CUT OVERRIDE --- */
 @media (min-width: 2500px) {
     .archival-container {
-        height: clamp(700px, 55vh, 1100px);
+        height: 100%;
+        min-height: 0;
         gap: 48px;
         padding: 0;
     }

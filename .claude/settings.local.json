@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"C:/Users/USER/AppData/Roaming/Code/User/History/6e18719c/jrPs.css\" \"C:/Users/USER/Desktop/work/Sleiman/src/sections/studio.css\")",
+      "Bash(cp \"C:/Users/USER/AppData/Roaming/Code/User/History/-30fa3bf9/ILXU.css\" \"C:/Users/USER/Desktop/work/Sleiman/src/sections/press.css\")"
+    ]
+  }
+}
