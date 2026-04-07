@@ -1,44 +1,46 @@
 /* Contact page styles — minimal, responsive, and tactile */
 
 .contact .section-body {
-  padding-top: clamp(48px, 8vh, 80px);
+  padding-top: clamp(3rem, 5vw, 5rem);
   /* clear the absolute-positioned section header */
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .contact-layout {
   display: flex;
-  gap: 88px;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
   /* more space between form and info column */
   align-items: flex-start;
   justify-content: flex-start;
   /* anchor the content slightly to the left */
-  max-width: 1200px;
+  max-width: clamp(50rem, 80vw, 75rem);
   margin: 0 auto;
   width: 100%;
-  padding: 24px 24px 24px 96px;
+  padding: clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem) clamp(3rem, 8vw, 6rem);
   /* larger left padding so the form reads more left-anchored */
   box-sizing: border-box;
 }
 
 /* FORM */
 .contact-form {
-  flex: 1 1 760px;
+  flex: 1 1 clamp(25rem, 50vw, 47.5rem);
   /* make the form larger by default */
-  min-width: 720px;
-  max-width: 920px;
+  min-width: clamp(18.75rem, 45vw, 45rem);
+  max-width: clamp(37.5rem, 60vw, 57.5rem);
   box-sizing: border-box;
   /* ensure internal padding doesn't cause overflow */
 }
 
 .contact-form .form-head h2 {
   font-family: "NeueHaasDisplayBlack", sans-serif;
-  font-size: clamp(24px, 5.8vw, 92px);
+  font-size: clamp(1.5rem, 5.8vw, 5.75rem);
   line-height: 1.1;
   text-transform: uppercase;
-  margin: 0 0 32px 0;
+  margin: 0 0 clamp(1rem, 2.5vw, 2rem) 0;
   width: 100%;
   color: black;
   display: flex;
@@ -48,20 +50,20 @@
 
 .contact-form .muted {
   color: rgba(31, 31, 31, 0.75);
-  font-size: 16px;
-  margin: 0 0 18px 0;
+  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+  margin: 0 0 clamp(0.75rem, 1.5vw, 1.5rem) 0;
 }
 
 .field {
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: clamp(0.625rem, 1.2vw, 1.25rem);
 }
 
 .field .label {
   display: block;
-  font-size: 12px;
+  font-size: clamp(0.625rem, 0.9vw, 0.875rem);
   color: rgba(31, 31, 31, 0.75);
-  margin-bottom: 6px;
+  margin-bottom: clamp(0.25rem, 0.5vw, 0.625rem);
   font-family: "NeueHaasThin", sans-serif;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -70,12 +72,12 @@
 .field input,
 .field textarea {
   width: 100%;
-  padding: 16px 20px;
-  border-radius: 12px;
+  padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(1rem, 1.8vw, 1.5rem);
+  border-radius: clamp(0.5rem, 1vw, 1rem);
   border: 1px solid rgba(255, 255, 255, 0.06);
   background: #2c2c2c;
   color: white;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
   outline: none;
   transition: transform .12s ease, border-color .12s ease;
   box-sizing: border-box;
@@ -92,9 +94,9 @@
 
 .field textarea {
   resize: none;
-  height: 180px;
-  min-height: 180px;
-  max-height: 180px;
+  height: clamp(7.5rem, 15vw, 12.5rem);
+  min-height: clamp(6.25rem, 12vw, 11.25rem);
+  max-height: clamp(8.75rem, 20vw, 15.625rem);
 }
 
 /* Responsive overrides: keep form full-width on smaller screens and reduce fixed textarea height */
@@ -106,9 +108,9 @@
   }
 
   .field textarea {
-    height: 160px;
-    min-height: 160px;
-    max-height: 160px;
+    height: clamp(7.5rem, 15vw, 10rem);
+    min-height: clamp(6.25rem, 12vw, 10rem);
+    max-height: clamp(7.5rem, 15vw, 10rem);
   }
 
   .contact-layout {
@@ -121,8 +123,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
-  margin-top: 16px;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  margin-top: clamp(0.75rem, 1.5vw, 1.5rem);
 }
 
 .btn-primary {
@@ -130,9 +132,9 @@
   border: none;
   background: #2c2c2c;
   color: white;
-  padding: 22px 40px;
-  font-size: 16px;
-  border-radius: 20px;
+  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1.875rem, 4vw, 3.125rem);
+  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+  border-radius: clamp(0.75rem, 1.5vw, 1.5rem);
   cursor: pointer;
   font-family: "NeueHaasThin", sans-serif;
   letter-spacing: 0.08em;
@@ -146,14 +148,14 @@
 }
 
 .contact-icon {
-  height: 58px;
+  height: clamp(2.5rem, 5vw, 4rem);
   /* Calibrated to match button height (approx 22+22+14) */
   width: auto;
   object-fit: contain;
 }
 
 .status {
-  font-size: 13px;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
   color: rgba(255, 255, 255, 0.85);
 }
 
@@ -203,9 +205,9 @@
 }
 
 .info-card h3 {
-  margin: 0 0 8px 0;
+  margin: 0 0 clamp(0.375rem, 1vw, 0.75rem) 0;
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 .info-link {
@@ -218,16 +220,16 @@
 /* Info label and text styles for management/contact blocks */
 .info-label {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 12px;
+  font-size: clamp(0.625rem, 0.9vw, 0.875rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin: 0 0 6px 0;
+  margin: 0 0 clamp(0.25rem, 0.5vw, 0.625rem) 0;
   color: rgba(40, 40, 40, 0.9);
 }
 
 .info-text {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 15px;
+  font-size: clamp(0.8125rem, 1.2vw, 1.0625rem);
   line-height: 1.5;
   color: rgba(40, 40, 40, 0.95);
 }
@@ -261,7 +263,7 @@
   }
 
   .contact .section-body {
-    padding-top: clamp(36px, 6vh, 56px) !important;
+    padding-top: clamp(2.25rem, 6vw, 3.5rem) !important;
   }
 
   .contact-layout {
@@ -299,9 +301,9 @@
     border: none;
     background: #2c2c2c;
     color: white;
-    padding: 22px 20px;
-    font-size: 16px;
-    border-radius: 20px;
+    padding: clamp(1rem, 2.2vw, 1.75rem) clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+    border-radius: clamp(0.75rem, 1.2vw, 1.5rem);
     cursor: pointer;
     font-family: "NeueHaasThin", sans-serif;
     letter-spacing: 0.08em;
@@ -313,7 +315,7 @@
 /* Ensure the section header title for Contact matches other section title rules */
 .contact .section-header__title {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: 22px;
+  font-size: clamp(1.125rem, 2.2vw, 1.75rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: black;
@@ -329,9 +331,21 @@
   .contact .section-body {
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: clamp(2rem, 5vw, 6rem);
     padding: 0;
+  }
+
+  .contact-svg-wrapper {
+    position: relative;
+    z-index: 10;
+  }
+
+  .form-inner-wrapper {
+    position: relative;
+    z-index: 5;
   }
 
   .contact .section-header {
@@ -348,5 +362,215 @@
     font-weight: 300;
     text-transform: uppercase;
     color: black;
+  }
+}
+
+/* =========================================================================
+   FORM INNER WRAPPER & PARENT CONTAINERS REFACTOR 
+   ========================================================================= */
+
+.contact div.section-body.desktop-view .form-inner-wrapper {
+  /* Limit main wrapper to approx 60% on desktop, with caps */
+  width: clamp(17.5rem, 60vw, 100rem) !important;
+  /* Further decreased the overall form height as requested */
+  height: clamp(15rem, 35vw, 30rem) !important;
+  /* CRITICAL: Prevent flex-grow from overriding the height constraint */
+  flex: 0 0 auto !important;
+  margin: 0 auto;
+  box-sizing: border-box;
+  /* Prevent overflow */
+  padding: clamp(0.5rem, 1vw, 1rem) !important;
+  max-width: 100%;
+  overflow: hidden !important;
+  /* NO scrollbars allowed as requested */
+  display: flex;
+  flex-direction: column;
+}
+
+.contact .desktop-view .main-grid {
+  display: flex;
+  flex-direction: row;
+  /* Maintain side-by-side on desktop */
+  gap: clamp(0.375rem, 1vw, 0.75rem) !important;
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.contact .desktop-view .column {
+  gap: clamp(0.25rem, 1vw, 0.625rem) !important;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Internal card overrides to support the smaller overall height */
+.contact .desktop-view .card {
+  padding: clamp(0.5rem, 1vw, 1rem) clamp(0.625rem, 1.2vw, 1.125rem) !important;
+  border-radius: clamp(0.5rem, 1.2vw, 1rem) !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Restore the specific ratios from the design - Blue card needs more room for icons */
+.contact .desktop-view .orange-card {
+  flex: 2 !important;
+}
+
+.contact .desktop-view .blue-card {
+  flex: 3 !important;
+}
+
+.contact .desktop-view h2 {
+  font-size: clamp(0.85rem, 2.5vw, 1.35rem) !important;
+  margin-bottom: clamp(0.1875rem, 0.6vw, 0.375rem) !important;
+  line-height: 1.2 !important;
+  flex-shrink: 0;
+}
+
+.contact .desktop-view .card p,
+.contact .desktop-view .info-text,
+.contact .desktop-view .info-label {
+  /* Proportional and readable sizes for compact cards */
+  font-size: clamp(0.75rem, 1.8vw, 1.1rem) !important;
+  line-height: 1.4 !important;
+  /* Increased for better legibility */
+  margin: 0 !important;
+  /* Prevent word overflow for long emails/texts */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.contact .desktop-view .contact-item small {
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
+  line-height: 1 !important;
+  display: block;
+  margin-bottom: 1px !important;
+}
+
+.contact .desktop-view .contact-item p {
+  /* Match the refined card body scale */
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem) !important;
+}
+
+.contact .desktop-view .input-group {
+  padding: clamp(0.25rem, 0.8vw, 0.5rem) clamp(0.5rem, 0.8vw, 0.75rem) !important;
+
+  border-radius: clamp(0.25rem, 0.8vw, 0.9375rem) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact .desktop-view .input-group label {
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem) !important;
+  margin-bottom: 2px !important;
+  line-height: 1 !important;
+}
+
+.contact .desktop-view .input-group input,
+.contact .desktop-view .input-group textarea {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem) !important;
+  line-height: 1.2 !important;
+  background: transparent;
+  border: none;
+  outline: none;
+  height: auto !important;
+}
+
+/* Restoring the social icon and gap fixes that were accidentally removed */
+.contact .desktop-view .social-links-grid {
+  margin-top: auto !important;
+  padding-top: clamp(0.25rem, 0.5vw, 0.5rem) !important;
+  gap: clamp(0.375rem, 1vw, 0.625rem) !important;
+  display: flex !important;
+}
+
+.contact .desktop-view .social-button {
+  width: clamp(1.375rem, 3.2vw, 2.125rem) !important;
+  height: clamp(1.375rem, 3.2vw, 2.125rem) !important;
+}
+
+.contact .desktop-view .social-button img {
+  width: 60% !important;
+  height: 60% !important;
+}
+
+/* Contact item spacing reduction */
+.contact .desktop-view .contact-info {
+  gap: clamp(0.125rem, 0.3vw, 0.5rem) !important;
+}
+
+.contact .desktop-view .contact-item {
+  gap: clamp(0.25rem, 0.8vw, 0.625rem) !important;
+}
+
+.contact .desktop-view .contact-item .icon img {
+  width: clamp(0.75rem, 1.6vw, 1rem) !important;
+  height: clamp(0.75rem, 1.6vw, 1rem) !important;
+}
+
+/* Fix for disappearing text: ensure vertical alignment in input groups */
+.contact .desktop-view .input-group textarea {
+  min-height: 1.4em;
+  flex: 1;
+}
+
+.contact .desktop-view .send-btn {
+  padding: clamp(0.375rem, 1.1vw, 0.75rem) clamp(0.625rem, 1.2vw, 1.125rem) !important;
+  font-size: clamp(0.75rem, 1.6vw, 1.15rem) !important;
+  margin-top: auto !important;
+  line-height: 1 !important;
+}
+
+/* Ensure they stack vertically on smaller screens */
+@media (max-width: 900px) {
+  .contact .desktop-view .form-inner-wrapper {
+    /* Allow to grow to nearly 100% on mobile */
+    width: clamp(17.5rem, 95vw, 100%);
+    height: auto;
+    /* Revert height on mobile to follow content */
+    padding: clamp(0.625rem, 2vw, 1.25rem);
+  }
+
+  .contact .desktop-view .main-grid {
+    flex-direction: column;
+    /* Stack vertically */
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+}
+
+/* =========================================================================
+   CONTACT SVG HEADER SHAPE
+   ========================================================================= */
+
+.contact-svg-wrapper {
+  /* Match the form container's width logic */
+  width: clamp(17.5rem, 60vw, 100rem);
+  margin: 0 auto clamp(0.75rem, 2vw, 1.5rem) auto;
+  padding: 0 clamp(0.5rem, 1vw, 1rem);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  /* Align left to match form anchor if needed, or center */
+}
+
+.contact-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Adjust for mobile to match formmobile.css padding (10px) */
+@media (max-width: 900px) {
+  .contact-svg-wrapper {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: clamp(0.625rem, 1.5vw, 1.25rem);
   }
 }

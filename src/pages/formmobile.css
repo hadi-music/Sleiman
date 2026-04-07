@@ -7,9 +7,8 @@
     padding: 10px;
     /* Restore 10px top padding */
     background: transparent;
-    overflow-x: hidden;
-    overflow-y: auto;
-    /* Prevent horizontal overflow while allowing vertical scroll */
+    overflow: hidden;
+    /* Prevent internal scrolling as requested */
     box-sizing: border-box;
 }
 

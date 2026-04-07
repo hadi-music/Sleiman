@@ -27,6 +27,9 @@ export default function Contact() {
           Now, your CSS files can specifically target only their mode.
       */}
       <div className={`section-body ${isMobile ? "mobile-view" : "desktop-view"}`}>
+        <div className="contact-svg-wrapper">
+          <img src="/images/contact.svg" alt="Contact Icon" className="contact-svg" />
+        </div>
         {isMobile ? <FormMobile /> : <ContactForm />}
       </div>
     </Section>
