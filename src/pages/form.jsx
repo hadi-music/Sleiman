@@ -2,109 +2,117 @@ import React from 'react';
 import './form.css';
 import formData from '../data/form.json';
 
-// Social Icons
-
 const ContactForm = () => {
-    const { heading, location, contact, social_media, theme } = formData;
+    const { location, contact, social_media, theme } = formData;
 
     const dynamicTheme = {
-        '--orange-bg': theme.orange_box_bg,
+        '--orange-bg':  theme.orange_box_bg,
         '--orange-text': theme.orange_box_text,
-        '--blue-bg': theme.blue_box_bg,
-        '--blue-text': theme.blue_box_text,
-        '--white-bg': theme.white_box_bg,
+        '--blue-bg':    theme.blue_box_bg,
+        '--blue-text':  theme.blue_box_text,
+        '--white-bg':   theme.white_box_bg,
         '--white-text': theme.white_box_text,
-        '--button-bg': theme.button_bg,
-        '--button-text': theme.button_text,
-        '--page-bg': theme.page_background,
+        '--btn-bg':     theme.button_bg,
+        '--btn-text':   theme.button_text,
+    };
+
+    const socialIcon = (platform) => {
+        const p = platform.toLowerCase();
+        if (p === 'instagram') return '/icons/insta.webp';
+        if (p === 'threads')   return '/icons/threads.webp';
+        if (p === 'tiktok')    return '/icons/tiktok.webp';
+        return null;
     };
 
     return (
-        <div className="form-inner-wrapper" style={dynamicTheme}>
-            <div className="main-grid">
-                {/* Left Column */}
-                <div className="column">
-                    <div className="card orange-card">
-                        <div className="card-content">
-                            <h2>VISIT US</h2>
-                            <p>
+        <div className="cf-wrap" style={dynamicTheme}>
+            <div className="cf-grid">
+
+                {/* ── LEFT COLUMN: Visit Us + Drop a Line ── */}
+                <div className="cf-col">
+
+                    <div className="cf-card cf-card--dark">
+                        <h2 className="cf-heading">VISIT US</h2>
+                        <div className="cf-address">
+                            <span>
                                 {location.company}<br />
                                 {location.building}<br />
-                                {location.street}<br />
+                                {location.street}
+                            </span>
+                            <span>
                                 {location.area}<br />
                                 {location.city}
-                            </p>
+                            </span>
                         </div>
                     </div>
 
-                    <div className="card blue-card">
-                        <div className="card-top">
-                            <h2>DROP A LINE</h2>
-                            <div className="contact-info">
-                                <div className="contact-item">
-                                    <span className="icon"><img src="/icons/mail.webp" alt="Email" loading="lazy" /></span>
-                                    <div>
-                                        <small>email</small>
-                                        <p>{contact.email}</p>
-                                    </div>
+                    <div className="cf-card cf-card--mid">
+                        <h2 className="cf-heading">DROP A LINE</h2>
+
+                        <div className="cf-contact-rows">
+                            <div className="cf-contact-row">
+                                <span className="cf-icon">
+                                    <img src="/icons/mail.webp" alt="Email" loading="lazy" />
+                                </span>
+                                <div>
+                                    <small>email</small>
+                                    <p>{contact.email}</p>
                                 </div>
-                                <div className="contact-item">
-                                    <span className="icon"><img src="/icons/web.webp" alt="Website" loading="lazy" /></span>
-                                    <div>
-                                        <small>website</small>
-                                        <p>{contact.website.replace('https://', '')}</p>
-                                    </div>
+                            </div>
+                            <div className="cf-contact-row">
+                                <span className="cf-icon">
+                                    <img src="/icons/web.webp" alt="Website" loading="lazy" />
+                                </span>
+                                <div>
+                                    <small>website</small>
+                                    <p>{contact.website.replace('https://', '')}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="social-links-grid">
-                            {social_media.map((social, index) => {
-                                let icon;
-                                if (social.platform.toLowerCase() === 'instagram') icon = '/icons/insta.webp';
-                                else if (social.platform.toLowerCase() === 'tiktok') icon = '/icons/tiktok.webp';
-                                else if (social.platform.toLowerCase() === 'threads') icon = '/icons/threads.webp';
-
-                                return (
-                                    <a
-                                        key={index}
-                                        href={social.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="social-button"
-                                    >
-                                        <img src={icon} alt={social.platform} loading="lazy" />
-                                    </a>
-                                );
-                            })}
+                        <div className="cf-socials">
+                            {social_media.map((s, i) => (
+                                <a
+                                    key={i}
+                                    href={s.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="cf-social-btn"
+                                >
+                                    <img src={socialIcon(s.platform)} alt={s.platform} loading="lazy" />
+                                </a>
+                            ))}
                         </div>
                     </div>
+
                 </div>
 
-                {/* Right Column */}
-                <div className="column">
-                    <div className="card white-card">
-                        <h2>QUICK MESSAGE</h2>
-                        <form className="message-form" onSubmit={(e) => e.preventDefault()}>
-                            <div className="input-row">
-                                <div className="input-group">
+                {/* ── RIGHT COLUMN: Quick Message ── */}
+                <div className="cf-col">
+
+                    <div className="cf-card cf-card--light">
+                        <h2 className="cf-heading">QUICK MESSAGE</h2>
+                        <form className="cf-form" onSubmit={(e) => e.preventDefault()}>
+                            <div className="cf-input-row">
+                                <div className="cf-field">
                                     <label>NAME</label>
-                                    <input type="text" />
+                                    <input type="text" autoComplete="name" />
                                 </div>
-                                <div className="input-group">
+                                <div className="cf-field">
                                     <label>EMAIL</label>
-                                    <input type="email" />
+                                    <input type="email" autoComplete="email" />
                                 </div>
                             </div>
-                            <div className="input-group">
+                            <div className="cf-field cf-field--grow">
                                 <label>MESSAGE</label>
-                                <textarea rows="2"></textarea>
+                                <textarea rows="4"></textarea>
                             </div>
-                            <button type="submit" className="send-btn">
-                                SEND MESSAGE <span>→</span>
+                            <button type="submit" className="cf-btn">
+                                SEND MESSAGE <span aria-hidden="true">→</span>
                             </button>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>

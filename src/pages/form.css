@@ -1,306 +1,328 @@
-/* ============================================================
-   CONTACT FORM — fully fluid, no fixed px heights anywhere
-   All spacing, typography and sizing scale with the viewport
-   ============================================================ */
+/* ================================================================
+   CONTACT FORM  ·  form.css
 
-/* 1. WRAPPER
-   Must fill the parent flex column (section-body.desktop-view)
-   so the grid below can divide the full available height       */
-.desktop-view .form-inner-wrapper {
-    width: 100%;
-    flex: 1;
-    min-height: 0;
+   ONE master scale controls everything:
+     .cf-wrap { font-size: clamp(0.75rem, 1.5vw, 2.8rem) }
+
+   Every internal value is in `em` — multiply that one number
+   and the whole layout scales together at every viewport.
+
+   Breakpoints  →  effective base font-size:
+     375 px  :  12 px   (0.75rem min)
+     768 px  :  12 px   (min — overridden to 16px by media query)
+     1024 px :  15.4 px
+     1440 px :  21.6 px
+     1920 px :  28.8 px
+     2560 px :  38.4 px
+     3840 px :  44.8 px (2.8rem cap)
+   ================================================================ */
+
+/* ── 1  MASTER WRAPPER ─────────────────────────────────────── */
+.cf-wrap {
+    /* THE SCALE DRIVER — everything else is em off this value  */
+    font-size: clamp(0.75rem, 1.5vw, 2.8rem);
+
+    width: 100%;          /* fill section-inner — no max-width  */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background: transparent;
-}
-
-/* 2. GRID
-   Two equal columns, fills all remaining height                */
-.desktop-view .main-grid {
-    display: flex;
-    gap: clamp(0.625rem, 1.5vw, 1.5rem);
-    align-items: stretch;
     flex: 1;
-    min-height: 0;
-}
-
-/* 3. COLUMNS                                                   */
-.desktop-view .column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.625rem, 1.8vw, 1.5rem);
     min-height: 0;
 }
 
-/* 4. CARD BASE
-   Proportional padding, rounded corners, flex column           */
-.desktop-view .card {
-    border-radius: clamp(1rem, 2vw, 1.75rem);
-    padding: clamp(1rem, 3vw, 2.25rem) clamp(1.125rem, 2.2vw, 2rem);
+/* ── 2  MAIN GRID — two equal columns ─────────────────────── */
+.cf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    flex: 1;
+    min-height: 0;
+}
+
+/* ── 3  COLUMNS ─────────────────────────────────────────────  */
+.cf-col {
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
     min-height: 0;
+}
+
+/* ── 4  CARD BASE ───────────────────────────────────────────  */
+.cf-card {
+    border-radius: 1.1em;
+    padding: 1.05em 1.1em;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
 }
 
-/* 5. CARD HEADERS — all-caps, spaced, scales with vh           */
-.desktop-view h2 {
-    font-family: 'NessynSentry', sans-serif;
-    font-size: clamp(0.9rem, 3.5vw, 1.5rem);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin: 0 0 clamp(0.5rem, 1.8vw, 1.25rem) 0;
-    font-weight: normal;
-    flex-shrink: 0;
-}
-
-/* 6. LEFT COLUMN CARDS
-   orange: 2 shares, blue: 3 shares → ~40% / 60% of column    */
-.desktop-view .orange-card {
+/* Visit Us — shorter */
+.cf-card--dark {
     background-color: var(--orange-bg);
     color: var(--orange-text);
     flex: 2;
-    justify-content: space-between;
 }
 
-.desktop-view .orange-card .card-content {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    overflow: hidden;
-}
-
-.desktop-view .orange-card p {
-    margin: 0;
-    font-family: 'NeueHaasDisplayRoman', sans-serif;
-    font-size: clamp(0.8rem, 2.2vw, 1.15rem);
-    line-height: 1.6;
-    overflow-wrap: break-word;
-    word-break: break-word;
-}
-
-.desktop-view .blue-card {
+/* Drop a Line — taller */
+.cf-card--mid {
     background-color: var(--blue-bg);
     color: var(--blue-text);
     flex: 3;
-    min-height: 0;
     display: flex;
     flex-direction: column;
-    /* no space-between — icons flow naturally after content */
 }
 
-.desktop-view .card-top {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-}
-
-/* 7. CONTACT INFO (email / website rows)                       */
-.desktop-view .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.625rem, 1.6vw, 1.25rem);
-}
-
-.desktop-view .contact-item {
-    display: flex;
-    align-items: center;
-    gap: clamp(0.625rem, 1.2vw, 1rem);
-}
-
-.desktop-view .contact-item .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.desktop-view .contact-item .icon img {
-    width: clamp(1rem, 2.4vw, 1.625rem);
-    height: clamp(1rem, 2.4vw, 1.625rem);
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-}
-
-.desktop-view .contact-item small {
-    display: block;
-    font-family: 'NeueHaasThin', sans-serif;
-    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-    text-transform: uppercase;
-    opacity: 0.8;
-}
-
-.desktop-view .contact-item p {
-    margin: 0;
-    font-family: 'NeueHaasDisplayRoman', sans-serif;
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
-    overflow-wrap: break-word;
-    word-break: break-word;
-}
-
-/* 8. SOCIAL BUTTONS — flow after contact info, never pushed off screen */
-.desktop-view .social-links-grid {
-    display: flex;
-    gap: clamp(0.625rem, 1.2vw, 1rem);
-    justify-content: flex-start;
-    margin-top: clamp(0.875rem, 2.5vw, 2rem);
-    flex-shrink: 0;
-}
-
-.desktop-view .social-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: clamp(2rem, 4.5vw, 3rem);
-    height: clamp(2rem, 4.5vw, 3rem);
-    background-color: rgba(255, 255, 255, 0.12);
-    border-radius: clamp(0.375rem, 0.8vw, 0.625rem);
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    flex-shrink: 0;
-}
-
-.desktop-view .social-button:hover {
-    transform: translateY(-2px);
-    background-color: rgba(255, 255, 255, 0.22);
-}
-
-.desktop-view .social-button img {
-    width: clamp(1.125rem, 2.8vw, 1.75rem);
-    height: clamp(1.125rem, 2.8vw, 1.75rem);
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-}
-
-/* 9. RIGHT COLUMN — white card fills entire column             */
-.desktop-view .white-card {
+/* Quick Message — fills right column */
+.cf-card--light {
     background-color: var(--white-bg);
     color: var(--white-text);
     flex: 1;
-    min-height: 0;
     display: flex;
     flex-direction: column;
 }
 
-/* 10. MESSAGE FORM — flex column, fills white card             */
-.desktop-view .message-form {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0;
-}
-
-/* 11. INPUT ROW (NAME + EMAIL side by side)                    */
-.desktop-view .input-row {
-    display: flex;
-    gap: clamp(0.5rem, 1.5vw, 1rem);
-    margin-bottom: 0px !important;
+/* ── 5  CARD HEADING ────────────────────────────────────────  */
+.cf-heading {
+    font-family: 'NessynSentry', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0 0 0.55em 0;
     flex-shrink: 0;
 }
 
-/* 12. INPUT GROUP
-   NAME/EMAIL: fixed-shrink so they never collapse
-   MESSAGE: flex: 1 so it fills remaining space                 */
-.desktop-view .input-group {
+/* ── 6  ADDRESS (Visit Us) ──────────────────────────────────  */
+/* Two columns: first 3 lines left, last 2 lines right         */
+.cf-address {
+    display: flex;
+    gap: 4.6em;
+    font-family: 'NeueHaasDisplayRoman', sans-serif;
+    font-size: 0.76em;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
     flex: 1;
+}
+
+.cf-address span {
+    display: block;
+}
+
+/* ── 7  CONTACT ROWS (email / website) ─────────────────────  */
+.cf-contact-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45em;
+    flex-shrink: 0;
+}
+
+.cf-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.cf-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cf-icon img {
+    width: 0.95em;
+    height: 0.95em;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.cf-contact-row small {
+    display: block;
+    font-family: 'NeueHaasThin', sans-serif;
+    font-size: 0.48em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    line-height: 1;
+    margin-bottom: 0.15em;
+}
+
+.cf-contact-row p {
+    margin: 0;
+    font-family: 'NeueHaasDisplayRoman', sans-serif;
+    font-size: 0.7em;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.3;
+}
+
+/* ── 8  SOCIAL BUTTONS ──────────────────────────────────────  */
+.cf-socials {
+    display: flex;
+    gap: 0.4em;
+    margin-top: auto;
+    padding-top: 0.7em;
+    flex-shrink: 0;
+}
+
+.cf-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.55em;
+    height: 1.55em;
+    background-color: rgba(255, 255, 255, 0.14);
+    border-radius: 0.3em;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.cf-social-btn:hover {
+    transform: translateY(-0.1em);
+    background-color: rgba(255, 255, 255, 0.26);
+}
+
+.cf-social-btn img {
+    width: 56%;
+    height: 56%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* ── 9  MESSAGE FORM ────────────────────────────────────────  */
+.cf-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 0.48em;
+}
+
+/* ── 10  INPUT ROW — CSS Grid, Name + Email side by side ────  */
+.cf-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.48em;
+    flex-shrink: 0;
+}
+
+/* ── 11  FIELD WRAPPER ──────────────────────────────────────  */
+.cf-field {
     background-color: rgba(255, 255, 255, 0.55);
-    border-radius: clamp(0.625rem, 1.2vw, 1rem);
-    padding: clamp(0.625rem, 1.8vw, 1.25rem) clamp(0.75rem, 1.4vw, 1.25rem);
+    border-radius: 0.62em;
+    padding: 0.52em 0.68em;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-shrink: 0;
 }
 
-/* MESSAGE textarea group grows to fill remaining space         */
-.desktop-view .message-form>.input-group:last-of-type {
+/* Message textarea — fills remaining card height              */
+.cf-field--grow {
     flex: 1;
     min-height: 0;
-    flex-shrink: 1;
     justify-content: flex-start;
-    margin-top: clamp(0.5rem, 1.5vw, 1.25rem);
-    margin-bottom: clamp(0.5rem, 1.5vw, 1.25rem);
 }
 
-/* 13. LABELS                                                   */
-.desktop-view .input-group label {
+/* ── 12  LABELS ─────────────────────────────────────────────  */
+.cf-field label {
     font-family: 'NeueHaasThin', sans-serif;
-    font-size: clamp(0.65rem, 1.5vw, 0.95rem);
+    font-size: 0.5em;
     font-weight: 100;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     flex-shrink: 0;
     display: block;
-    margin-bottom: clamp(0.1875rem, 0.5vw, 0.375rem);
+    margin-bottom: 0.25em;
 }
 
-/* 14. TEXT INPUTS                                              */
-.desktop-view .input-group input {
+/* ── 13  TEXT INPUTS ────────────────────────────────────────  */
+.cf-field input {
     border: none;
     background: transparent;
     outline: none;
     width: 100%;
     font-family: 'NeueHaasDisplayRoman', sans-serif;
-    font-weight: 400;
-    font-size: clamp(0.85rem, 2.5vw, 1.25rem);
-    height: clamp(1.375rem, 3.5vw, 2.5rem);
-    flex-shrink: 0;
+    font-size: 0.76em;
+    line-height: 1.3;
+    color: inherit;
 }
 
-/* 15. TEXTAREA                                                 */
-.desktop-view .input-group textarea {
+/* ── 14  TEXTAREA ───────────────────────────────────────────  */
+.cf-field textarea {
     border: none;
     background: transparent;
     outline: none;
     width: 100%;
     font-family: 'NeueHaasDisplayRoman', sans-serif;
-    font-weight: 400;
-    font-size: clamp(0.85rem, 2.5vw, 1.25rem);
+    font-size: 0.76em;
     resize: none;
     flex: 1;
-    min-height: 0;
+    min-height: 2.5em;
     padding: 0;
     margin: 0;
     line-height: 1.5;
+    color: inherit;
 }
 
-/* 16. SEND BUTTON — high contrast, always at the bottom        */
-.desktop-view .send-btn {
-    background: var(--button-bg);
-    color: var(--button-text);
+/* ── 15  SEND BUTTON ────────────────────────────────────────  */
+.cf-btn {
+    background: var(--btn-bg);
+    color: var(--btn-text);
     border: none;
-    padding: clamp(0.75rem, 2.2vw, 1.375rem) clamp(1rem, 1.8vw, 1.75rem);
-    border-radius: clamp(0.625rem, 1.2vw, 1rem);
+    padding: 0.72em 1.3em;
+    border-radius: 0.62em;
     font-family: 'NeueHaasDisplayBlack', sans-serif;
-    font-weight: 900;
-    font-size: clamp(0.85rem, 2vw, 1.25rem);
+    font-size: 0.72em;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(0.5rem, 1vw, 0.875rem);
+    gap: 0.5em;
     flex-shrink: 0;
     margin-top: auto;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.desktop-view .send-btn:hover {
-    opacity: 0.88;
-    transform: translateY(-1px);
+.cf-btn:hover {
+    opacity: 0.86;
+    transform: translateY(-0.08em);
 }
 
-/* 17. 4K OVERRIDE                                              */
-@media (min-width: 2500px) {
-    .desktop-view .form-inner-wrapper {
-        transform: scale(2.8);
-        transform-origin: center center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+/* ================================================================
+   RESPONSIVE  ·  ≤ 768 px
+
+   Override master scale to a comfortable fixed reading size.
+   Collapse grid to single column. Quick Message rises to top.
+   Name + Email stack vertically.
+   ================================================================ */
+@media (max-width: 768px) {
+    .cf-wrap {
+        font-size: 16px;   /* fixed comfortable base on mobile   */
+        flex: none;
+    }
+
+    .cf-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Quick Message comes first on mobile                      */
+    .cf-col:last-child {
+        order: -1;
+    }
+
+    /* Name + Email each full width on mobile                   */
+    .cf-input-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Info cards: height from content, not flex ratios         */
+    .cf-card--dark,
+    .cf-card--mid {
+        flex: none;
     }
 }
