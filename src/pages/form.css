@@ -2,30 +2,37 @@
    CONTACT FORM  ·  form.css
 
    ONE master scale controls everything:
-     .cf-wrap { font-size: clamp(0.75rem, 1.5vw, 2.8rem) }
+     .cf-wrap { font-size: clamp(0.65rem, min(1.5vw, 2.0vh), 2.5rem) }
 
-   Every internal value is in `em` — multiply that one number
-   and the whole layout scales together at every viewport.
+   min(1.5vw, 2.0vh) means the scale responds to both axes so
+   cards never overflow their 60% height row.
 
-   Breakpoints  →  effective base font-size:
-     375 px  :  12 px   (0.75rem min)
-     768 px  :  12 px   (min — overridden to 16px by media query)
-     1024 px :  15.4 px
-     1440 px :  21.6 px
-     1920 px :  28.8 px
-     2560 px :  38.4 px
-     3840 px :  44.8 px (2.8rem cap)
+   Common screen → effective base font-size:
+     375×812  :  10.4px  (0.65rem min — overridden to 16px mobile)
+     1024×768 :  15.4px  (vh wins: 2.0vh = 15.4px)
+     1280×800 :  16.0px  (vh wins: 2.0vh = 16.0px)
+     1366×768 :  15.4px  (vh wins)
+     1440×900 :  18.0px  (vh wins: 2.0vh = 18.0px)
+     1920×1080:  21.6px  (vh wins: 2.0vh = 21.6px)
+     2560×1440:  28.8px  (vh wins: 2.0vh = 28.8px)
+     3840×2160:  40.0px  (2.5rem cap)
    ================================================================ */
 
 /* ── 1  MASTER WRAPPER ─────────────────────────────────────── */
 .cf-wrap {
-    /* THE SCALE DRIVER — everything else is em off this value  */
-    font-size: clamp(0.75rem, 1.5vw, 2.8rem);
+    /* THE SCALE DRIVER — everything else is em off this value.
+       min(1.5vw, 2.0vh) means the scale responds to BOTH axes:
+       · on wide-short screens (e.g. 1366×768) vh wins → cards
+         shrink to fit the ~60% height row without clipping.
+       · on wide-tall screens vw wins → cards fill the space.   */
+    font-size: clamp(0.65rem, min(1.5vw, 2.0vh), 2.5rem);
 
-    width: 100%;          /* fill section-inner — no max-width  */
+    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    /* cf-wrap sits in the 1fr grid row of .contact .section-body.
+       flex: 1 + min-height: 0 let the inner cf-grid fill that row. */
     flex: 1;
     min-height: 0;
 }
@@ -35,6 +42,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5em;
+    /* Fills cf-wrap — both columns stretch to equal height via
+       align-items: stretch (default), so Quick Message card always
+       matches the combined height of the two left cards.        */
     flex: 1;
     min-height: 0;
 }
@@ -55,6 +65,7 @@
     flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
+    min-height: 0;  /* allow cards to shrink inside their flex column */
 }
 
 /* Visit Us — shorter */
@@ -97,7 +108,7 @@
 /* Two columns: first 3 lines left, last 2 lines right         */
 .cf-address {
     display: flex;
-    gap: 4.6em;
+    gap: 2em;
     font-family: 'NeueHaasDisplayRoman', sans-serif;
     font-size: 0.76em;
     line-height: 1.6;
@@ -303,7 +314,6 @@
 @media (max-width: 768px) {
     .cf-wrap {
         font-size: 16px;   /* fixed comfortable base on mobile   */
-        flex: none;
     }
 
     .cf-grid {
@@ -320,9 +330,9 @@
         grid-template-columns: 1fr;
     }
 
-    /* Info cards: height from content, not flex ratios         */
-    .cf-card--dark,
-    .cf-card--mid {
-        flex: none;
+    /* Address: stack vertically on small screens               */
+    .cf-address {
+        flex-direction: column;
+        gap: 0.4em;
     }
 }

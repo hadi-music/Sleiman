@@ -25,31 +25,40 @@
     color: black;
 }
 
-/* Section body: flex column — SVG above, form below           */
+/* Section body: two-row grid
+   Row 1 — SVG headline  : 40%  of the section body height
+   Row 2 — contact cards : 1fr  (remaining ~60%, minus gap)
+   Fixed percentage split keeps both rows proportional at every
+   screen size — the SVG scales inside its row via object-fit.  */
 .contact .section-body {
-    display: flex;
-    flex-direction: column;
-    /* Clears the absolute-positioned header                    */
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: 40% 1fr;
+    gap: clamp(0.4rem, 1vh, 1rem);
     padding-top: clamp(2.5rem, 5.5vh, 4.5rem);
-    overflow: hidden;
     box-sizing: border-box;
     width: 100%;
+    overflow: hidden;
 }
 
 /* ── SVG CONTACT LETTERING ──────────────────────────────────  */
-/* Fills the full available width — scales naturally with the
-   card size on every screen. No max-width cap.                */
+/* The wrapper fills its 40% grid row (align-self: stretch).
+   object-fit: contain scales the SVG to fill the row height
+   while preserving the 1015×132 aspect ratio, left-aligned.   */
 .contact-svg-wrapper {
     width: 100%;
-    flex-shrink: 0;
-    margin-bottom: clamp(0.375rem, 1.5vh, 2rem);
+    min-height: 0;
+    overflow: hidden;
     box-sizing: border-box;
 }
 
 .contact-svg {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: contain;
+    object-position: left center;
 }
 
 /* ── MOBILE / TABLET ≤ 768px ───────────────────────────────  */
@@ -63,6 +72,9 @@
     }
     .contact .section-body {
         padding-top: clamp(2.25rem, 7vh, 3.5rem);
+        /* On mobile cards stack and may exceed viewport — allow scroll */
+        grid-template-rows: auto auto;
         overflow-y: auto;
+        overflow-x: hidden;
     }
 }
