@@ -3,9 +3,11 @@
    Structural wrapper only — form internals live in form.css
    ================================================================ */
 
-/* Section inner uses standard fluid padding (matches section-header inset) */
+/* Section inner: standard fluid padding, extra right clearance for nav-stack.
+   6vw keeps the gap proportional — snug but not touching across all screen sizes. */
 .contact .section-inner {
     padding: clamp(1rem, 2.5vmin, 1.875rem);
+    padding-right: clamp(3rem, 6vw, 5.5rem);
 }
 
 /* Section header uses standard positioning */
@@ -51,7 +53,8 @@
 
 /* ── MOBILE / TABLET ≤ 768px ───────────────────────────────  */
 @media (max-width: 768px) {
-    .contact .section-body {
+
+.contact .section-body {
         padding-top: clamp(3rem, 5vmin, 3.75rem);
         /* On mobile cards stack and may exceed viewport — allow scroll */
         grid-template-rows: auto auto;
