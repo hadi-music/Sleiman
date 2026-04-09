@@ -8,7 +8,7 @@ export default function NumbersDesktop() {
   const [active, setActive] = useState(null)
 
   return (
-    <Section className="numbers">
+    <Section className="numbers" headerTitle="Music">
       <div className="numbers-layout">
         
         {/* LEFT PANEL */}
@@ -27,7 +27,6 @@ export default function NumbersDesktop() {
           </div>
 
           <div className="numbers-header">
-            <div className="numbers-title">MUSIC</div>
             <div className="numbers-top-label">Streams</div>
           </div>
 

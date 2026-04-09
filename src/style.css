@@ -85,7 +85,7 @@ body {
 .section-inner {
   height: 100%;
   width: 100%;
-  padding: 30px;
+  padding: clamp(1rem, 2.5vmin, 1.875rem);
   box-sizing: border-box;
 
   color: inherit;
@@ -99,16 +99,27 @@ body {
 .section-header {
   position: absolute;
 
-  left: 30px;
-  right: 30px;
+  /* top: clamp(1rem, 2.5vmin, 1.875rem); */
+  left: clamp(4rem, 4.5vmin, 1.875rem);
+  right: clamp(1rem, 2.5vmin, 1.875rem);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  height: 60px;
+  height: clamp(3rem, 5vmin, 3.75rem);
+
+  z-index: 20;
 
   font-family: "NeueHaas", sans-serif;
+}
+
+/* Universal title style — Contact, Music, Press, Studio */
+.section-header__title {
+  font-family: "NeueHaasThin", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.375rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .section-header button {
@@ -304,45 +315,7 @@ body {
 }
 
 
-/* Studio header title styling — mirror Press title rules for consistent typography */
-.studio .section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
+/* Studio: color only — font handled by universal .section-header__title rule */
 .studio .section-header__title {
-  font-family: "NeueHaasThin", sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: inherit;
-}
-
-@media (max-width: 768px) {
-
-  /* on mobile, keep title on the left */
-  .studio .section-header__title {
-    margin-right: auto;
-    margin-left: 0;
-  }
-}
-
-/* Numbers header styling for mobile: show header and make title white */
-@media (max-width: 768px) {
-  .numbers .section-header {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .numbers .section-header__title {
-    font-family: "NeueHaasThin", sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #fff;
-    /* white on mobile over the background image */
-    margin-left: auto;
-  }
 }

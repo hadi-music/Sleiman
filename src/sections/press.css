@@ -23,19 +23,11 @@
   justify-content: center;
   gap: clamp(2rem, 4vw, 8rem);
 
-  padding-top: clamp(2.5rem, 5vh, 5rem);
+  padding-top: clamp(3.75rem, 5vh, 5rem);
 }
 
 .press .section-header__title {
-  font-family: "NeueHaasThin", sans-serif;
-  font-size: clamp(1rem, 1.15vw, 2.25rem);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: #000;
-
-  position: absolute;
-  top: clamp(1rem, 2vw, 3.75rem);
-  left: clamp(1rem, 2vw, 3.75rem);
 }
 
 .press-left {
@@ -284,14 +276,6 @@
   }
 
   .press .section-header__title {
-
-    font-family: "NeueHaasThin", sans-serif;
-
-    font-size: clamp(1rem, 5vw, 1.5rem);
-
-    letter-spacing: 0.12em;
-
-    text-transform: uppercase;
     position: static;
     margin-left: 0;
     margin-right: auto;

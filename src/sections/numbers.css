@@ -18,6 +18,15 @@
   /* ADD THIS */
 }
 
+/* Music label sits below the drawers so expanding drawers slide over it */
+.numbers .section-header {
+  z-index: 5;
+}
+
+.numbers .section-header__title {
+  color: #000;
+}
+
 .numbers-layout {
   flex: 1;
   display: grid;
@@ -319,27 +328,17 @@
 
 .numbers-header {
   display: flex;
-  justify-content: space-between;
-  padding-left: clamp(3rem, 4vw, 6rem);
+  justify-content: flex-end;
   position: relative;
   z-index: 1;
   /* Below the drawers */
   pointer-events: none;
 }
 
-.numbers-title {
-  font-family: "NeueHaasThin", sans-serif;
-  font-weight: 100;
-  font-size: clamp(1.2rem, 1.2vw, 3.5rem);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  margin: 0;
-}
-
 .numbers-top-label {
   font-family: "NeueHaasThin", sans-serif;
-  font-size: clamp(0.875rem, 1.2vw, 2rem);
-  letter-spacing: 0.15em;
+  font-size: clamp(1rem, 1.5vw, 1.375rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.7;
   text-align: right;

@@ -12,27 +12,23 @@
 /* Local header for Numbers mobile (top-left white title) */
 .numbers-mobile-header {
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: clamp(1rem, 2.5vmin, 1.875rem);
+  left: clamp(1rem, 2.5vmin, 1.875rem);
   z-index: 2;
   /* sit under the interactive buttons (buttons have z-index:6) */
   pointer-events: none;
   /* purely decorative */
   display: flex;
   align-items: center;
-  height: 60px;
+  height: clamp(3rem, 5vmin, 3.75rem);
 }
 
 .numbers-mobile-header .section-header__title {
-  font-family: "NeueHaasThin", sans-serif;
-  font-size: clamp(1.1rem, 5vw, 1.6rem);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: #fff;
   -webkit-font-smoothing: antialiased;
   transition: filter .22s ease, opacity .18s ease;
 
-  /* NEW: Baseline blur to prevent the raster jolt */
+  /* Baseline blur to prevent raster jolt */
   filter: blur(0.01px) saturate(1);
 }
 

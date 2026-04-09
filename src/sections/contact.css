@@ -3,25 +3,13 @@
    Structural wrapper only — form internals live in form.css
    ================================================================ */
 
-/* Scale section-inner padding proportionally on large screens.
-   Right side gets extra clearance for the fixed nav-stack dots  */
+/* Section inner uses standard fluid padding (matches section-header inset) */
 .contact .section-inner {
-    padding:       clamp(1.25rem, 2.5vw, 3.5rem);
-    padding-right: calc(clamp(1.25rem, 2.5vw, 3.5rem) + 2.75rem);
+    padding: clamp(1rem, 2.5vmin, 1.875rem);
 }
 
-/* Section header position follows the scaled padding           */
-.contact .section-header {
-    left:   clamp(1.25rem, 2.5vw, 3.5rem);
-    right:  calc(clamp(1.25rem, 2.5vw, 3.5rem) + 2.75rem);
-    height: clamp(2.5rem, 5.5vh, 4.5rem);
-}
-
+/* Section header uses standard positioning */
 .contact .section-header__title {
-    font-family: "NeueHaasThin", sans-serif;
-    font-size: clamp(0.75rem, 1.2vw, 1.75rem);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
     color: black;
 }
 
@@ -36,7 +24,7 @@
     display: grid;
     grid-template-rows: 40% 1fr;
     gap: clamp(0.4rem, 1vh, 1rem);
-    padding-top: clamp(2.5rem, 5.5vh, 4.5rem);
+    padding-top: clamp(3rem, 5vmin, 3.75rem);
     box-sizing: border-box;
     width: 100%;
     overflow: hidden;
@@ -63,15 +51,8 @@
 
 /* ── MOBILE / TABLET ≤ 768px ───────────────────────────────  */
 @media (max-width: 768px) {
-    .contact .section-inner {
-        padding: clamp(0.875rem, 3vw, 1.5rem);
-    }
-    .contact .section-header {
-        left:  clamp(0.875rem, 3vw, 1.5rem);
-        right: clamp(0.875rem, 3vw, 1.5rem);
-    }
     .contact .section-body {
-        padding-top: clamp(2.25rem, 7vh, 3.5rem);
+        padding-top: clamp(3rem, 5vmin, 3.75rem);
         /* On mobile cards stack and may exceed viewport — allow scroll */
         grid-template-rows: auto auto;
         overflow-y: auto;
