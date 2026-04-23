@@ -28,8 +28,8 @@
   -webkit-font-smoothing: antialiased;
   transition: filter .22s ease, opacity .18s ease;
 
-  /* Baseline blur to prevent raster jolt */
-  filter: blur(0.01px) saturate(1);
+  /* Removed Baseline blur */
+  filter: blur(0px) saturate(1);
 }
 
 /* When a row is open (a button pressed), blur the title to match other UI blurs */
@@ -70,8 +70,8 @@
   transform: translateZ(0) scale(1.02);
   will-change: filter;
 
-  /* NEW: Baseline blur to prevent the raster jolt */
-  filter: blur(0.01px);
+  /* Removed Baseline blur to fix performance jolt */
+  filter: blur(0px);
 }
 
 /* Subtle darken overlay for better contrast */
@@ -181,8 +181,8 @@
   transform: translateZ(0);
   will-change: filter, opacity;
 
-  /* NEW: Baseline blur to prevent the raster jolt */
-  filter: blur(0.01px) brightness(1);
+  /* Removed Baseline blur */
+  filter: blur(0px) brightness(1);
 }
 
 /* Platform title indicator */

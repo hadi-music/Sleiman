@@ -4,7 +4,7 @@ import Section from "../components/Section"
 import LavaGrid from "../pages/LavaGrid"
 import pressData from "../data/press.json"
 
-import "./Press.css"
+import "./press.css"
 
 export default function Press() {
 
@@ -29,9 +29,9 @@ export default function Press() {
 
       {/* RIGHT SIDE: VERTICAL STACK */}
       <div className="press-right-stack">
-        
+
         {/* TOP: FEATURED IMAGE */}
-        <motion.div 
+        <motion.div
           className="press-featured-image-wrapper"
           key={`img-${active.publication}`}
           initial={{ opacity: 0, y: -20 }}
