@@ -49,12 +49,35 @@
     display: block;
     object-fit: contain;
     object-position: left center;
+    filter: invert(21%) sepia(20%) saturate(1212%) hue-rotate(163deg) brightness(97%) contrast(90%);
 }
 
 /* ── MOBILE / TABLET ≤ 768px ───────────────────────────────  */
 @media (max-width: 768px) {
 
-.contact .section-body {
+
+    .contact {
+
+        width: calc(100% - 24px);
+        height: calc(100% - 24px);
+        margin: 12px;
+
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+
+    }
+
+    .contact .section-inner {
+        padding-left: clamp(3rem, 6vw, 5.5rem);
+        padding-bottom: clamp(3rem, 6vw, 5.5rem);
+    }
+
+    .cf-card--dark {
+        display: none;
+    }
+
+    .contact .section-body {
         padding-top: clamp(3rem, 5vmin, 3.75rem);
         /* On mobile cards stack and may exceed viewport — allow scroll */
         grid-template-rows: auto auto;

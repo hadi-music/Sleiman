@@ -40,12 +40,16 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Cold temperature tint for unclicked state */
+    filter: sepia(35%) hue-rotate(190deg) saturate(80%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Subtle cinematic zoom when activated */
 .archival-card.active .archival-bg {
     transform: scale(1.02);
+    /* Remove cold tint on active state */
+    filter: sepia(0%) hue-rotate(0deg) saturate(100%);
 }
 
 /* Gradient Overlay */

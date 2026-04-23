@@ -103,6 +103,10 @@ const ContactForm = () => {
                                     <input type="email" autoComplete="email" />
                                 </div>
                             </div>
+                            <div className="cf-field">
+                                <label>SUBJECT</label>
+                                <input type="text" />
+                            </div>
                             <div className="cf-field cf-field--grow">
                                 <label>MESSAGE</label>
                                 <textarea rows="4"></textarea>

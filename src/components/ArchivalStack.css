@@ -41,12 +41,16 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Grayscale/contrast for unclicked state */
+    filter: grayscale(100%) brightness(0.8) contrast(110%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Subtle cinematic zoom when activated */
 .archival-card.active .archival-bg {
     transform: scale(1.02);
+    /* Remove grayscale on active state */
+    filter: grayscale(0%) brightness(1) contrast(100%);
 }
 
 /* Gradient Overlay */
@@ -116,12 +120,10 @@
 }
 
 .archival-desc {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "NeueHaasDisplayRoman", sans-serif;
     font-size: 0.85rem;
     line-height: 1.4;
     color: #aaa;
-    margin: 0;
-    overflow: hidden;
     margin: 0;
     overflow: hidden;
 }

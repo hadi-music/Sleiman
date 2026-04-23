@@ -308,13 +308,14 @@
 
   .press-text-container {
     margin-top: 0;
+    margin-left: 20px;
     padding-bottom: 0;
-
+    transform: translateY(-250px) !important;
     color: #000000 !important;
     text-shadow: none !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    width: 100%;
+    width: 90%;
   }
 
   .press-text-container h2,
@@ -338,6 +339,7 @@
 
   .press .lava-grid {
     gap: clamp(0.25rem, 1.5vw, 0.5rem);
+    width: 80%;
   }
 
   .press .lava-grid {
@@ -349,6 +351,7 @@
   }
 
   .press-text-container h3 {
+    width: 90%;
     font-size: clamp(1.25rem, 6vw, 2rem);
     letter-spacing: -0.04em;
     line-height: 1;

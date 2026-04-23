@@ -65,20 +65,41 @@
     flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
-    min-height: 0;  /* allow cards to shrink inside their flex column */
+    min-height: 0;
+    position: relative;
+    /* allow cards to shrink inside their flex column */
+}
+
+/* Add the image with 0.5 opacity to all cards */
+.cf-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/pattern.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ensure contents sit above the overlay */
+.cf-card>* {
+    position: relative;
+    z-index: 1;
 }
 
 /* Visit Us — shorter */
 .cf-card--dark {
     background-color: var(--orange-bg);
-    color: var(--orange-text);
+    color: #fff;
     flex: 2;
 }
 
 /* Drop a Line — taller */
 .cf-card--mid {
     background-color: var(--blue-bg);
-    color: var(--blue-text);
+    color: #fff;
     flex: 3;
     display: flex;
     flex-direction: column;
@@ -87,7 +108,7 @@
 /* Quick Message — fills right column */
 .cf-card--light {
     background-color: var(--white-bg);
-    color: var(--white-text);
+    color: #000;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -313,7 +334,8 @@
    ================================================================ */
 @media (max-width: 768px) {
     .cf-wrap {
-        font-size: 16px;   /* fixed comfortable base on mobile   */
+        font-size: 16px;
+        /* fixed comfortable base on mobile   */
     }
 
     .cf-grid {
