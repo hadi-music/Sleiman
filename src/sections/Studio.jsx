@@ -2,7 +2,7 @@ import { useState } from "react"
 import Section from "../components/Section"
 import ArchivalStack from "../components/ArchivalStack"
 import { studioContent } from "../data/studio-data"
-import "./Studio.css"
+import "./studio.css"
 
 export default function Studio({ active }) {
   return (
