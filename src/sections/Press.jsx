@@ -4,7 +4,7 @@ import Section from "../components/Section"
 import LavaGrid from "../pages/LavaGrid"
 import pressData from "../data/press.json"
 
-import "./press.css"
+import "./Press.css"
 
 export default function Press() {
 
