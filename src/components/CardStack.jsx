@@ -112,6 +112,8 @@ export default function CardStack({ sections }) {
 
   const isTouchDevice = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
 
+  const transitionDuration = isTouchDevice ? 0.42 : 0.6
+
   useEffect(() => {
 
     window.addEventListener("keydown", handleKey)
@@ -153,7 +155,7 @@ export default function CardStack({ sections }) {
                 visibility: Math.abs(distance) > 1 ? "hidden" : "visible"
               }}
               transition={{
-                duration: 0.6,
+                duration: Math.abs(distance) > 1 ? 0 : transitionDuration,
                 ease: [0.16, 1, 0.3, 1]
               }}
               onAnimationComplete={() => {

@@ -286,13 +286,7 @@ body {
   /* clip children and preserve border-radius */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  will-change: transform, opacity, grid-column, grid-row;
-
-  transition:
-    grid-column 2000ms cubic-bezier(.22, 1, .36, 1),
-    grid-row 2000ms cubic-bezier(.22, 1, .36, 1);
+  will-change: transform, opacity;
 }
 
 @media (max-width: 768px) {
