@@ -61,6 +61,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center 25%;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .press-text-container {
@@ -310,7 +312,7 @@
     margin-top: 0;
     margin-left: 20px;
     padding-bottom: 0;
-    transform: translateY(-250px) !important;
+    transform: translateY(-20px) !important;
     color: #000000 !important;
     text-shadow: none !important;
     padding-left: 0 !important;

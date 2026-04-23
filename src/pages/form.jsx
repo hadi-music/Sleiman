@@ -64,7 +64,6 @@ const ContactForm = () => {
                                     <img src="/icons/web.webp" alt="Website" loading="lazy" />
                                 </span>
                                 <div>
-                                    <small>website</small>
                                     <p>{contact.website.replace('https://', '')}</p>
                                 </div>
                             </div>

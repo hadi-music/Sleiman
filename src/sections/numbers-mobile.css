@@ -72,6 +72,8 @@
 
   /* Removed Baseline blur to fix performance jolt */
   filter: blur(0px);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 /* Subtle darken overlay for better contrast */

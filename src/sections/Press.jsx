@@ -46,7 +46,7 @@ export default function Press() {
         <motion.div
           key={`text-${active.publication}`}
           className="press-text-container"
-          onMouseDown={(e) => e.stopPropagation()}
+
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

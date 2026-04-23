@@ -33,7 +33,6 @@ export default function ArchivalStack() {
                         <div className="archival-overlay"></div>
 
                         <div className="archival-content">
-                            <span className="archival-meta">{item.meta}</span>
                             <h2 className="archival-title">{item.title}</h2>
 
                             <div className="archival-desc-wrapper">
