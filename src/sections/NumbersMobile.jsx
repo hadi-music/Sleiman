@@ -85,8 +85,8 @@ export default function NumbersMobile() {
 
   return (
     <div className="numbers-mobile">
-+      <Loader loading={loading} />
-+      <div className={`numbers-mobile-inner ${activeRow ? 'has-open-row' : ''}`} onClick={(e) => {
+      <Loader loading={loading} />
+      <div className={`numbers-mobile-inner ${activeRow ? 'has-open-row' : ''}`} onClick={(e) => {
         if (!(e.target.closest && e.target.closest('.numbers-row'))) {
           setActiveRow(null)
         }

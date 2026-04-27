@@ -7,7 +7,7 @@ import "./Home.css"
 
 export default function Home({ active }) {
   const { data: homeData, loading } = useData(DataService.getHomeData)
-  
+
   const {
     overlayText = '',
     overlayCaption = ''
@@ -19,7 +19,7 @@ export default function Home({ active }) {
     if (!containerRef.current) return
 
     const rect = containerRef.current.getBoundingClientRect()
-    
+
     // Calculate relative percentage position (0 to 100)
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
@@ -46,10 +46,10 @@ export default function Home({ active }) {
       <div className="home-text">
         <picture className="home-title-image-wrapper">
           <source media="(max-width: 768px)" srcSet="/images/Sleimanm.svg" />
-          <img 
-            src="/images/Sleiman.svg" 
-            alt="Sleiman Damien" 
-            className="home-title-image" 
+          <img
+            src="/images/Sleiman.svg"
+            alt="Sleiman Damien"
+            className="home-title-image"
             loading="lazy"
           />
         </picture>
@@ -75,12 +75,12 @@ export default function Home({ active }) {
           </p>
 
           <p className="overlay-caption">
-             {(overlayCaption || '').split("\n").map((line, i, arr) => (
-               <span key={i}>
-                 {line}{i < arr.length - 1 ? " " : ""}
-                 <br />
-               </span>
-             ))}
+            {(overlayCaption || '').split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}{i < arr.length - 1 ? " " : ""}
+                <br />
+              </span>
+            ))}
           </p>
 
         </div>
