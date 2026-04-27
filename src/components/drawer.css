@@ -165,7 +165,7 @@
 .sh-divider {
     border: 0;
     height: 1px;
-    background-color: var(--drawer-accent, var(--light-gray));
+    background-color: var(--black);
     margin: 0 0 clamp(4px, 0.5vw, 16px) 0;
     width: calc(100% + clamp(10px, 1.5vw, 40px));
     margin-left: calc(-1 * clamp(10px, 1.5vw, 40px));
