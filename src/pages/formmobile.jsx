@@ -1,10 +1,13 @@
 import React from 'react';
 import './formmobile.css';
-import formData from '../data/form.json';
+import formLocal from '../data/form.json';
+import { useData } from '../hooks/useData';
+import { DataService } from '../data/DataService';
 
 // Social Icons
 
 const FormMobile = () => {
+    const formData = useData(DataService.getFormData, formLocal);
     const { location, contact, social_media } = formData;
 
     return (

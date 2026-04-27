@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './ArchivalStack.css';
-import { studioData } from '../data/studio-data.js';
 
-export default function ArchivalStack() {
+export default function ArchivalStack({ studioData }) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (

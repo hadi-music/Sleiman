@@ -1,8 +1,11 @@
 import React from 'react';
 import './form.css';
-import formData from '../data/form.json';
+import formLocal from '../data/form.json';
+import { useData } from '../hooks/useData';
+import { DataService } from '../data/DataService';
 
 const ContactForm = () => {
+    const formData = useData(DataService.getFormData, formLocal);
     const { location, contact, social_media, theme } = formData;
 
     const dynamicTheme = {

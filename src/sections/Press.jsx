@@ -1,14 +1,24 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Section from "../components/Section"
 import LavaGrid from "../pages/LavaGrid"
-import pressData from "../data/press.json"
+import pressDataLocal from "../data/press.json"
+import { useData } from "../hooks/useData"
+import { DataService } from "../data/DataService"
 
 import "./press.css"
 
 export default function Press() {
 
-  const [active, setActive] = useState(pressData[0])
+  const pressData = useData(DataService.getPressData, pressDataLocal)
+  const [active, setActive] = useState(pressDataLocal[0])
+
+  useEffect(() => {
+    if (pressData && pressData.length > 0) {
+      const updatedActive = pressData.find(item => item.publication === active.publication) || pressData[0]
+      setActive(updatedActive)
+    }
+  }, [pressData])
 
   return (
 
@@ -39,7 +49,9 @@ export default function Press() {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          <img src="/images/herom.webp" alt="Featured" className="press-featured-image" loading="lazy" />
+          <a href={active.link} target="_blank" rel="noopener noreferrer">
+            <img src={active.image || "/images/herom.webp"} alt="Featured" className="press-featured-image" loading="lazy" />
+          </a>
         </motion.div>
 
         {/* BOTTOM: TEXT CONTENT */}

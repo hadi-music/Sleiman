@@ -1,11 +1,14 @@
 import { useState } from "react"
-import data from "../data/numbers.json"
+import dataLocal from "../data/numbers.json"
+import { useData } from "../hooks/useData"
+import { DataService } from "../data/DataService"
 import Section from "../components/Section"
 import Drawer from "../components/drawer"
 import "./numbers.css"
 
 export default function NumbersDesktop() {
   const [active, setActive] = useState(null)
+  const data = useData(DataService.getNumbersData, dataLocal)
 
   return (
     <Section className="numbers" headerTitle="Music">

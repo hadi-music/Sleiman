@@ -1,10 +1,13 @@
 import { useRef } from "react"
 import { motion } from "framer-motion"
-import homeData from "../data/home.json"
+import homeDataLocal from "../data/home.json"
+import { useData } from "../hooks/useData"
+import { DataService } from "../data/DataService"
 import Section from "../components/Section"
 import "./Home.css"
 
 export default function Home({ active }) {
+  const homeData = useData(DataService.getHomeData, homeDataLocal)
 
   const containerRef = useRef(null)
 
