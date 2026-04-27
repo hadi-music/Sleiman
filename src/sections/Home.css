@@ -147,11 +147,11 @@
   /* Mobile-safe viewport sizing and safe-area padding to avoid toolbar overlap */
   .home .section-inner {
     /* Use dynamic/small viewport units to match visible area on mobile */
-    height: 100svh;
+    height: 100vh;
     /* fallback for browsers supporting svh */
-    height: 100dvh;
+    height: 100vh;
     /* preferred: dynamic viewport height */
-    min-height: 100dvh;
+    min-height: 100vh;
 
     /* Ensure content never sits under iOS/Android bottom UI */
     padding-bottom: 20px;
@@ -205,9 +205,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 30svh;
+    height: 30vh;
     /* fallback */
-    height: 35dvh;
+    height: 35vh;
     /* responsive to Safari toolbar dynamics */
     pointer-events: none;
     background: linear-gradient(to top,

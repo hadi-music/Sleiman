@@ -54,7 +54,7 @@ body {
   font-family: system-ui, sans-serif;
   background: #000;
   overflow: hidden;
-  height: 100dvh;
+  height: 100vh;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
 }
@@ -63,7 +63,7 @@ body {
 
 .section {
   width: calc(100% - 2cm);
-  height: calc(100dvh - 2cm);
+  height: calc(100vh - 2cm);
   margin: 1cm;
   background: transparent;
   border-radius: 28px;

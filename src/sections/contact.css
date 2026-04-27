@@ -25,7 +25,7 @@
     min-height: 0;
     display: grid;
     grid-template-rows: 40% 1fr;
-    gap: clamp(0.4rem, 1dvh, 1rem);
+    gap: clamp(0.4rem, 1vh, 1rem);
     padding-top: clamp(3rem, 5vmin, 3.75rem);
     box-sizing: border-box;
     width: 100%;

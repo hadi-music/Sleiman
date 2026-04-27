@@ -145,7 +145,7 @@ export default function CardStack({ sections }) {
         style={{
           y: dragY,
           width: "100%",
-          height: "100dvh",
+          height: "100vh",
           overflow: "hidden",
           position: "relative",
           touchAction: "none",
@@ -164,7 +164,7 @@ export default function CardStack({ sections }) {
               key={i}
               initial={false}
               animate={{
-                y: `calc(${distance * 100}dvh)`,
+                y: `calc(${distance * 100}vh)`,
                 scale: isActive ? 1 : 0.95,
                 opacity: isVisible ? 1 : 0,
                 pointerEvents: isActive ? "auto" : "none"

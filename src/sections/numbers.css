@@ -462,7 +462,7 @@
     justify-content: flex-end;
 
     padding: clamp(0.5rem, 2vw, 1rem);
-    gap: clamp(0.5rem, 1.5dvh, 1rem);
+    gap: clamp(0.5rem, 1.5vh, 1rem);
   }
 
 }
