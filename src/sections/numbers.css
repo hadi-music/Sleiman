@@ -18,9 +18,18 @@
   /* ADD THIS */
 }
 
+/* Drawer strip width — single source of truth so title/footer stay aligned
+   with the actual rendered drawer (.soundharbor-drawer in drawer.css). */
+.numbers {
+  --drawer-strip: clamp(32px, 3vw, 100px);
+  --drawer-gap: clamp(12px, 1.5vw, 32px);
+}
+
 /* Music label sits below the drawers so expanding drawers slide over it */
 .numbers .section-header {
   z-index: 5;
+  /* Push title past the drawer strip at every viewport width. */
+  left: calc(var(--drawer-strip) + var(--drawer-gap));
 }
 
 .numbers .section-header__title {
@@ -375,7 +384,8 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   opacity: 0.7;
-  padding-left: clamp(3rem, 4vw, 6rem);
+  /* Match the title's offset so the first letter never tucks under the drawer */
+  padding-left: calc(var(--drawer-strip) + var(--drawer-gap));
   position: relative;
   z-index: 1;
   /* Below the drawers */

@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(cp \"C:/Users/USER/AppData/Roaming/Code/User/History/6e18719c/jrPs.css\" \"C:/Users/USER/Desktop/work/Sleiman/src/sections/studio.css\")",
-      "Bash(cp \"C:/Users/USER/AppData/Roaming/Code/User/History/-30fa3bf9/ILXU.css\" \"C:/Users/USER/Desktop/work/Sleiman/src/sections/press.css\")"
+      "Bash(cp \"C:/Users/USER/AppData/Roaming/Code/User/History/-30fa3bf9/ILXU.css\" \"C:/Users/USER/Desktop/work/Sleiman/src/sections/press.css\")",
+      "Bash(curl -s -I https://sleiman-git.netlify.app/)",
+      "Bash(curl -s https://sleiman-git.netlify.app/)",
+      "Bash(curl -s -I \"https://sleiman-git.netlify.app/images/numbers.webp\" -H \"Accept-Encoding: gzip, br\")",
+      "Bash(curl -s -I https://sleiman-git.netlify.app__TRACKED_VAR__ -H 'Accept-Encoding: gzip, br')",
+      "Bash(npm run *)"
     ]
   }
 }
