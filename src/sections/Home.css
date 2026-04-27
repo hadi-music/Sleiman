@@ -1,7 +1,4 @@
 .home {
-  width: calc(100% - 2cm);
-  height: calc(100% - 2cm);
-  margin: 1cm;
   display: flex;
   flex-direction: column;
 }

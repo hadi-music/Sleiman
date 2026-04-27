@@ -37,11 +37,11 @@ export default function CardStack({ sections }) {
 
     if (isScrolling.current) return
 
-    // Intent Threshold: Ignore micro-movements (Lowered for responsiveness)
-    if (currentAbsDelta < 20) return
+    // Intent Threshold: Ignore micro-movements
+    if (currentAbsDelta < 10) return
 
-    // Acceleration Detection (Velocity Spike):
-    if (currentAbsDelta <= prevAbsDelta * 1.2) return
+    // Inertia protection: Only trigger if delta is increasing or we've stopped long enough
+    if (currentAbsDelta <= prevAbsDelta && currentAbsDelta < 50) return
 
     // BOUNDARY CHECK: Return early if trying to scroll past the start or end
     if (e.deltaY > 0 && index === sections.length - 1) return
@@ -131,9 +131,6 @@ export default function CardStack({ sections }) {
           if (isScrolling.current) return
           let y = info.offset.y
           
-          // BOUNDARY ELASTICITY:
-          // If we are at the first section and swiping down, or last section and swiping up,
-          // apply a resistance factor (0.25) to simulate the "dragElastic" effect.
           const isAtTop = index === 0 && y > 0
           const isAtBottom = index === sections.length - 1 && y < 0
           
@@ -148,28 +145,33 @@ export default function CardStack({ sections }) {
         style={{
           y: dragY,
           width: "100%",
-          height: "100vh",
+          height: "100dvh",
           overflow: "hidden",
           position: "relative",
-          touchAction: "none"
+          touchAction: "none",
+          willChange: "transform"
         }}
       >
 
         {sections.map((Section, i) => {
 
           const distance = i - index
+          const isActive = distance === 0
+          const isVisible = Math.abs(distance) <= 1
 
           return (
             <motion.div
               key={i}
+              initial={false}
               animate={{
-                y: `calc(${distance * 100}vh)`,
-                scale: distance === 0 ? 1 : 0.92,
-                display: Math.abs(distance) > 1 ? "none" : "flex"
+                y: `calc(${distance * 100}dvh)`,
+                scale: isActive ? 1 : 0.95,
+                opacity: isVisible ? 1 : 0,
+                pointerEvents: isActive ? "auto" : "none"
               }}
               transition={{
-                duration: Math.abs(distance) > 1 ? 0 : transitionDuration,
-                ease: [0.25, 1, 0.5, 1] // Smoother, more cinematic ease
+                duration: transitionDuration,
+                ease: [0.22, 1, 0.36, 1] // Quintic ease for premium feel
               }}
               onAnimationComplete={() => {
                 if (i === index) isScrolling.current = false
@@ -177,13 +179,15 @@ export default function CardStack({ sections }) {
               style={{
                 position: "absolute",
                 inset: 0,
-                display: "flex",
+                display: isVisible ? "flex" : "none",
                 alignItems: "center",
                 justifyContent: "center",
-                pointerEvents: distance === 0 ? "auto" : "none"
+                zIndex: isActive ? 10 : 5 - Math.abs(distance),
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden"
               }}
             >
-              <Section active={i === index} />
+              <Section active={isActive} />
             </motion.div>
           )
 

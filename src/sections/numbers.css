@@ -1,8 +1,4 @@
 .numbers {
-  width: calc(100% - 2cm);
-  height: calc(100% - 2cm);
-  margin: 1cm;
-
   display: flex;
   flex-direction: column;
 }
@@ -466,7 +462,7 @@
     justify-content: flex-end;
 
     padding: clamp(0.5rem, 2vw, 1rem);
-    gap: clamp(0.5rem, 1.5vh, 1rem);
+    gap: clamp(0.5rem, 1.5dvh, 1rem);
   }
 
 }

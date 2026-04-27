@@ -50,33 +50,28 @@
 }
 
 body {
-
   margin: 0;
   font-family: system-ui, sans-serif;
-
   background: #000;
   overflow: hidden;
+  height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
-
 }
 
 /* CARD */
 
 .section {
-
   width: calc(100% - 2cm);
-  height: calc(100% - 2cm);
-
+  height: calc(100dvh - 2cm);
   margin: 1cm;
-
   background: transparent;
-
   border-radius: 28px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 

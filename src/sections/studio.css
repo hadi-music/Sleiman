@@ -1,6 +1,6 @@
 .studio .section-body {
-  padding-top: clamp(4rem, 10vh, 9rem);
-  padding-bottom: clamp(1.5rem, 4vh, 4rem);
+  padding-top: clamp(4rem, 10dvh, 9rem);
+  padding-bottom: clamp(1.5rem, 4dvh, 4rem);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -169,7 +169,7 @@
 
   .studio-lightbox-img {
     max-width: 85vw;
-    max-height: 85vh;
+    max-height: 85dvh;
     border-radius: clamp(0.5rem, 1vw, 1rem);
   }
 }

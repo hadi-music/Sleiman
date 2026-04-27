@@ -171,7 +171,7 @@
 /* Platform title indicator */
 .platform-title {
   position: absolute;
-  top: calc(env(safe-area-inset-top) + clamp(36px, 8vh, 42px));
+  top: calc(env(safe-area-inset-top) + clamp(36px, 8dvh, 42px));
   /* Remove left: 50% and use full width */
   left: 0;
   width: 100%;
@@ -221,14 +221,14 @@
 
 .numbers-buttons {
   position: absolute;
-  top: calc(env(safe-area-inset-top) + clamp(12px, 3vh, 24px));
-  bottom: calc(env(safe-area-inset-bottom) + clamp(16px, 4vh, 28px));
+  top: calc(env(safe-area-inset-top) + clamp(12px, 3dvh, 24px));
+  bottom: calc(env(safe-area-inset-bottom) + clamp(16px, 4dvh, 28px));
   left: calc(env(safe-area-inset-left) + clamp(12px, 4vw, 20px));
   right: calc(env(safe-area-inset-right) + clamp(12px, 4vw, 20px));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(14px, 5vh, 18px);
+  gap: clamp(14px, 5dvh, 18px);
   /* vertical row spacing */
   z-index: 6;
   /* above stats, below nav */
@@ -386,7 +386,7 @@
 /* Small devices: lift lower elements a touch more */
 @media (max-height: 640px) {
   .numbers-buttons {
-    gap: clamp(10px, 3.6vh, 16px);
+    gap: clamp(10px, 3.6dvh, 16px);
   }
 }
 
