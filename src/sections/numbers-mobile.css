@@ -11,18 +11,19 @@
   transform: translateZ(0); 
 }
 
-/* Local header for Numbers mobile (top-left white title) */
+/* Local header for Numbers mobile — mirrors the global .section-header
+   geometry so the MUSIC title aligns with PRESS / CONTACT / STUDIO titles. */
 .numbers-mobile-header {
   position: absolute;
-  top: clamp(1rem, 2.5vmin, 1.875rem);
   left: clamp(1rem, 2.5vmin, 1.875rem);
+  right: clamp(1rem, 2.5vmin, 1.875rem);
+  height: clamp(3rem, 5vmin, 3.75rem);
   z-index: 2;
   /* sit under the interactive buttons (buttons have z-index:6) */
   pointer-events: none;
   /* purely decorative */
   display: flex;
   align-items: center;
-  height: clamp(3rem, 5vmin, 3.75rem);
 }
 
 .numbers-mobile-header .section-header__title {

@@ -100,7 +100,7 @@ body {
   position: absolute;
 
   /* top: clamp(1rem, 2.5vmin, 1.875rem); */
-  left: clamp(4rem, 4.5vmin, 1.875rem);
+  left: clamp(1rem, 2.5vmin, 1.875rem);
   right: clamp(1rem, 2.5vmin, 1.875rem);
 
   display: flex;
