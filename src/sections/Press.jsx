@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Section from "../components/Section"
 import LavaGrid from "../pages/LavaGrid"
-import pressDataLocal from "../data/press.json"
 import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
 
@@ -10,15 +9,19 @@ import "./press.css"
 
 export default function Press() {
 
-  const pressData = useData(DataService.getPressData, pressDataLocal)
-  const [active, setActive] = useState(pressDataLocal[0])
+  const pressData = useData(DataService.getPressData)
+  const [active, setActive] = useState(null)
 
   useEffect(() => {
     if (pressData && pressData.length > 0) {
-      const updatedActive = pressData.find(item => item.publication === active.publication) || pressData[0]
+      const updatedActive = (active && pressData.find(item => item.publication === active.publication)) || pressData[0]
       setActive(updatedActive)
     }
   }, [pressData])
+
+  // Safety: Don't crash if pressData is loading
+  const safeData = pressData || [];
+  const currentActive = active || safeData[0] || {};
 
   return (
 
@@ -28,37 +31,30 @@ export default function Press() {
       {/* LEFT SIDE */}
 
       <div className="press-left">
-
         <LavaGrid
-          pressData={pressData}
-          active={active}
+          pressData={safeData}
+          active={currentActive}
           setActive={setActive}
         />
-
       </div>
 
-      {/* RIGHT SIDE: VERTICAL STACK */}
       <div className="press-right-stack">
-
-        {/* TOP: FEATURED IMAGE */}
         <motion.div
           className="press-featured-image-wrapper"
-          key={`img-${active.publication}`}
+          key={`img-${currentActive.publication}`}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          <a href={active.link} target="_blank" rel="noopener noreferrer">
-            <img src={active.image || "/images/herom.webp"} alt="Featured" className="press-featured-image" loading="lazy" />
+          <a href={currentActive.link} target="_blank" rel="noopener noreferrer">
+            <img src={currentActive.image || "/images/herom.webp"} alt="Featured" className="press-featured-image" loading="lazy" />
           </a>
         </motion.div>
 
-        {/* BOTTOM: TEXT CONTENT */}
         <motion.div
-          key={`text-${active.publication}`}
+          key={`text-${currentActive.publication}`}
           className="press-text-container"
-
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
@@ -68,15 +64,15 @@ export default function Press() {
             delay: 0.1
           }}
         >
-          <h2>{active.publication}</h2>
-          <h3>{active.title}</h3>
+          <h2>{currentActive.publication}</h2>
+          <h3>{currentActive.title}</h3>
 
-          {active.excerpt && (
-            <p className="excerpt">{active.excerpt}</p>
+          {currentActive.excerpt && (
+            <p className="excerpt">{currentActive.excerpt}</p>
           )}
 
           <a
-            href={active.link}
+            href={currentActive.link}
             className="press-link"
             target="_blank"
             rel="noopener noreferrer"
@@ -84,13 +80,11 @@ export default function Press() {
             Read Article
           </a>
         </motion.div>
-
       </div>
 
-      {/* Floating Logo (Optional/Keep if needed elsewhere, but user wants featured image) */}
       <motion.img
-        key={active.logo}
-        src={active.logo}
+        key={currentActive.logo}
+        src={currentActive.logo}
         className="press-logo"
         loading="lazy"
         initial={{ opacity: 0 }}

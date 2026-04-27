@@ -1,22 +1,28 @@
 import React from 'react';
 import './form.css';
-import formLocal from '../data/form.json';
 import { useData } from '../hooks/useData';
 import { DataService } from '../data/DataService';
 
 const ContactForm = () => {
-    const formData = useData(DataService.getFormData, formLocal);
-    const { location, contact, social_media, theme } = formData;
+    const formData = useData(DataService.getFormData);
+    
+    // Safety: Ensure all expected properties exist even if Sheet is empty
+    const { 
+        location = {}, 
+        contact = { email: '', website: '' }, 
+        social_media = [], 
+        theme = {} 
+    } = formData || {};
 
     const dynamicTheme = {
-        '--orange-bg':  theme.orange_box_bg,
-        '--orange-text': theme.orange_box_text,
-        '--blue-bg':    theme.blue_box_bg,
-        '--blue-text':  theme.blue_box_text,
-        '--white-bg':   theme.white_box_bg,
-        '--white-text': theme.white_box_text,
-        '--btn-bg':     theme.button_bg,
-        '--btn-text':   theme.button_text,
+        '--orange-bg':  theme.orange_box_bg || '#646360',
+        '--orange-text': theme.orange_box_text || '#FFFFFF',
+        '--blue-bg':    theme.blue_box_bg || '#94928b',
+        '--blue-text':  theme.blue_box_text || '#FFFFFF',
+        '--white-bg':   theme.white_box_bg || '#bfbcb6',
+        '--white-text': theme.white_box_text || '#2F2F2F',
+        '--btn-bg':     theme.button_bg || '#2F2F2F',
+        '--btn-text':   theme.button_text || '#FFFFFF',
     };
 
     const socialIcon = (platform) => {
@@ -60,14 +66,6 @@ const ContactForm = () => {
                                 <div>
                                     <small>email</small>
                                     <p>{contact.email}</p>
-                                </div>
-                            </div>
-                            <div className="cf-contact-row">
-                                <span className="cf-icon">
-                                    <img src="/icons/web.webp" alt="Website" loading="lazy" />
-                                </span>
-                                <div>
-                                    <p>{contact.website.replace('https://', '')}</p>
                                 </div>
                             </div>
                         </div>

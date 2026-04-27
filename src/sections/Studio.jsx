@@ -1,22 +1,17 @@
-import { useState, useEffect } from "react"
+import React from "react"
 import Section from "../components/Section"
 import ArchivalStack from "../components/ArchivalStack"
-import { studioContent as localContent, studioData as localImages } from "../data/studio-data"
+import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
 import "./studio.css"
 
 export default function Studio({ active }) {
-  const [data, setData] = useState({ studioContent: localContent, studioData: localImages })
+  const data = useData(DataService.getStudioData)
 
-  useEffect(() => {
-    let mounted = true
-    DataService.getStudioData(localContent, localImages).then(res => {
-      if (mounted && res) setData(res)
-    }).catch(err => console.error(err))
-    return () => { mounted = false }
-  }, [])
-
-  const { studioContent, studioData } = data
+  const { 
+    studioContent = { title: '', text: '', notation: '' }, 
+    studioData = [] 
+  } = data || {};
 
   return (
     <Section headerTitle="Studio" className={`studio ${active ? "is-active" : ""}`}>

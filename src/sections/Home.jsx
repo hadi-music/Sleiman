@@ -1,13 +1,17 @@
 import { useRef } from "react"
 import { motion } from "framer-motion"
-import homeDataLocal from "../data/home.json"
 import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
 import Section from "../components/Section"
 import "./Home.css"
 
 export default function Home({ active }) {
-  const homeData = useData(DataService.getHomeData, homeDataLocal)
+  const homeData = useData(DataService.getHomeData)
+  
+  const {
+    overlayText = '',
+    overlayCaption = ''
+  } = homeData || {};
 
   const containerRef = useRef(null)
 
@@ -67,11 +71,11 @@ export default function Home({ active }) {
         <div className="home-overlay">
 
           <p className="overlay-text">
-            {homeData.overlayText}
+            {overlayText}
           </p>
 
           <p className="overlay-caption">
-             {homeData.overlayCaption.split("\n").map((line, i, arr) => (
+             {(overlayCaption || '').split("\n").map((line, i, arr) => (
                <span key={i}>
                  {line}{i < arr.length - 1 ? " " : ""}
                  <br />

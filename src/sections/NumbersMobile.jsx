@@ -1,6 +1,5 @@
 import { useState, memo } from "react"
 import { motion } from "framer-motion"
-import dataLocal from "../data/numbers.json"
 import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
 import "./numbers-mobile.css"
@@ -59,7 +58,12 @@ export default function NumbersMobile() {
   const [copiedKey, setCopiedKey] = useState(null)
   const [copyTimer, setCopyTimer] = useState(null)
 
-  const data = useData(DataService.getNumbersData, dataLocal)
+  const data = useData(DataService.getNumbersData)
+
+  const { 
+    streams = { value: '0', label: 'Streams' }, 
+    platforms = [] 
+  } = data || {};
 
   const handleCopyFeedback = (key) => {
     if (copyTimer) clearTimeout(copyTimer)
@@ -95,16 +99,16 @@ export default function NumbersMobile() {
         </div>
 
         <div className="streams-center">
-          <div className="mobile-streams-number">{data.streams.value}</div>
-          <div className="mobile-streams-label">{data.streams.label.toUpperCase()}</div>
+          <div className="mobile-streams-number">{streams.value}</div>
+          <div className="mobile-streams-label">{(streams.label || '').toUpperCase()}</div>
         </div>
 
         <div className={`platform-title ${activeRow ? 'show' : ''}`}>
-          {activeRow ? data.platforms.find(p => p.class === activeRow)?.name : '\u00A0'}
+          {activeRow ? platforms.find(p => p.class === activeRow)?.name : '\u00A0'}
         </div>
 
         <div className="numbers-buttons" onClick={(e) => e.stopPropagation()}>
-          {data.platforms.map((platform) => (
+          {platforms.map((platform) => (
             <PlatformRow 
               key={platform.class}
               platform={platform}

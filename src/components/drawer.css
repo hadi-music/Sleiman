@@ -1,7 +1,6 @@
 /* drawer.css */
 
 :root {
-    --primary-red: #FE2C55;
     --black: #000000;
     --light-gray: #CCCCCC;
     --white: #FFFFFF;
@@ -201,8 +200,8 @@
 /* Base Button Styles */
 .sh-btn {
     border: none;
-    background-color: var(--drawer-button-bg, var(--primary-red));
-    color: var(--drawer-bg, var(--white));
+    background-color: var(--drawer-button-bg, #d8d5ce);
+    color: #000;
     font-family: var(--font-text);
     font-weight: 600;
     font-size: clamp(10px, 1vw, 28px);

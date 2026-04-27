@@ -1,5 +1,4 @@
 import { useState, useCallback } from "react"
-import dataLocal from "../data/numbers.json"
 import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
 import Section from "../components/Section"
@@ -8,7 +7,7 @@ import "./numbers.css"
 
 export default function NumbersDesktop() {
   const [active, setActive] = useState(null)
-  const data = useData(DataService.getNumbersData, dataLocal)
+  const data = useData(DataService.getNumbersData)
 
   const handleHover = useCallback((index) => {
     setActive(index)
@@ -18,6 +17,11 @@ export default function NumbersDesktop() {
     setActive(null)
   }, [])
 
+  const { 
+    streams = { value: '0', label: 'Streams' }, 
+    platforms = [] 
+  } = data || {};
+
   return (
     <Section className="numbers" headerTitle="Music">
       <div className="numbers-layout">
@@ -25,9 +29,9 @@ export default function NumbersDesktop() {
         {/* LEFT PANEL */}
         <div className="numbers-left">
           <div className="drawers-container">
-            {data.platforms.map((platform, i) => (
+            {platforms.map((platform, i) => (
               <Drawer 
-                key={platform.name}
+                key={platform.name || i}
                 platform={platform}
                 isActive={active === i}
                 onHover={handleHover}
@@ -42,8 +46,8 @@ export default function NumbersDesktop() {
           </div>
 
           <div className="numbers-stat">
-            <div className="streams-number">{data.streams.value}</div>
-            <div className="streams-label">Across all Platforms</div>
+            <div className="streams-number">{streams.value}</div>
+            <div className="streams-label">{streams.label || 'Across all Platforms'}</div>
           </div>
 
           <div className="numbers-footer">

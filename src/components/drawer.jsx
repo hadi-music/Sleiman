@@ -22,7 +22,7 @@ const Drawer = memo(({ platform, isActive, onHover, onLeave, index }) => {
     const drawerStyle = {
         '--drawer-bg': platform.colors?.bg || '#FFFFFF',
         '--drawer-text': platform.colors?.text || '#000000',
-        '--drawer-button-bg': platform.colors?.button || '#FE2C55',
+        '--drawer-button-bg': '#000000', // Black buttons per request
         '--drawer-accent': platform.colors?.accent || '#CCCCCC',
         '--logo-url': `url(${platformIcon})`,
         '--play-icon-url': `url(/icons/play.webp)`,
@@ -87,16 +87,16 @@ const Drawer = memo(({ platform, isActive, onHover, onLeave, index }) => {
                         <h2 className="sh-playlist-title">{platform.playlistName}</h2>
 
                         <div className="sh-button-group">
-                            <button className="sh-btn sh-btn-play" onClick={() => window.open(platform.url, '_blank')}>
+                            <button className="sh-btn sh-btn-play" onClick={() => window.open(platform.url, '_blank')} style={{ color: 'var(--drawer-bg)' }}>
                                 <div className="sh-icon sh-icon-play" /> {platform.cta || 'Play'}
                             </button>
-                            <button className="sh-btn sh-btn-share" onClick={handleShare}>
+                            <button className="sh-btn sh-btn-share" onClick={handleShare} style={{ color: 'var(--drawer-bg)' }}>
                                 <div className="sh-icon sh-icon-share" /> Share
                             </button>
-                            <button className="sh-btn sh-btn-copy" onClick={handleCopy}>
+                            <button className="sh-btn sh-btn-copy" onClick={handleCopy} style={{ color: 'var(--drawer-bg)' }}>
                                 <div className="sh-icon sh-icon-copy" /> {copied ? 'Copied' : 'Copy'}
                             </button>
-                            <button className="sh-btn sh-btn-embed" onClick={handleEmbed}>
+                            <button className="sh-btn sh-btn-embed" onClick={handleEmbed} style={{ color: 'var(--drawer-bg)' }}>
                                 <div className="sh-icon sh-icon-embed" /> {embedCopied ? 'Copied' : 'Embed'}
                             </button>
                         </div>

@@ -14,7 +14,8 @@ export const GIDS = {
   STUDIO_INFO: '2117350794',
   STUDIO_IMAGES: '1120622488',
   CONTACT_INFO: '1701404797',
-  SOCIALS: '1379701036'
+  SOCIALS: '1379701036',
+  ADDRESS: '800856828'
 };
 
 /**
@@ -153,7 +154,39 @@ const HEADER_MAP = {
 
   // Music Info
   'streams_value': 'streams.value',
-  'streams_label': 'streams.label'
+  'streams_label': 'streams.label',
+
+  // Studio Info
+  'studio_title': 'title',
+  'studio_text': 'text',
+  'studio_notation': 'notation',
+  'Title': 'title',
+  'Text': 'text',
+  'Notation': 'notation',
+  'notation': 'notation',
+
+  // Contact Info
+  'email': 'contact.email',
+  'Email': 'contact.email',
+  'website': 'contact.website',
+  'Website': 'contact.website',
+  'Heading': 'heading',
+  'heading': 'heading',
+  'orange_box_bg': 'theme.orange_box_bg',
+  'orange_box_text': 'theme.orange_box_text',
+  'blue_box_bg': 'theme.blue_box_bg',
+  'blue_box_text': 'theme.blue_box_text',
+  'white_box_bg': 'theme.white_box_bg',
+  'white_box_text': 'theme.white_box_text',
+  'button_bg': 'theme.button_bg',
+  'button_text': 'theme.button_text',
+
+  // Address
+  'Company': 'company',
+  'Building': 'building',
+  'Street': 'street',
+  'Area': 'area',
+  'City': 'city'
 };
 
 /**
@@ -163,28 +196,38 @@ const HEADER_MAP = {
  */
 export async function getLiveLinkedData(localJson, gid, isArray = false) {
   const csvText = await fetchCsv(gid);
-  if (!csvText) return deepClone(localJson);
+  
+  // If fetch fails, return local fallback if it exists, else return empty structure
+  if (!csvText) {
+    if (localJson) return deepClone(localJson);
+    return isArray ? [] : {};
+  }
 
   const rows = parseCSV(csvText);
-  if (!rows || rows.length === 0) return deepClone(localJson);
+  if (!rows || rows.length === 0) {
+    if (localJson) return deepClone(localJson);
+    return isArray ? [] : {};
+  }
 
-  const result = deepClone(localJson);
+  // Initialize result: either clone of local fallback or empty base
+  const result = localJson ? deepClone(localJson) : (isArray ? [] : {});
 
   if (isArray) {
+    // If we have a local array, we merge. If not, we build from scratch.
     const baseArray = Array.isArray(result) ? result : [];
-    return rows.map((row, index) => {
+    const finalArray = rows.map((row, index) => {
       const mergedObj = baseArray[index] || {};
       for (const sheetHeader in row) {
         if (row[sheetHeader] !== '') {
-          // Check if we have a mapping for this human-readable header
           const jsonKey = HEADER_MAP[sheetHeader.trim()] || sheetHeader.trim();
           setDeepValue(mergedObj, jsonKey, row[sheetHeader]);
         }
       }
       return mergedObj;
     });
+    return finalArray;
   } else {
-    // Detect if Sheet uses Key/Value format (e.g. Field Name, Content / Value)
+    // Detect if Sheet uses Key/Value format
     const headers = Object.keys(rows[0]);
     const isKeyValue = headers.some(h => h.toLowerCase().includes('key') || h.toLowerCase().includes('field')) && 
                        headers.some(h => h.toLowerCase().includes('value') || h.toLowerCase().includes('content'));
@@ -266,10 +309,16 @@ export const DataService = {
   async getFormData(localData) {
     let mergedData = await getLiveLinkedData(localData, GIDS.CONTACT_INFO, false);
     
+    // Merge Socials
     const socialsLocal = mergedData.social_media || [];
     const mergedSocials = await getLiveLinkedData(socialsLocal, GIDS.SOCIALS, true);
-    
     mergedData.social_media = mergedSocials;
+
+    // Merge Address
+    const locationLocal = mergedData.location || {};
+    const mergedLocation = await getLiveLinkedData(locationLocal, GIDS.ADDRESS, false);
+    mergedData.location = mergedLocation;
+
     return mergedData;
   }
 };

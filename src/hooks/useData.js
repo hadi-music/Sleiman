@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
  * @param {any} localFallback - The initial local static JSON data.
  * @param  {...any} args - Optional extra arguments to pass to the fetcher (e.g., for Studio which takes two local fallbacks).
  */
-export function useData(fetcher, localFallback, ...args) {
+export function useData(fetcher, localFallback = null, ...args) {
   const [data, setData] = useState(localFallback);
 
   useEffect(() => {
