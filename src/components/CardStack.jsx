@@ -127,7 +127,24 @@ export default function CardStack({ sections }) {
   return (
     <>
       <motion.div
-        drag="y"
+        onPan={(e, info) => {
+          if (isScrolling.current) return
+          let y = info.offset.y
+          
+          // BOUNDARY ELASTICITY:
+          // If we are at the first section and swiping down, or last section and swiping up,
+          // apply a resistance factor (0.25) to simulate the "dragElastic" effect.
+          const isAtTop = index === 0 && y > 0
+          const isAtBottom = index === sections.length - 1 && y < 0
+          
+          if (isAtTop || isAtBottom) {
+            y *= 0.25
+          }
+          
+          dragY.set(y)
+        }}
+        onPanEnd={handleDragEnd}
+        onWheel={handleWheel}
         style={{
           y: dragY,
           width: "100%",
@@ -136,10 +153,6 @@ export default function CardStack({ sections }) {
           position: "relative",
           touchAction: "none"
         }}
-        dragElastic={isTouchDevice ? 0.25 : 0.12}
-        dragConstraints={{ top: 0, bottom: 0 }}
-        onDragEnd={handleDragEnd}
-        onWheel={handleWheel}
       >
 
         {sections.map((Section, i) => {
