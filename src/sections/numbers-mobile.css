@@ -15,6 +15,8 @@
    geometry so the MUSIC title aligns with PRESS / CONTACT / STUDIO titles. */
 .numbers-mobile-header {
   position: absolute;
+  /* Music-mobile-only nudge: sits a touch lower than other pages' headers. */
+  top: clamp(0.4rem, 1.2vmin, 0.875rem);
   left: clamp(1rem, 2.5vmin, 1.875rem);
   right: clamp(1rem, 2.5vmin, 1.875rem);
   height: clamp(3rem, 5vmin, 3.75rem);
