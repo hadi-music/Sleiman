@@ -1,0 +1,48 @@
+.loader-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loader-bar-wrap {
+    width: 240px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+    background: #000;
+}
+
+.loader-text {
+    font-family: 'NessynSentry', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: #000;
+    text-transform: uppercase;
+}
+
+/* Dark mode compatibility if needed */
+.press .loader-overlay,
+.profile .loader-overlay {
+    /* Adjust for dark sections if they exist, but current design seems mostly light-mid */
+}

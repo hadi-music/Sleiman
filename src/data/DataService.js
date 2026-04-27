@@ -4,85 +4,57 @@
  * while preserving the original JSON schema as a fallback.
  */
 
-const SHEET_ID = '1aoUuS2f8zMb5M3tAR-U2QZl2-M0tlYb76tXSlt_N5SE';
+const SHEET_ID = import.meta.env.VITE_SHEET_ID;
+const API_KEY = import.meta.env.VITE_GOOGLE_SHEET_API_KEY;
 
 export const GIDS = {
-  HOME: '0',
-  MUSIC_INFO: '1232542601',
-  MUSIC_PLATFORMS: '662625773',
-  PRESS: '813739601',
-  STUDIO_INFO: '2117350794',
-  STUDIO_IMAGES: '1120622488',
-  CONTACT_INFO: '1701404797',
-  SOCIALS: '1379701036',
-  ADDRESS: '800856828'
+  HOME: 'HOME',
+  MUSIC_INFO: 'MUSIC INFO',
+  MUSIC_PLATFORMS: 'MUSIC PLATFORMS',
+  PRESS: 'PRESS',
+  STUDIO_INFO: 'STUDIO INFO',
+  STUDIO_IMAGES: 'STUDIO IMAGES',
+  CONTACT_INFO: 'CONTACT INFO',
+  SOCIALS: 'SOCIALS',
+  ADDRESS: 'ADDRESS'
 };
 
 /**
- * Fetches the CSV export of a specific Google Sheet tab.
+ * Fetches data from a specific Google Sheet tab using the JSON API.
  */
-async function fetchCsv(gid) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
+async function fetchSheetData(sheetName) {
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${encodeURIComponent(sheetName)}?key=${API_KEY}`;
   try {
     const response = await fetch(url);
-    if (!response.ok) return null;
-    return await response.text();
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error(`DataService API Error:`, errorData);
+      return null;
+    }
+    const data = await response.json();
+    return data.values || [];
   } catch (error) {
-    console.error(`DataService: Failed to fetch GID ${gid}`, error);
+    console.error(`DataService: Failed to fetch sheet "${sheetName}"`, error);
     return null;
   }
 }
 
 /**
- * Lightweight parser to convert CSV rows into an array of JavaScript objects.
+ * Converts a 2D array from Google Sheets into an array of JavaScript objects.
  */
-function parseCSV(csvText) {
-  const rows = [];
-  let row = [];
-  let curr = '';
-  let inQuotes = false;
-  
-  for (let i = 0; i < csvText.length; i++) {
-    const char = csvText[i];
-    const nextChar = csvText[i + 1];
-    
-    if (char === '"' && inQuotes && nextChar === '"') {
-      curr += '"'; // Handle escaped quotes
-      i++;
-    } else if (char === '"') {
-      inQuotes = !inQuotes;
-    } else if (char === ',' && !inQuotes) {
-      row.push(curr);
-      curr = '';
-    } else if (char === '\n' && !inQuotes) {
-      if (curr.endsWith('\r')) curr = curr.slice(0, -1);
-      row.push(curr);
-      rows.push(row);
-      row = [];
-      curr = '';
-    } else {
-      curr += char;
-    }
-  }
-  
-  // Push the very last cell and row if it didn't end with a newline
-  if (curr.endsWith('\r')) curr = curr.slice(0, -1);
-  row.push(curr);
-  if (row.length > 0 && row.some(cell => cell !== '')) {
-    rows.push(row);
-  }
-  
-  if (rows.length < 2) return [];
+function rowsToObjects(rows) {
+  if (!rows || rows.length < 2) return [];
 
   const headers = rows[0];
   const data = [];
   for (let i = 1; i < rows.length; i++) {
-    if (rows[i].length === 1 && rows[i][0] === '') continue; // Skip completely empty rows
+    const row = rows[i];
     const obj = {};
     for (let j = 0; j < headers.length; j++) {
-      if (headers[j]) {
-        const val = rows[i][j];
-        obj[headers[j].trim()] = val ? val.trim() : '';
+      const header = headers[j];
+      if (header) {
+        const val = row[j];
+        obj[header.trim()] = val ? val.trim() : '';
       }
     }
     data.push(obj);
@@ -194,33 +166,25 @@ const HEADER_MAP = {
  * Override Rule: Sheet overwrites JSON if key exists.
  * Fallback Rule: Empty cell or fetch failure -> keep localJson value.
  */
-export async function getLiveLinkedData(localJson, gid, isArray = false) {
-  const csvText = await fetchCsv(gid);
+export async function getLiveLinkedData(localJson, sheetName, isArray = false) {
+  const rows = await fetchSheetData(sheetName);
   
-  // If fetch fails, return local fallback if it exists, else return empty structure
-  if (!csvText) {
-    if (localJson) return deepClone(localJson);
-    return isArray ? [] : {};
-  }
-
-  const rows = parseCSV(csvText);
   if (!rows || rows.length === 0) {
     if (localJson) return deepClone(localJson);
     return isArray ? [] : {};
   }
 
-  // Initialize result: either clone of local fallback or empty base
+  const objects = rowsToObjects(rows);
   const result = localJson ? deepClone(localJson) : (isArray ? [] : {});
 
   if (isArray) {
-    // If we have a local array, we merge. If not, we build from scratch.
     const baseArray = Array.isArray(result) ? result : [];
-    const finalArray = rows.map((row, index) => {
+    const finalArray = objects.map((item, index) => {
       const mergedObj = baseArray[index] || {};
-      for (const sheetHeader in row) {
-        if (row[sheetHeader] !== '') {
-          const jsonKey = HEADER_MAP[sheetHeader.trim()] || sheetHeader.trim();
-          setDeepValue(mergedObj, jsonKey, row[sheetHeader]);
+      for (const key in item) {
+        if (item[key] !== '') {
+          const jsonKey = HEADER_MAP[key.trim()] || key.trim();
+          setDeepValue(mergedObj, jsonKey, item[key]);
         }
       }
       return mergedObj;
@@ -228,28 +192,30 @@ export async function getLiveLinkedData(localJson, gid, isArray = false) {
     return finalArray;
   } else {
     // Detect if Sheet uses Key/Value format
-    const headers = Object.keys(rows[0]);
-    const isKeyValue = headers.some(h => h.toLowerCase().includes('key') || h.toLowerCase().includes('field')) && 
-                       headers.some(h => h.toLowerCase().includes('value') || h.toLowerCase().includes('content'));
+    const headers = rows[0].map(h => h.toLowerCase());
+    const isKeyValue = headers.some(h => h.includes('key') || h.includes('field')) && 
+                       headers.some(h => h.includes('value') || h.includes('content'));
     
     if (isKeyValue) {
-      const keyCol = headers.find(h => h.toLowerCase().includes('key') || h.toLowerCase().includes('field'));
-      const valCol = headers.find(h => h.toLowerCase().includes('value') || h.toLowerCase().includes('content'));
-      rows.forEach(row => {
-        const k = row[keyCol];
-        const v = row[valCol];
+      const keyIdx = headers.findIndex(h => h.includes('key') || h.includes('field'));
+      const valIdx = headers.findIndex(h => h.includes('value') || h.includes('content'));
+      
+      // Skip headers
+      for (let i = 1; i < rows.length; i++) {
+        const k = rows[i][keyIdx];
+        const v = rows[i][valIdx];
         if (k && v !== '') {
           const jsonKey = HEADER_MAP[k.trim()] || k.trim();
           setDeepValue(result, jsonKey, v);
         }
-      });
+      }
     } else {
-      // Row format: First row contains values mapping to Header keys
-      const dataRow = rows[0];
-      for (const sheetHeader in dataRow) {
-        if (dataRow[sheetHeader] !== '') {
-          const jsonKey = HEADER_MAP[sheetHeader.trim()] || sheetHeader.trim();
-          setDeepValue(result, jsonKey, dataRow[sheetHeader]);
+      // Row format: First data object contains values mapping to Header keys
+      const dataObj = objects[0];
+      for (const key in dataObj) {
+        if (dataObj[key] !== '') {
+          const jsonKey = HEADER_MAP[key.trim()] || key.trim();
+          setDeepValue(result, jsonKey, dataObj[key]);
         }
       }
     }

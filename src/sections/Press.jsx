@@ -9,7 +9,7 @@ import "./press.css"
 
 export default function Press() {
 
-  const pressData = useData(DataService.getPressData)
+  const { data: pressData, loading } = useData(DataService.getPressData)
   const [active, setActive] = useState(null)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Press() {
 
   return (
 
-    <Section className="press" headerTitle="Press">
+    <Section className="press" headerTitle="Press" loading={loading}>
 
 
       {/* LEFT SIDE */}

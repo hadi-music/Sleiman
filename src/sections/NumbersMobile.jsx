@@ -2,6 +2,7 @@ import { useState, memo } from "react"
 import { motion } from "framer-motion"
 import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
+import Loader from "../components/Loader"
 import "./numbers-mobile.css"
 
 const playIcon = "/icons/play.webp"
@@ -58,7 +59,7 @@ export default function NumbersMobile() {
   const [copiedKey, setCopiedKey] = useState(null)
   const [copyTimer, setCopyTimer] = useState(null)
 
-  const data = useData(DataService.getNumbersData)
+  const { data, loading } = useData(DataService.getNumbersData)
 
   const { 
     streams = { value: '0', label: 'Streams' }, 
@@ -84,7 +85,8 @@ export default function NumbersMobile() {
 
   return (
     <div className="numbers-mobile">
-      <div className={`numbers-mobile-inner ${activeRow ? 'has-open-row' : ''}`} onClick={(e) => {
++      <Loader loading={loading} />
++      <div className={`numbers-mobile-inner ${activeRow ? 'has-open-row' : ''}`} onClick={(e) => {
         if (!(e.target.closest && e.target.closest('.numbers-row'))) {
           setActiveRow(null)
         }

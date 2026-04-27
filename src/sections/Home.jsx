@@ -6,7 +6,7 @@ import Section from "../components/Section"
 import "./Home.css"
 
 export default function Home({ active }) {
-  const homeData = useData(DataService.getHomeData)
+  const { data: homeData, loading } = useData(DataService.getHomeData)
   
   const {
     overlayText = '',
@@ -41,7 +41,7 @@ export default function Home({ active }) {
   }
 
   return (
-    <Section className="home">
+    <Section className="home" loading={loading}>
 
       <div className="home-text">
         <picture className="home-title-image-wrapper">

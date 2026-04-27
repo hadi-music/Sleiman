@@ -1,9 +1,12 @@
+import Loader from "./Loader";
+
 export default function Section({
   title,
   subtitle,
   headerTitle,
   className,
-  children
+  children,
+  loading = false
 }) {
 
   return (
@@ -11,6 +14,8 @@ export default function Section({
     <div className={`section ${className || ""}`}>
 
       <div className="section-inner">
+
+        <Loader loading={loading} />
 
        <div className="section-header">
   <button>HOME</button>

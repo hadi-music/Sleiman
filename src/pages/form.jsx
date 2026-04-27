@@ -3,9 +3,7 @@ import './form.css';
 import { useData } from '../hooks/useData';
 import { DataService } from '../data/DataService';
 
-const ContactForm = () => {
-    const formData = useData(DataService.getFormData);
-    
+const ContactForm = ({ formData }) => {
     // Safety: Ensure all expected properties exist even if Sheet is empty
     const { 
         location = {}, 

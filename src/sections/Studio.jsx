@@ -6,7 +6,7 @@ import { DataService } from "../data/DataService"
 import "./studio.css"
 
 export default function Studio({ active }) {
-  const data = useData(DataService.getStudioData)
+  const { data, loading } = useData(DataService.getStudioData)
 
   const { 
     studioContent = { title: '', text: '', notation: '' }, 
@@ -14,7 +14,7 @@ export default function Studio({ active }) {
   } = data || {};
 
   return (
-    <Section headerTitle="Studio" className={`studio ${active ? "is-active" : ""}`}>
+    <Section headerTitle="Studio" className={`studio ${active ? "is-active" : ""}`} loading={loading}>
       <div className="studio-layout">
         <div className="studio-scroll">
           <ArchivalStack studioData={studioData} />

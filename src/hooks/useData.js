@@ -8,9 +8,11 @@ import { useState, useEffect } from 'react';
  */
 export function useData(fetcher, localFallback = null, ...args) {
   const [data, setData] = useState(localFallback);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
+    setLoading(true);
 
     fetcher(localFallback, ...args)
       .then((result) => {
@@ -20,6 +22,12 @@ export function useData(fetcher, localFallback = null, ...args) {
       })
       .catch((err) => {
         console.error("useData hook: Failed to fetch live data, falling back to local.", err);
+      })
+      .finally(() => {
+        if (mounted) {
+          // Add a tiny delay for smoother UI transition
+          setTimeout(() => setLoading(false), 400);
+        }
       });
 
     return () => {
@@ -27,5 +35,5 @@ export function useData(fetcher, localFallback = null, ...args) {
     };
   }, []);
 
-  return data;
+  return { data, loading };
 }

@@ -7,7 +7,7 @@ import "./numbers.css"
 
 export default function NumbersDesktop() {
   const [active, setActive] = useState(null)
-  const data = useData(DataService.getNumbersData)
+  const { data, loading } = useData(DataService.getNumbersData)
 
   const handleHover = useCallback((index) => {
     setActive(index)
@@ -23,7 +23,7 @@ export default function NumbersDesktop() {
   } = data || {};
 
   return (
-    <Section className="numbers" headerTitle="Music">
+    <Section className="numbers" headerTitle="Music" loading={loading}>
       <div className="numbers-layout">
         
         {/* LEFT PANEL */}
