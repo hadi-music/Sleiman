@@ -37,8 +37,8 @@ export default function CardStack({ sections }) {
 
     if (isScrolling.current) return
 
-    // Intent Threshold: Ignore micro-movements
-    if (currentAbsDelta < 30) return
+    // Intent Threshold: Ignore micro-movements (Lowered for responsiveness)
+    if (currentAbsDelta < 20) return
 
     // Acceleration Detection (Velocity Spike):
     if (currentAbsDelta <= prevAbsDelta * 1.2) return
@@ -152,11 +152,11 @@ export default function CardStack({ sections }) {
               animate={{
                 y: `calc(${distance * 100}vh)`,
                 scale: distance === 0 ? 1 : 0.92,
-                visibility: Math.abs(distance) > 1 ? "hidden" : "visible"
+                display: Math.abs(distance) > 1 ? "none" : "flex"
               }}
               transition={{
                 duration: Math.abs(distance) > 1 ? 0 : transitionDuration,
-                ease: [0.16, 1, 0.3, 1]
+                ease: [0.25, 1, 0.5, 1] // Smoother, more cinematic ease
               }}
               onAnimationComplete={() => {
                 if (i === index) isScrolling.current = false

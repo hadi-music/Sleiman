@@ -65,7 +65,7 @@
         position: relative;
         overflow: hidden;
         border-radius: 28px;
-
+        contain: paint; /* Optimization for Safari */
     }
 
     .contact .section-inner {

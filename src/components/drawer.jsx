@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import './drawer.css';
 
@@ -11,7 +11,7 @@ const iconMap = {
     itunes: '/icons/apple.webp'
 };
 
-function Drawer({ platform, isActive, onHover, onLeave, index }) {
+const Drawer = memo(({ platform, isActive, onHover, onLeave, index }) => {
     const [copied, setCopied] = useState(false);
     const [embedCopied, setEmbedCopied] = useState(false);
 
@@ -60,7 +60,7 @@ function Drawer({ platform, isActive, onHover, onLeave, index }) {
         <div 
             className="drawer-hover-zone" 
             style={{ top: `${index * 25}%` }}
-            onMouseEnter={onHover}
+            onMouseEnter={() => onHover(index)}
             onMouseLeave={onLeave}
         >
             <div 
@@ -105,6 +105,6 @@ function Drawer({ platform, isActive, onHover, onLeave, index }) {
             </div>
         </div>
     );
-}
+});
 
 export default Drawer;

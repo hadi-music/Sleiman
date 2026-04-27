@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import dataLocal from "../data/numbers.json"
 import { useData } from "../hooks/useData"
 import { DataService } from "../data/DataService"
@@ -9,6 +9,14 @@ import "./numbers.css"
 export default function NumbersDesktop() {
   const [active, setActive] = useState(null)
   const data = useData(DataService.getNumbersData, dataLocal)
+
+  const handleHover = useCallback((index) => {
+    setActive(index)
+  }, [])
+
+  const handleLeave = useCallback(() => {
+    setActive(null)
+  }, [])
 
   return (
     <Section className="numbers" headerTitle="Music">
@@ -22,8 +30,8 @@ export default function NumbersDesktop() {
                 key={platform.name}
                 platform={platform}
                 isActive={active === i}
-                onHover={() => setActive(i)}
-                onLeave={() => setActive(null)}
+                onHover={handleHover}
+                onLeave={handleLeave}
                 index={i}
               />
             ))}

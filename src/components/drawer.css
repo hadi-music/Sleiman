@@ -37,7 +37,17 @@
     z-index: 10;
     pointer-events: none; /* Let hovers pass to zone */
     white-space: nowrap;
+    will-change: width, opacity;
+    transform: translateZ(0); /* Hardware acceleration */
     transition: background-color 0.4s ease, width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sh-active {
+    transition: background-color 0.4s ease, width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.soundharbor-drawer:not(.sh-active) {
+    transition: background-color 0.4s ease, width 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
 }
 
 .soundharbor-drawer.sh-active {
@@ -63,25 +73,20 @@
 
 /* Expanded Content Area */
 .sh-expanded-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     padding: clamp(8px, 1vw, 48px) clamp(12px, 2vw, 48px) clamp(8px, 1vw, 48px) clamp(10px, 1.5vw, 40px);
     min-width: 0;
     overflow: hidden;
 
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent wrapping during transition */
     opacity: 0;
-    transition: opacity 0.1s ease; /* Disappear instantly on close */
+    transition: opacity 0.1s ease; /* Disappear instantly on close to hide reflow */
     pointer-events: none;
 }
 
 .sh-active .sh-expanded-content {
     opacity: 1;
     pointer-events: auto;
-    transition: opacity 0.4s ease 0.1s; /* Fade in once drawer starts opening */
-    white-space: normal;
+    transition: opacity 0.3s ease 0.2s; /* Fade in ONLY once drawer is wide enough */
 }
 
 /* When active, elevate above other drawers */
@@ -89,7 +94,7 @@
     z-index: 20;
 }
 
-/* Specific rule for fast closure */
+/* Specific rule for fade-out closure */
 .soundharbor-drawer:not(.sh-active) .sh-expanded-content {
     opacity: 0;
     transition: opacity 0.1s ease;

@@ -6,7 +6,9 @@
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  /* ADD THIS */
+  contain: paint; /* Optimization for Safari */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); 
 }
 
 /* Local header for Numbers mobile (top-left white title) */
@@ -32,10 +34,8 @@
   filter: blur(0px) saturate(1);
 }
 
-/* When a row is open (a button pressed), blur the title to match other UI blurs */
 .numbers-mobile-inner.has-open-row .numbers-mobile-header .section-header__title {
-  filter: blur(3px) saturate(.9);
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 @media (min-width: 769px) {
@@ -59,8 +59,6 @@
   height: 100%;
   object-fit: cover;
   object-position: 25% center;
-  transition: filter .5s cubic-bezier(.22, 1, .36, 1);
-  filter: blur(0px);
   -webkit-user-drag: none;
   user-select: none;
 }
@@ -75,13 +73,9 @@
   pointer-events: none;
 }
 
-/* Focus state: darken/blur background when a row is open */
 .numbers-mobile-inner.has-open-row .mobile-bg::after {
-  background: rgba(0, 0, 0, 0.42);
-}
-
-.numbers-mobile-inner.has-open-row .mobile-bg img {
-  filter: blur(6px);
+  background: rgba(0, 0, 0, 0.65);
+  transition: background-color .6s cubic-bezier(.22, 1, .36, 1);
 }
 
 .mobile-strip {
@@ -164,8 +158,7 @@
   padding: 0 clamp(12px, 4vw, 24px);
   pointer-events: none;
   z-index: 2;
-  transition: filter .5s cubic-bezier(.22, 1, .36, 1), opacity .5s cubic-bezier(.22, 1, .36, 1);
-  filter: blur(0px) brightness(1);
+  transition: opacity .6s cubic-bezier(.22, 1, .36, 1), transform .6s cubic-bezier(.22, 1, .36, 1);
 }
 
 /* Platform title indicator */
@@ -189,7 +182,7 @@
   /* Remove translateX(-50%) to prevent pixel jitter */
   -webkit-transform: translateY(-6px) translateZ(0);
   transform: translateY(-6px) translateZ(0);
-  transition: opacity .22s ease, transform .22s cubic-bezier(.22, 1, .36, 1);
+  transition: opacity .4s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
 }
 
 .platform-title.show {
@@ -199,8 +192,8 @@
 }
 
 .numbers-mobile-inner.has-open-row .streams-center {
-  filter: blur(2.5px) brightness(0.92);
-  opacity: 0.96;
+  opacity: 0.7;
+  transform: scale(0.98); /* Removed translateZ(0) */
 }
 
 .mobile-bottom {
@@ -266,7 +259,7 @@
   height: var(--btn);
   pointer-events: auto;
   /* slightly larger visual presence without altering layout tracks */
-  transform: scale(1.15);
+  transform: scale(1.15); /* Removed translateZ(0) to reduce layer count */
   transform-origin: center left;
   /* grow leftwards to preserve right gap */
   will-change: transform;
@@ -279,10 +272,9 @@
   column-gap: var(--gap);
   pointer-events: none;
   /* visibility controlled per active row without shifting layout */
-  opacity: 0;
   visibility: hidden;
-  transition: opacity .18s ease;
-  /* ensure no background panel */
+  /* No CSS transition for opacity here, handled by Framer Motion */
+  /* transition: opacity .18s ease; REMOVED to avoid conflict with Framer Motion */
   background: transparent !important;
   box-shadow: none !important;
   border: none !important;
@@ -299,7 +291,7 @@
   width: var(--btn);
   height: var(--btn);
   pointer-events: auto;
-  background: var(--row-color, rgba(44, 44, 44, 0.95));
+  background: #d8d5ce; /* Uniform color */
 }
 
 /* Ensure action icons are black per user request */
@@ -337,9 +329,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  border: none !important; /* Remove white stroke */
+  outline: none !important;
+  background: #d8d5ce; /* Standard color */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   pointer-events: auto;
   touch-action: manipulation;
 }
@@ -356,38 +350,7 @@
   transform: scale(1.05);
 }
 
-/* Platform button colors and row color variables */
-.numbers-button.spotify {
-  background: #d8d5ce;
-}
-
-.numbers-button.anghami {
-  background: #bfbcb5;
-}
-
-.numbers-button.apple {
-  background: #94928b;
-}
-
-.numbers-button.youtube {
-  background: #656460;
-}
-
-.numbers-row.spotify {
-  --row-color: #d8d5ce;
-}
-
-.numbers-row.anghami {
-  --row-color: #bfbcb5;
-}
-
-.numbers-row.apple {
-  --row-color: #94928b;
-}
-
-.numbers-row.youtube {
-  --row-color: #656460;
-}
+/* Platform row color variables removed for uniformity */
 
 /* Vertical left alignment handled by flex column on .numbers-buttons */
 
