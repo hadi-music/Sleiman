@@ -44,9 +44,10 @@
 /* Platform colors defined at the bottom of the file */
 
 .numbers-left {
-
-  background: #f3f3f3;
-
+  background: 
+    linear-gradient(#656460, #656460) bottom left / var(--drawer-strip) 25% no-repeat,
+    #ffffff;
+  border-bottom-left-radius: 28px;
   padding: clamp(0.3rem, 0.8vw, 1rem) clamp(1rem, 2vw, 2.5rem) clamp(0.3rem, 0.8vw, 1rem)  clamp(0rem, 0vw, 2.5rem);
 
   display: flex;
@@ -64,6 +65,8 @@
   inset: 0;
   z-index: 10;
   pointer-events: none;
+  overflow: hidden;
+  border-bottom-left-radius: 28px;
   /* Allow events to reach hover zones */
 }
 
