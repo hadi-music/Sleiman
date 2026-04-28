@@ -20,7 +20,8 @@
         "building": "Circular Building - G1",
         "street": "D street, Me'aisem 1",
         "area": "Dubai Production City",
-        "city": "Dubai"
+        "city": "Dubai",
+        "map_url": "#"
     },
     "social_media": [
         {

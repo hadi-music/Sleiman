@@ -47,6 +47,9 @@ const FormMobile = () => {
                         if (p === 'instagram') icon = '/icons/insta.webp';
                         else if (p === 'tiktok') icon = '/icons/tiktok.webp';
                         else if (p === 'threads') icon = '/icons/threads.webp';
+                        else if (p === 'spotify') icon = '/icons/spotify.webp';
+                        else if (p === 'youtube') icon = '/icons/youtube.webp';
+                        else if (p === 'anghami') icon = '/icons/anghami.webp';
                         return (
                             <a key={index} href={social.url} className="social-icon-link">
                                 <img src={icon} alt={social.platform} loading="lazy" />

@@ -28,6 +28,9 @@ const ContactForm = ({ formData }) => {
         if (p === 'instagram') return '/icons/insta.webp';
         if (p === 'threads')   return '/icons/threads.webp';
         if (p === 'tiktok')    return '/icons/tiktok.webp';
+        if (p === 'spotify')   return '/icons/spotify.webp';
+        if (p === 'youtube')   return '/icons/youtube.webp';
+        if (p === 'anghami')   return '/icons/anghami.webp';
         return null;
     };
 
@@ -51,6 +54,15 @@ const ContactForm = ({ formData }) => {
                                 {location.city}
                             </span>
                         </div>
+                        {/* Map Link */}
+                        <a 
+                            href={location.map_url || "#"} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="cf-map-link"
+                        >
+                            <img src="/images/map.webp" alt="Location Map" className="cf-map-img" loading="lazy" />
+                        </a>
                     </div>
 
                     <div className="cf-card cf-card--mid">

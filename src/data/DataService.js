@@ -158,7 +158,9 @@ const HEADER_MAP = {
   'Building': 'building',
   'Street': 'street',
   'Area': 'area',
-  'City': 'city'
+  'City': 'city',
+  'MAP': 'map_url',
+  'Map': 'map_url'
 };
 
 /**
