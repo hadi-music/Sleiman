@@ -93,7 +93,7 @@
 .cf-card--dark {
     background-color: var(--orange-bg);
     color: #fff;
-    flex: 2;
+    flex: 2.4;
 }
 
 /* Drop a Line — taller */
@@ -146,8 +146,8 @@
 .cf-map-link {
     display: block;
     width: 100%;
+    height: 8em !important;
     margin-top: 0.5em;
-    height: clamp(3em, 40%, 7em);
     border-radius: 0.8em;
     /* Rounded corners for the map itself */
     overflow: hidden;
