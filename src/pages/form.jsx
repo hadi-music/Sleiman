@@ -12,6 +12,28 @@ const ContactForm = ({ formData }) => {
         theme = {} 
     } = formData || {};
 
+    const [status, setStatus] = React.useState(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(data).toString(),
+        })
+            .then(() => {
+                setStatus("SUCCESS");
+                form.reset();
+            })
+            .catch((error) => {
+                console.error("Form submission error:", error);
+                setStatus("ERROR");
+            });
+    };
+
     const dynamicTheme = {
         '--orange-bg':  theme.orange_box_bg || '#646360',
         '--orange-text': theme.orange_box_text || '#FFFFFF',
@@ -102,25 +124,44 @@ const ContactForm = ({ formData }) => {
 
                     <div className="cf-card cf-card--light">
                         <h2 className="cf-heading">QUICK MESSAGE</h2>
-                        <form className="cf-form" onSubmit={(e) => e.preventDefault()}>
+                        <form 
+                            className="cf-form" 
+                            name="contact" 
+                            method="POST" 
+                            onSubmit={handleSubmit}
+                        >
+                            <input type="hidden" name="form-name" value="contact" />
+                            <p style={{ display: 'none' }}>
+                                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                            </p>
                             <div className="cf-input-row">
                                 <div className="cf-field">
                                     <label>NAME</label>
-                                    <input type="text" autoComplete="name" />
+                                    <input type="text" name="name" autoComplete="name" required />
                                 </div>
                                 <div className="cf-field">
                                     <label>EMAIL</label>
-                                    <input type="email" autoComplete="email" />
+                                    <input type="email" name="email" autoComplete="email" required />
                                 </div>
                             </div>
                             <div className="cf-field">
                                 <label>SUBJECT</label>
-                                <input type="text" />
+                                <input type="text" name="subject" required />
                             </div>
                             <div className="cf-field cf-field--grow">
                                 <label>MESSAGE</label>
-                                <textarea rows="4"></textarea>
+                                <textarea name="message" rows="4" required></textarea>
                             </div>
+                            {status === "SUCCESS" && (
+                                <p className="status-success" style={{ color: '#2ecc71', marginTop: '10px', fontSize: '0.9rem' }}>
+                                    Thank you! Your message has been sent.
+                                </p>
+                            )}
+                            {status === "ERROR" && (
+                                <p className="status-error" style={{ color: '#e74c3c', marginTop: '10px', fontSize: '0.9rem' }}>
+                                    Something went wrong. Please try again.
+                                </p>
+                            )}
                             <button type="submit" className="cf-btn">
                                 SEND MESSAGE <span aria-hidden="true">→</span>
                             </button>

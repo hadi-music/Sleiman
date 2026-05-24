@@ -10,27 +10,70 @@ const FormMobile = () => {
     const formData = useData(DataService.getFormData, formLocal);
     const { location, contact, social_media } = formData;
 
+    const [status, setStatus] = React.useState(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(data).toString(),
+        })
+            .then(() => {
+                setStatus("SUCCESS");
+                form.reset();
+            })
+            .catch((error) => {
+                console.error("Form submission error:", error);
+                setStatus("ERROR");
+            });
+    };
+
     return (
         <div className="mobile-form-container">
 
             {/* MAIN ELEMENT: QUICK MESSAGE */}
             <div className="card message-card">
                 <h2>QUICK MESSAGE</h2>
-                <form className="message-form" onSubmit={(e) => e.preventDefault()}>
+                <form 
+                    className="message-form" 
+                    name="contact" 
+                    method="POST" 
+                    onSubmit={handleSubmit}
+                >
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p style={{ display: 'none' }}>
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    <input type="hidden" name="subject" value="Mobile Form Submission" />
+
                     <div className="mobile-input-row">
                         <div className="input-group">
                             <label>NAME</label>
-                            <input type="text" />
+                            <input type="text" name="name" required />
                         </div>
                         <div className="input-group">
                             <label>EMAIL</label>
-                            <input type="email" />
+                            <input type="email" name="email" required />
                         </div>
                     </div>
                     <div className="input-group">
                         <label>MESSAGE</label>
-                        <textarea rows="4"></textarea>
+                        <textarea name="message" rows="4" required></textarea>
                     </div>
+                    {status === "SUCCESS" && (
+                        <p className="status-success" style={{ color: '#2ecc71', marginTop: '10px', fontSize: '0.9rem' }}>
+                            Thank you! Your message has been sent.
+                        </p>
+                    )}
+                    {status === "ERROR" && (
+                        <p className="status-error" style={{ color: '#e74c3c', marginTop: '10px', fontSize: '0.9rem' }}>
+                            Something went wrong. Please try again.
+                        </p>
+                    )}
                     <button type="submit" className="send-btn">
                         SEND MESSAGE <span>→</span>
                     </button>
