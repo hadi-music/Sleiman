@@ -76,24 +76,22 @@
     right: 24px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 6px;
     color: #e0e0e0;
     opacity: 0;
     pointer-events: none;
-    /* Faster fade out when card collapses */
     transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .archival-card.active .archival-content {
     opacity: 1;
     pointer-events: auto;
-    /* Delayed fade in to wait for card expansion */
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
 }
 
 .archival-meta {
     font-family: 'Courier New', Courier, monospace;
-    /* Technical note vibe */
     font-size: 0.7rem;
     letter-spacing: 0.05em;
     color: #888;
@@ -106,8 +104,8 @@
     font-weight: 600;
     margin: 0;
     white-space: nowrap;
-    /* Prevents text from breaking weirdly during animation */
     letter-spacing: -0.02em;
+    text-align: center;
 }
 
 /* Description reveal mechanics */
@@ -128,6 +126,7 @@
     color: #aaa;
     margin: 0;
     overflow: hidden;
+    text-align: center;
 }
 
 /* --- MOBILE: VERTICAL PROTOCOL --- */
@@ -168,20 +167,18 @@
         flex: 4;
     }
 
+    .archival-title {
+        font-size: 0.95rem;
+    }
+
     .archival-content {
-        /* Pull the text in slightly for narrower screens */
         bottom: 16px;
         left: 16px;
         right: 16px;
     }
 
-    .archival-title {
-        font-size: 0.95rem;
-        /* Slightly scale down title */
-    }
-
     .archival-desc-wrapper {
-        display: none; /* Hide description on mobile */
+        display: none;
     }
 }
 

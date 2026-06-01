@@ -97,7 +97,16 @@ const ContactForm = ({ formData }) => {
                                 </span>
                                 <div>
                                     <small>email</small>
-                                    <p>{contact.email}</p>
+                                    <p>
+                                        <a
+                                            href={`mailto:${contact.email}`}
+                                            className="cf-email-link"
+                                            onPointerDown={(e) => e.stopPropagation()}
+                                            onClick={(e) => { e.stopPropagation(); window.open(`mailto:${contact.email}`); }}
+                                        >
+                                            {contact.email}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>

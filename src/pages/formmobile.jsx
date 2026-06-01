@@ -82,7 +82,14 @@ const FormMobile = () => {
 
             {/* MINIMAL FOOTER: EMAIL & SOCIALS */}
             <div className="mobile-footer">
-                <p className="footer-email">{contact.email}</p>
+                <a
+                    href={`mailto:${contact.email}`}
+                    className="footer-email"
+                    onPointerDown={(e) => e.stopPropagation()}
+                    onClick={(e) => { e.stopPropagation(); window.open(`mailto:${contact.email}`); }}
+                >
+                    {contact.email}
+                </a>
                 <div className="footer-socials">
                     {social_media.slice(0, 3).map((social, index) => {
                         let icon;

@@ -32,17 +32,15 @@
 .press-right-stack {
   flex: 0 0 auto;
   width: clamp(12rem, 30vw, 37.5rem);
+  height: var(--grid-size);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
-  /* Match the LavaGrid height exactly (grid is square) */
-  height: var(--grid-size);
+  gap: 4%;
 }
 
 .press-featured-image-wrapper {
-  width: 100%;
-  height: 52%;
+  flex: 0 0 52%;
+  min-height: 0;
   border-radius: clamp(0.875rem, 2.5vw, 3.75rem);
   overflow: hidden;
   display: block;
@@ -58,11 +56,10 @@
 }
 
 .press-text-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-
-  width: 100%;
+  justify-content: flex-start;
   padding-left: 0;
   color: #000000;
   text-shadow: none;
@@ -88,7 +85,8 @@
   font-size: clamp(0.75rem, 0.95vw, 1.5rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: clamp(0.1rem, 0.2vw, 0.3rem);
+  margin: 0;
+  min-height: 1.4em;
   color: #000000;
   opacity: 1;
 }
@@ -98,14 +96,12 @@
 .press-text-container h3 {
   font-family: "NessynSentry", sans-serif;
   font-size: clamp(0.5rem, 1.8vw, 4rem);
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  margin-bottom: clamp(0.4rem, 0.8vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: 2px;
+  margin: 0 0 clamp(0.4rem, 0.8vw, 2rem) 0;
   color: #000000;
   max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  letter-spacing: 2px;
+  overflow: hidden;
 }
 
 /* EXCERPT */
@@ -116,9 +112,8 @@
   line-height: 1.2;
   color: #000000;
   opacity: 1;
-  margin-bottom: clamp(0.4rem, 0.5vw, 2rem);
+  margin: 0 0 clamp(0.4rem, 0.5vw, 2rem) 0;
   max-width: 80ch;
-  margin-top: -0.2rem;
 }
 
 /* EXCERPT (desktop-only) */
@@ -127,9 +122,8 @@
   font-size: clamp(0.8rem, 1.1vw, 2.25rem);
   line-height: 1.2;
   opacity: 1;
-  margin-bottom: clamp(0.4rem, 0.5vw, 2rem);
+  margin: 0 0 clamp(0.4rem, 0.5vw, 2rem) 0;
   max-width: 80ch;
-  margin-top: -0.2rem;
   display: block;
 }
 
@@ -266,6 +260,7 @@
   .press .section-body {
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     padding-right: clamp(0.5rem, 2vw, 1rem);
     padding-top: 0;
   }
@@ -277,13 +272,13 @@
   }
 
   .press-left {
-    flex: 1;
+    flex: 0 0 auto;
 
     display: flex;
     align-items: flex-start;
     justify-content: center;
 
-    padding-top: clamp(3rem, 8vh, 5rem);
+    padding-top: clamp(1rem, 9vh, 7rem);
   }
 
   .press-grid {
@@ -299,18 +294,18 @@
   .press-right-stack {
     height: auto;
     width: 100%;
+    flex: 0 0 auto;
   }
 
   .press-text-container {
-    margin-top: 0;
     margin-left: 20px;
-    padding-bottom: 0;
-    transform: translateY(-110px) !important;
+    width: calc(100% - 40px);
+    flex: none;
+    justify-content: flex-start;
     color: #000000 !important;
     text-shadow: none !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    width: 90%;
   }
 
   .press-text-container h2,
@@ -343,6 +338,11 @@
 
   .press .lava-card {
     border-radius: clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  .press-text-container h2 {
+    height: 1.4em;
+    overflow: hidden;
   }
 
   .press-text-container h3 {
