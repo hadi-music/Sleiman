@@ -61,7 +61,7 @@ export default function Home({ active }) {
 
           <source
             media="(max-width: 768px)"
-            srcSet="/images/herom.webp"
+            srcSet="/images/herom.jpeg"
           />
 
           <img src="/images/hero.webp" loading="lazy" />

@@ -129,6 +129,22 @@
     text-align: center;
 }
 
+/* --- DESKTOP: LEFT-ALIGNED TITLES --- */
+@media (min-width: 769px) {
+    .archival-title {
+        align-self: flex-start;
+        text-align: left;
+    }
+
+    .archival-desc {
+        text-align: left;
+    }
+
+    .archival-desc-wrapper {
+        align-self: stretch;
+    }
+}
+
 /* --- MOBILE: VERTICAL PROTOCOL --- */
 @media (max-width: 768px) {
     .archival-container {
