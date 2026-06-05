@@ -23,7 +23,7 @@
     /* Fallback color */
 
     /* The magic cubic-bezier makes the snap feel deliberate, not floaty */
-    transition: flex 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Active Card - Expands to take up remaining space */
@@ -43,7 +43,7 @@
     object-fit: cover;
     /* Grayscale/contrast for unclicked state */
     filter: grayscale(100%) brightness(0.8) contrast(110%);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     -webkit-user-drag: none;
     user-select: none;
 }
@@ -87,7 +87,7 @@
 .archival-card.active .archival-content {
     opacity: 1;
     pointer-events: auto;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
 }
 
 .archival-meta {
@@ -112,7 +112,7 @@
 .archival-desc-wrapper {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: grid-template-rows 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .archival-card.active .archival-desc-wrapper {
@@ -172,7 +172,7 @@
         /* Fallback color */
 
         /* The magic cubic-bezier makes the snap feel deliberate, not floaty */
-        transition: flex 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
 
@@ -218,7 +218,7 @@
         /* Fallback color */
 
         /* The magic cubic-bezier makes the snap feel deliberate, not floaty */
-        transition: flex 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .archival-meta {

@@ -24,10 +24,7 @@ export function useData(fetcher, localFallback = null, ...args) {
         console.error("useData hook: Failed to fetch live data, falling back to local.", err);
       })
       .finally(() => {
-        if (mounted) {
-          // Add a tiny delay for smoother UI transition
-          setTimeout(() => setLoading(false), 400);
-        }
+        if (mounted) setLoading(false);
       });
 
     return () => {

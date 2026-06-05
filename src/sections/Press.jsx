@@ -48,7 +48,7 @@ export default function Press() {
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
           <a href={currentActive.link} target="_blank" rel="noopener noreferrer">
-            <img src={currentActive.image || "/images/herom.webp"} alt="Featured" className="press-featured-image" loading="lazy" />
+            <img src={currentActive.image || "/images/herom.webp"} alt="Featured" className="press-featured-image" loading="lazy" decoding="async" />
           </a>
         </motion.div>
 

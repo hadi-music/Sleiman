@@ -50,7 +50,8 @@ export default function Home({ active }) {
             src="/images/Sleiman.svg"
             alt="Sleiman Damien"
             className="home-title-image"
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
           />
         </picture>
       </div>
@@ -61,10 +62,16 @@ export default function Home({ active }) {
 
           <source
             media="(max-width: 768px)"
-            srcSet="/images/herom.jpeg"
+            srcSet="/images/herom.webp"
+            type="image/webp"
           />
 
-          <img src="/images/hero.webp" loading="lazy" />
+          <img
+            src="/images/hero.webp"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
 
         </picture>
 

@@ -26,6 +26,7 @@ export default function ArchivalStack({ studioData }) {
                                 alt={item.title}
                                 className="archival-bg"
                                 loading="lazy"
+                                decoding="async"
                             />
                         </picture>
 
